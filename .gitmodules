@@ -1,0 +1,24 @@
+[submodule "Library/Zend"]
+	path = Library/Zend
+	url = cntysoft-server:SimplifyZend
+[submodule "Library/Cntysoft"]
+	path = Library/Cntysoft
+	url = cntysoft-server:cntysoft-php
+[submodule "PlatformJs/packages/sencha-ext"]
+	path = PlatformJs/packages/sencha-ext
+	url = cntysoft-server:sencha-ext
+[submodule "PlatformJs/packages/cntysoft-core"]
+	path = PlatformJs/packages/cntysoft-core
+	url = cntysoft-server:cntysoft-core
+[submodule "PlatformJs/packages/cntysoft-comp"]
+	path = PlatformJs/packages/cntysoft-comp
+	url = cntysoft-server:cntysoft-comp
+[submodule "PlatformJs/packages/cntysoft-webos"]
+	path = PlatformJs/packages/cntysoft-webos
+	url = cntysoft-server:cntysoft-webos
+[submodule "JsLibrary/CodeMirror"]
+	path = JsLibrary/CodeMirror
+	url = cntysoft-server:CodeMirror
+[submodule "JsLibrary/CkEditor"]
+	path = JsLibrary/CkEditor
+	url = cntysoft-server:CkEditor
