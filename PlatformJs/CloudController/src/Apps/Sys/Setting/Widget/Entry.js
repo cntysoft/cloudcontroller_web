@@ -33,11 +33,7 @@ Ext.define('App.Sys.Setting.Widget.Entry', {
             //    id : 'WallPaper',
             //    leaf : true
             //}
-            {
-               text: U_NAMES.META_INFO,
-               id: 'MetaInfo',
-               leaf: true
-            }]
+            ]
       };
    }
 });

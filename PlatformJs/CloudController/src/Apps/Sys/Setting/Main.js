@@ -20,12 +20,6 @@ Ext.define('App.Sys.Setting.Main', {
     * @inheritdoc
     */
    widgetMap: {
-      Entry: 'App.Sys.Setting.Widget.Entry',
-      MetaInfo: 'App.Sys.Setting.Widget.MetaInfo'
+      Entry: 'App.Sys.Setting.Widget.Entry'
    },
-   
-   generateSiteKeyMap : function(callback, scope)
-   {
-      this.callApp('MetaInfo/generateSiteKeyMap', null, callback, scope);
-   }
 });

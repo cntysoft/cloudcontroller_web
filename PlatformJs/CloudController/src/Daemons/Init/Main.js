@@ -12,7 +12,8 @@ Ext.define('Daemon.Init.Main', {
    extend : 'WebOs.Kernel.ProcessModel.Daemon',
    requires : [
       'Cntysoft.Utils.Common',
-      'Daemon.Init.Lang.zh_CN'
+      'Daemon.Init.Lang.zh_CN',
+      "Cntysoft.Framework.Net.WebSocket"
    ],
    auth : null,
    /**
@@ -132,6 +133,49 @@ Ext.define('Daemon.Init.Main', {
     */
    retrieveSuperManagerProfile : function()
    {
+      var socket = new Cntysoft.Framework.Net.WebSocket({
+         hostUrl : "ws://console.kelecloud.cn/websocket",
+         listeners : {
+            opened : function(event)
+            {
+               console.log('connect');
+               this.send("xiuxiux");
+            },
+            close : function(event)
+            {
+               console.log('disconnect');
+            },
+            error : function(event)
+            {
+               console.log('error');
+            }
+         }
+      });
+////
+//            var wsUri = "ws://console.kelecloud.cn/websocket";
+//            var websocket = null;
+//
+//
+//                    if (typeof MozWebSocket == 'function')
+//                        WebSocket = MozWebSocket;
+//                    if ( websocket && websocket.readyState == 1 )
+//                        websocket.close();
+//                    websocket = new WebSocket( wsUri );
+//                    websocket.onopen = function (evt) {
+//                        console.log("CONNECTED");
+//                        websocket.send("xas1234131");
+//                    };
+//                    websocket.onclose = function (evt) {
+//                        console.log("DISCONNECTED");
+//                    };
+//                    websocket.onmessage = function (evt) {
+//                        console.log( "Message received :", evt.data );
+//                      websocket.close();
+//                    };
+//                    websocket.onerror = function (evt) {
+//                        console.log('ERROR: ' + evt.data);
+//                    };
+//////            
       WebOs.updateLoadMsg(WebOs.ME.SYS_RETRIEVE_USER_INFO);
       Cntysoft.callApp('Sys', 'User', 'Authorizer/retrieveUserInfo', null, function(response){
          if(!response.status){
@@ -150,6 +194,7 @@ Ext.define('Daemon.Init.Main', {
     */
    tryUserLogin : function()
    {
+       
       WebOs.updateLoadMsg(WebOs.ME.SYS_AUTH);
       try {
          WebOs.loginByCookie(this.loginByCookieHandler, this);
