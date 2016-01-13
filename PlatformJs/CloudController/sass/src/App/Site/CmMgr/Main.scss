@@ -1,0 +1,49 @@
+.app-site-cmmgr-icon
+{
+  background: url(image-path('App/Site/CmMgr/Icon', 'png')) no-repeat;
+}
+.app-site-cmmgr-widget-entry-icon
+{
+  background: url(image-path('App/Site/CmMgr/Icon', 'png')) no-repeat;
+}
+
+.app-site-cmmgr-image-over-item
+{
+  background-color: #efefef;
+}
+.app-site-cmmgr-icon-wrap
+{
+  float: left;
+  padding: 5px;
+  cursor: pointer;
+  height: 140px;
+}
+
+.app-site-cmmgr-icon-wrap img{
+  display : block;
+  margin:0 auto;
+}
+.app-site-cmmgr-icon-wrap span {
+  display: block;
+  overflow: hidden;
+  text-align: center;
+  font: normal 12px tahoma,arial,verdana,sans-serif,宋体,微软雅黑;
+  text-decoration: none;
+  color:#4c4c4c;
+  width : 100px;
+  word-wrap: break-word;
+}
+.app-site-cmmgr-image-selected-item
+{
+  border : 1px solid #3892D3;
+  padding : 4px;
+}
+.app-site-cmmgr-image-marker
+{
+  position:absolute;
+  right:5px;
+  bottom:2px;
+  width : 15px;
+  height : 15px;
+  background:  url(image-path("App/Site/CmMgr/Marker", "png")) no-repeat;
+}

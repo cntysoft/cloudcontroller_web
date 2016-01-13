@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project name="CloudController" default=".help">
+    <!--
+    The build-impl.xml file imported here contains the guts of the build process. It is
+    a great idea to read that file to understand how the process works, but it is best to
+    limit your changes to this file.
+    -->
+    <import file="${basedir}/.sencha/app/build-impl.xml"/>
+
+    <!--
+    The following targets can be provided to inject logic before and/or after key steps
+    of the build process:
+
+        The "init-local" target is used to initialize properties that may be personalized
+        for the local machine.
+
+            <target name="-before-init-local"/>
+            <target name="-after-init-local"/>
+
+        The "clean" target is used to clean build output from the build.dir.
+
+            <target name="-before-clean"/>
+            <target name="-after-clean"/>
+
+        The general "init" target is used to initialize all other properties, including
+        those provided by Sencha Cmd.
+
+            <target name="-before-init"/>
+            <target name="-after-init"/>
+        
+        The "page" target performs the call to Sencha Cmd to build the 'all-classes.js' file.
+
+            <target name="-before-page"/>
+            <target name="-after-page"/>
+
+        The "build" target performs the call to Sencha Cmd to build the application.
+
+            <target name="-before-build"/>
+            <target name="-after-build"/>
+    -->
+    <target name="-after-refresh">
+        <replace token="../ext"  file="${build.json.bootstrap.path}" value="/PlatformJs/ext"/>
+        <replace token="../packages"  file="${build.json.bootstrap.path}" value="/PlatformJs/packages"/>
+        <replace token="app.js"  file="${build.json.bootstrap.path}" value="/PlatformJs/CloudController/app.js"/>
+        <replace token="bootstrap.css"  file="${build.json.bootstrap.path}" value="/PlatformJs/CloudController/bootstrap.css"/>
+        <replace file="${build.json.bootstrap.path}">
+            <replacetoken>"src</replacetoken>
+            <replacevalue>"/PlatformJs/CloudController/src</replacevalue>
+        </replace>
+    </target>
+    <!--还原回来-->
+    <target name="-before-js">
+        <replace token="/PlatformJs/ext"  file="${build.json.bootstrap.path}" value="../ext"/>
+        <replace token="/PlatformJs/packages"  file="${build.json.bootstrap.path}" value="../packages"/>
+        <replace token="/PlatformJs/CloudController/app.js"  file="${build.json.bootstrap.path}" value="app.js"/>
+        <replace token="/PlatformJs/CloudController/bootstrap.css"  file="${build.json.bootstrap.path}" value="bootstrap.css"/>
+        <replace file="${build.json.bootstrap.path}">
+            <replacetoken>"/PlatformJs/CloudController/src</replacetoken>
+            <replacevalue>"src</replacevalue>
+        </replace>
+    </target>
+    <!--再来一次-->
+    <target name="-after-build">
+        <replace token="../ext"  file="${build.json.bootstrap.path}" value="/PlatformJs/ext"/>
+        <replace token="../packages"  file="${build.json.bootstrap.path}" value="/PlatformJs/packages"/>
+        <replace token="app.js"  file="${build.json.bootstrap.path}" value="/PlatformJs/CloudController/app.js"/>
+        <replace token="bootstrap.css"  file="${build.json.bootstrap.path}" value="/PlatformJs/CloudController/bootstrap.css"/>
+        <replace file="${build.json.bootstrap.path}">
+            <replacetoken>"src</replacetoken>
+            <replacevalue>"/PlatformJs/CloudController/src</replacevalue>
+        </replace>
+        <replace token="window.SYSTEM_IS_PRODUCTION = false" value="window.SYSTEM_IS_PRODUCTION = true" file="${build.out.page.path}"/>
+        <replace file="${build.out.page.path}">
+            <replacetoken>//{ProductionBasePath}</replacetoken>
+            <replacevalue>window.systemProductionBasePath = "{app.output.base}"</replacevalue>
+        </replace>
+        <replace token="{app.output.base}" value="${app.output.base}" file="${build.out.page.path}"/>
+        <replace token="${kele.root.dir}" value="" file="${build.out.page.path}"/>
+    </target>
+</project>

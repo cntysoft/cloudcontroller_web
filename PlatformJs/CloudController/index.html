@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>可乐云商分布式管理系统</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style type = "text/css">
+        #loading-mask {position : fixed;_position:absolute;left : 0;top : 0;bottom:0; right:0;width : 100%;height : 100%; z-index : 20000;background-color : white;}
+        #loading{margin:20% auto;width : 160px;height : 30px;}
+        #loading p {font-size : 12px;font-weight : 900;padding-top:5px;padding-left:4px;color:#0B87F3}
+        #loading-msg{text-align: center;color:#0057AE; display:block; font-family:"宋体","微软雅黑"; font-size: 12px;}
+        .x-form-text-default {
+            color: black;
+            padding: 4px 6px 3px 6px;
+            background-color: white;
+            font: 300 15px/23px helvetica,arial,verdana,sans-serif;
+            min-height: 50px;
+        }
+    </style>
+    <script type="text/javascript">
+        //获取全局加载时间之用
+        window._loadStartTime = new Date().getTime();
+        //这里设置全局系统使用的语言,到时候这里使用模板系统生成
+        window.CNTYSOFT_LANG = 'zh_CN';
+        window.CNTYSOFT_IS_DEBUG = true;
+        window.SYSTEM_IS_PRODUCTION = false;
+        //{ProductionBasePath};
+    </script>
+    <!-- The line below must be kept intact for Sencha Cmd to build your application -->
+    <script id="microloader" type="text/javascript" src="/PlatformJs/CloudController/bootstrap.js"></script>
+</head>
+<body>
+<!--页面加载提示开始-->
+<div id = "loading-mask">
+    <div id="loading">
+        <div id="loading-indicator">
+            <img src="/Statics/Images/Global/loading.gif"/>
+        </div>
+        <div id="loading-msg">loading files ... </div>
+    </div>
+</div>
+<!--页面加载提示结束-->
+</body>
+</html>

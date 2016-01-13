@@ -22,3 +22,6 @@
 [submodule "JsLibrary/CkEditor"]
 	path = JsLibrary/CkEditor
 	url = cntysoft-server:CkEditor
+[submodule "JsLibrary/JsSha"]
+	path = JsLibrary/JsSha
+	url = cntysoft-server:JsSha

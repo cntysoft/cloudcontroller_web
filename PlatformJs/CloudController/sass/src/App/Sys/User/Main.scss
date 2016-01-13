@@ -1,0 +1,50 @@
+.app-sys-user-icon
+{
+  background: url(image-path('App/Sys/User/Icon', 'png')) no-repeat;
+}
+.app-sys-user-widget-entry-icon
+{
+  background: url(image-path('App/Sys/User/Icon', 'png')) no-repeat;
+}
+.app-sys-user-widget-member-icon
+{
+  background: url(image-path('App/Sys/User/Widget/Member', 'png')) no-repeat;
+}
+.app-sys-user-widget-rolemgr-icon
+{
+  background: url(image-path('App/Sys/User/Widget/RoleMgr', 'png')) no-repeat;
+}
+
+.app-sys-user-ui-rolemgr-perm-grant-wrapper
+{
+  padding-top: 5px;
+  width : 100%;
+  height : 100%;
+}
+.app-sys-user-ui-rolemgr-perm-grant-title
+{
+  text-align : left;
+  height : 30px;
+  line-height: 30px;
+  font-size: 17px;
+  font-family: 微软雅黑,黑体,宋体,tahoma,arial,verdana,sans-serif;
+  font-weight: bold;
+  margin-left: 10px;
+  margin-right: 10px;
+  border-bottom: 1px solid #005675;
+  color : #005675
+}
+.app-sys-user-ui-rolemgr-perm-grant-wrapper ul
+{
+  padding : 10px;
+}
+.app-sys-user-ui-rolemgr-perm-grant-wrapper li
+{
+  line-height : 30px;
+  margin-bottom: 5px;
+  list-style-type: none
+}
+.app-sys-user-ui-rolemgr-perm-grant-wrapper span
+{
+  color : #005675;
+}

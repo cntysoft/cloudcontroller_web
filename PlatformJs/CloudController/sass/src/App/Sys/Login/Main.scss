@@ -1,0 +1,172 @@
+.app-sys-login-panel {
+  position: relative;
+  width: auto;
+  min-height: 500px;
+  _height : 500px;
+  min-width: 565px;
+  _width : 565px;
+  background: url(image-path('App/Sys/Login/login-bg', 'jpg')) no-repeat center center;
+  font-family: "微软雅黑";
+}
+.app-sys-login-panel .wrapper {
+  width: 450px;
+  margin : 0 auto;
+}
+.app-sys-login-panel .box-bg {
+  width: 450px;
+  height: 380px;
+  opacity: .6;
+  filter: alpha(opacity=60);
+  position: absolute;
+  top : 100px;
+}
+.app-sys-login-panel .box-bg-header {
+  height: 70px;
+  background: #174EFF;
+}
+.app-sys-login-panel .box-bg-main {
+  height: 310px;
+  background: #F8F8F8;
+}
+.app-sys-login-panel .app-sys-login-panel-box {
+  width: 450px;
+  height: 380px;
+  position: absolute;
+  top : 100px;
+}
+.app-sys-login-panel-box .box-header {
+  height: 70px;
+  background: url(image-path('App/Sys/Login/login-logo', 'png'))  no-repeat center center;
+}
+.app-sys-login-panel-box .box-header .back-logo {
+  margin: 14px 0 0 10px;
+}
+.app-sys-login-panel-box .box-main {
+  height: 280px;
+}
+
+.app-sys-login-panel-box .form-group{
+  height: 40px;
+  padding-left: 70px;
+  margin: 15px 0;
+  position: relative;
+}
+.app-sys-login-panel-box .form-group label {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  left: 20px;
+  top: 0px;
+  background: url(image-path('App/Sys/Login/login-icons', 'png')) no-repeat 0 -2px;
+}
+.app-sys-login-panel-box .name-c {
+  margin-top: 30px;
+}
+.app-sys-login-panel-box .password-c label{
+  background-position: 0 -63px;
+}
+.app-sys-login-panel-box .auth-code-c label{
+  background-position: 0 -124px;
+}
+.app-sys-login-panel-box .chkcode-c label{
+  background-position: 0 -178px;
+}
+.app-sys-login-panel-box input{
+  height: 36px;
+  border-radius: 4px;
+  width: 320px;
+  padding: 0 0 0 20px;
+  _line-height: 36px;
+  border :1px solid #c0c0c0;
+  box-shadow: 1px 1px 2px #ddd inset;
+  -webkit-transition: border linear .2s, box-shadow linear .2s;
+  -moz-transition: border linear .2s, box-shadow linear .2s;
+  -o-transition: border linear .2s, box-shadow linear .2s;
+  transition: border linear .2s, box-shadow linear .2s;
+  font-family: "微软雅黑";
+}
+.app-sys-login-panel-box input:focus {
+  border-color: rgba(82, 168, 236,.8);
+  outline: 0;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(82, 168, 236,.9);
+  -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(82, 168, 236,.9);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(82, 168, 236,.9);
+  border-color: rgb(82, 168, 236)\9;
+}
+.app-sys-login-panel-box input.error {
+  border-color: rgba(247,50,78,.8);
+  outline: 0;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(247,50,78,.9);
+  -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(247,50,78,.9);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(247,50,78,.9);
+  border-color: rgb(247,50,78)\9;
+}
+.app-sys-login-panel-box .chkcode {
+  width: 190px;
+}
+.app-sys-login-panel-box .chkcode-c img {
+  height: 36px;
+  width: 120px;
+  vertical-align: -13px;
+  border: 1px solid #c0c0c0;
+  cursor: pointer;
+  display: inline-block;
+  margin: 0 0 0 10px;
+}
+.app-sys-login-panel .mark-me {
+  height : 40px;
+  padding-left: 99px;
+  line-height: 40px;
+  position: relative;
+}
+.app-sys-login-panel .mark-me span {
+  width: 20px;
+  height : 20px;
+  background: url(image-path('App/Sys/Login/checkbox', 'png')) -60px -30px no-repeat;
+  display: block;
+  position: absolute;
+  top : 9px;
+  left: 74px;
+  cursor: pointer;
+}
+.app-sys-login-panel .login-button {
+  height : 40px;
+  padding: 5px 0 0 220px;
+  line-height: 40px;
+}
+.app-sys-login-panel .login-button button {
+  height : 35px;
+  line-height : 35px;
+  width: 80px;
+  border: none;
+  background: #2071EA;
+  color : #fff;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: "微软雅黑";
+}
+.app-sys-login-panel .login-button .btn-reset {
+  background: #818080;
+  margin: 0 0 0 10px;
+}
+.app-sys-login-panel .login-button button:hover {
+  box-shadow: 0 0 2px 2px #ccc;
+}
+.app-sys-login-panel a {
+  color : #fff;
+  text-decoration: none;
+}
+.app-sys-login-panel a:hover{
+  border-bottom: 1px solid #15A7EC;
+}
+.app-sys-login-panel-copyright{
+  position: absolute;
+  bottom: 20px;
+  left : 27%;
+  color : #fff;
+}
+.app-sys-login-panel-copyright span {
+  margin : 0 30px 0 0;
+}
