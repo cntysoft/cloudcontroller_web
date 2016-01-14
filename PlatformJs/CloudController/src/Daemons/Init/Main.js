@@ -140,9 +140,6 @@ Ext.define('Daemon.Init.Main', {
             connected : function(invoker, event)
             {
                var request = new Cntysoft.Framework.Rpc.Request("Meta/Info", "getServerVersion");
-               request.setExtraData("张修春");
-               console.log(Ext.util.Base64.encode("张修春"))
-               console.log(Ext.util.Base64.decode("5byg5L+u5pil"))
                invoker.request(request);
             },
             serveroffline : function(invoker, event)
