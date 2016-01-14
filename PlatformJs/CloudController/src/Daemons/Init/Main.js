@@ -13,7 +13,8 @@ Ext.define('Daemon.Init.Main', {
    requires : [
       'Cntysoft.Utils.Common',
       'Daemon.Init.Lang.zh_CN',
-      "Cntysoft.Framework.Net.WebSocket"
+      "Cntysoft.Framework.Rpc.ServiceInvoker",
+      "Cntysoft.Framework.Rpc.Request"
    ],
    auth : null,
    /**
@@ -133,24 +134,43 @@ Ext.define('Daemon.Init.Main', {
     */
    retrieveSuperManagerProfile : function()
    {
-      var socket = new Cntysoft.Framework.Net.WebSocket({
-         hostUrl : "ws://console.kelecloud.cn/websocket",
+      var invoker = new Cntysoft.Framework.Rpc.ServiceInvoker({
+         serviceHost : "ws://console.kelecloud.cn/websocket",
          listeners : {
-            opened : function(event)
+            connected : function(invoker, event)
             {
-               console.log('connect');
-               this.send("xiuxiux");
+               var request = new Cntysoft.Framework.Rpc.Request("Meta/Info", "getServerVersion");
+               request.setExtraData("张修春");
+               console.log(Ext.util.Base64.encode("张修春"))
+               console.log(Ext.util.Base64.decode("5byg5L+u5pil"))
+               invoker.request(request);
             },
-            close : function(event)
+            serveroffline : function(invoker, event)
             {
-               console.log('disconnect');
+               
             },
-            error : function(event)
-            {
-               console.log('error');
-            }
+            scope : this
          }
       });
+      invoker.connectToServer();
+//      var socket = new Cntysoft.Framework.Net.WebSocket({
+//         hostUrl : "ws://console.kelecloud.cn/websocket",
+//         listeners : {
+//            opened : function(event)
+//            {
+//               console.log('connect');
+//               this.send("xiuxiux");
+//            },
+//            close : function(event)
+//            {
+//               console.log('disconnect');
+//            },
+//            error : function(event)
+//            {
+//               console.log('error');
+//            }
+//         }
+//      });
 ////
 //            var wsUri = "ws://console.kelecloud.cn/websocket";
 //            var websocket = null;
