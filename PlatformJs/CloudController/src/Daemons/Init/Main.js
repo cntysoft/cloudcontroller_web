@@ -139,8 +139,10 @@ Ext.define('Daemon.Init.Main', {
          listeners : {
             connected : function(invoker, event)
             {
-               var request = new Cntysoft.Framework.Rpc.Request("Meta/Info", "getServerVersion");
-               invoker.request(request);
+               var request = new Cntysoft.Framework.Rpc.Request("Repo/Info", "lsSoftwareRepoDir");
+               invoker.request(request, function(response){
+                  console.log(response);
+               });
             },
             serveroffline : function(invoker, event)
             {
