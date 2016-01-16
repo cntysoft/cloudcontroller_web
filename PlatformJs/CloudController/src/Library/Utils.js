@@ -20,7 +20,7 @@ Ext.define('CloudController.Utils',{
        */
       getTplPath : function()
       {
-         //var cfg = FH.getSysEnv().get(CloudController.Const.ENV_SITE_SETTING);
+         //var cfg = CC.getSysEnv().get(CloudController.Const.ENV_SITE_SETTING);
          var base = CloudController.Kernel.StdPath.getTplBasePath();
          return base + '/Pc';
       }

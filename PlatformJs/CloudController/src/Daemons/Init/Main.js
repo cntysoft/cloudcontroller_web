@@ -9,35 +9,34 @@
  * WEBOS初始化系统守护进程
  */
 Ext.define('Daemon.Init.Main', {
-   extend : 'WebOs.Kernel.ProcessModel.Daemon',
-   requires : [
+   extend: 'WebOs.Kernel.ProcessModel.Daemon',
+   requires: [
       'Cntysoft.Utils.Common',
       'Daemon.Init.Lang.zh_CN',
       "Cntysoft.Framework.Rpc.ServiceInvoker",
       "Cntysoft.Framework.Rpc.Request"
    ],
-   auth : null,
+   auth: null,
    /**
     * 运行程序的名称
     *
     * @property {string} name
     */
-   id : 'Init',
+   id: 'Init',
    /**
     * 信息提示
     *
     * @property {LoadMask} msgMask
     */
-   msgMask : null,
+   msgMask: null,
    /**
     * @inheritdoc
     */
-   hasLangText : true,
-
+   hasLangText: true,
    /**
     * 执行入口代码
     */
-   run : function()
+   run: function()
    {
       this.tryUserLogin();
       ////这个需要绑定事件
@@ -54,12 +53,12 @@ Ext.define('Daemon.Init.Main', {
     *
     * @private
     */
-   runSysDaemon : function()
+   runSysDaemon: function()
    {
       var sysDaemons = [{
-         name : 'Kernel',
-         module : 'Sys'
-      }];
+            name: 'Kernel',
+            module: 'Sys'
+         }];
       Ext.each(sysDaemons, function(d){
          Cntysoft.PM().runDaemon(d);
       });
@@ -70,7 +69,7 @@ Ext.define('Daemon.Init.Main', {
     * @param {Object} data 服务器端数据
     * @private
     */
-   setupSysEnv : function(data)
+   setupSysEnv: function(data)
    {
       var env = this.sysEnv;
       var C = CloudController.Const;
@@ -88,7 +87,7 @@ Ext.define('Daemon.Init.Main', {
     * 
     * @param {Object} data 相关设置
     */
-   setupUserInfo : function(data)
+   setupUserInfo: function(data)
    {
       /**
        * 获取当前用户桌面相关数据，
@@ -106,11 +105,11 @@ Ext.define('Daemon.Init.Main', {
 
       A.addAll(data.appMetas);
       A.sortBy(function(a, b){
-         if (a.order == b.order) {
+         if(a.order==b.order){
             return 0;
-         } else if (a.order < b.order) {
+         }else if(a.order<b.order){
             return -1;
-         } else {
+         }else{
             return 1;
          }
       });
@@ -123,87 +122,30 @@ Ext.define('Daemon.Init.Main', {
       this.setupSysEnv(data);
       //渲染桌面组件
       WebOs.PM().runApp({
-         module : 'Sys',
-         name : 'SysUiRender'
+         module: 'Sys',
+         name: 'SysUiRender'
       });
+      //创建全局的服务调用接口,现在这个接口先写死
+      var invoker = new Cntysoft.Framework.Rpc.ServiceInvoker({
+         serviceHost: "ws://console.kelecloud.cn/websocket"
+      });
+      invoker.connectToServer();
+      WebOs.ME.G_OBJ_REFS.SERVICE_INVOKER = invoker;
    },
-
-
    /**
     * 获取超级管理员的详细信息
     */
-   retrieveSuperManagerProfile : function()
+   retrieveSuperManagerProfile: function()
    {
-      var invoker = new Cntysoft.Framework.Rpc.ServiceInvoker({
-         serviceHost : "ws://console.kelecloud.cn/websocket",
-         listeners : {
-            connected : function(invoker, event)
-            {
-               var request = new Cntysoft.Framework.Rpc.Request("Repo/Info", "lsSoftwareRepoDir");
-               invoker.request(request, function(response){
-                  console.log(response);
-               });
-            },
-            serveroffline : function(invoker, event)
-            {
-               
-            },
-            scope : this
-         }
-      });
-      invoker.connectToServer();
-//      var socket = new Cntysoft.Framework.Net.WebSocket({
-//         hostUrl : "ws://console.kelecloud.cn/websocket",
-//         listeners : {
-//            opened : function(event)
-//            {
-//               console.log('connect');
-//               this.send("xiuxiux");
-//            },
-//            close : function(event)
-//            {
-//               console.log('disconnect');
-//            },
-//            error : function(event)
-//            {
-//               console.log('error');
-//            }
-//         }
-//      });
-////
-//            var wsUri = "ws://console.kelecloud.cn/websocket";
-//            var websocket = null;
-//
-//
-//                    if (typeof MozWebSocket == 'function')
-//                        WebSocket = MozWebSocket;
-//                    if ( websocket && websocket.readyState == 1 )
-//                        websocket.close();
-//                    websocket = new WebSocket( wsUri );
-//                    websocket.onopen = function (evt) {
-//                        console.log("CONNECTED");
-//                        websocket.send("xas1234131");
-//                    };
-//                    websocket.onclose = function (evt) {
-//                        console.log("DISCONNECTED");
-//                    };
-//                    websocket.onmessage = function (evt) {
-//                        console.log( "Message received :", evt.data );
-//                      websocket.close();
-//                    };
-//                    websocket.onerror = function (evt) {
-//                        console.log('ERROR: ' + evt.data);
-//                    };
-//////            
       WebOs.updateLoadMsg(WebOs.ME.SYS_RETRIEVE_USER_INFO);
       Cntysoft.callApp('Sys', 'User', 'Authorizer/retrieveUserInfo', null, function(response){
          if(!response.status){
             Cntysoft.raiseError(
-               Ext.getClassName(this),
-               'retrieveSuperManagerProfile',
-               'retrieve user info failure : ' + response.msg
-            );
-         } else{
+                    Ext.getClassName(this),
+                    'retrieveSuperManagerProfile',
+                    'retrieve user info failure : '+response.msg
+                    );
+         }else{
             this.setupUserInfo(response.data);
          }
       }, this);
@@ -211,13 +153,13 @@ Ext.define('Daemon.Init.Main', {
    /**
     * 系统登录判断
     */
-   tryUserLogin : function()
+   tryUserLogin: function()
    {
-       
+
       WebOs.updateLoadMsg(WebOs.ME.SYS_AUTH);
-      try {
+      try{
          WebOs.loginByCookie(this.loginByCookieHandler, this);
-      } catch (e) {
+      }catch(e){
 
       }
    },
@@ -226,33 +168,33 @@ Ext.define('Daemon.Init.Main', {
     *
     * @param {Object} response
     */
-   loginByCookieHandler : function(response)
+   loginByCookieHandler: function(response)
    {
-      if(false == response.status){
+      if(false==response.status){
          /**
           * 需要利用callback吗？
           */
          WebOs.hideLoadMsg();
          WebOs.PM().runApp({
-            name : 'Login',
-            module : 'Sys'
+            name: 'Login',
+            module: 'Sys'
          });
-      } else{
+      }else{
          this.retrieveSuperManagerProfile();
       }
    },
-   renderWebOsUi : function()
+   renderWebOsUi: function()
    {
       Cntysoft.showLoadMsg(Cntysoft.GET_LANG_TEXT('MSG.PREPARE_DESKTOP'));
       Cntysoft.PM().runApp({
-         module : 'Sys',
-         name : 'SysUiRender'
+         module: 'Sys',
+         name: 'SysUiRender'
       });
    },
    /**
     * 资源清除函数
     */
-   destroy : function()
+   destroy: function()
    {
       Ext.destroyMembers(this, 'msgMask');
       delete Cntysoft.R_INIT;

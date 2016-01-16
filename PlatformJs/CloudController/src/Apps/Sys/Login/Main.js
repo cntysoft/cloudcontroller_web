@@ -65,7 +65,7 @@ Ext.define('App.Sys.Login.Main', {
    */
    loginRequestHandler : function(username, password, chkcode)
    {
-      FH.login(username, password, chkcode, function(response){
+      CC.login(username, password, chkcode, function(response){
          if(false == response.status) {
             this.mainPanel.removeKeyMap();
             var ERROR_TYPE = this.GET_LANG_TEXT('ERROR_TYPE');

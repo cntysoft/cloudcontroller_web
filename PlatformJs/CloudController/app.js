@@ -4,7 +4,7 @@ Ext.Loader.setConfig({
 /**
  * 系统入口文件， 在这里设置一些全局的对象
  */
-Ext.define('FH', {
+Ext.define('CC', {
     extend : 'WebOs.Init',
     singleton : true,
     requires : [
@@ -42,6 +42,7 @@ Ext.define('FH', {
         'Cntysoft.Lang.' + window.CNTYSOFT_LANG,
         'CloudController.Lang.' + window.CNTYSOFT_LANG
     ],
+    
     /**
      * 系统支持的语言的列表，这个是硬编码到系统里面的数据
      *
@@ -229,10 +230,10 @@ Ext.define('FH', {
     //给CloudController名称空间加上一些东西
     alias = Ext.Function.alias;
     //在App范围里面用CloudController
-    Ext.apply(FH, {
+    Ext.apply(CC, {
         WebOs : WebOs
     });
 });
 Ext.onReady(function (){
-    FH.run();
+    CC.run();
 });
