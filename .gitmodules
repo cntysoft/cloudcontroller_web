@@ -25,3 +25,9 @@
 [submodule "JsLibrary/JsSha"]
 	path = JsLibrary/JsSha
 	url = cntysoft-server:JsSha
+[submodule "JsLibrary/WebUploader"]
+	path = JsLibrary/WebUploader
+	url = cntysoft-server:WebUploader
+[submodule "JsLibrary/Jquery"]
+	path = JsLibrary/Jquery
+	url = cntysoft-server:Jquery
