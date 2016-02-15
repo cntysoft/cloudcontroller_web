@@ -43,9 +43,17 @@ Ext.define('App.Sys.SoftwareRepo.Main', {
             scope : this
          }
       });
-      this.serviceInvoker.connectToServer();
       this.callParent(arguments);
    },
+   
+   getRepoFileList : function()
+   {
+      var request = new Cntysoft.Framework.Rpc.Request("Repo/Info", "lsSoftwareRepoDir");
+      this.serviceInvoker.request(request, function(data){
+         console.log(data)
+      });
+   },
+   
    destroy : function()
    {
       this.serviceInvoker.disconnectFromServer();

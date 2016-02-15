@@ -21,5 +21,16 @@ Ext.define('App.Sys.SoftwareRepo.Widget.Entry', {
          minHeight : 500,
          maximizable: true
       });
+   },
+   initComponent : function()
+   {
+      this.addListener({
+         afterrender : function()
+         {
+            this.appRef.getRepoFileList();
+         },
+         scope : this
+      });
+      this.callParent(arguments);
    }
 });
