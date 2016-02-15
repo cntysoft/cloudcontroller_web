@@ -18,7 +18,6 @@ return array(
     ),
     'lang' =>
     array(
-        'front' => 'zh_CN',
         'webos' => 'zh_CN',
         'sys' => 'zh_CN'
     ),
@@ -58,5 +57,9 @@ return array(
     ),
     'supportedModules' => array(
         'Sys'
+    ),
+    'serviceServers' => array(
+        'metaserver' => array('metaserver.kelecloud.cn', 7777),
+        'upgrademgr' => array('upgrademgr.kelecloud.cn', 7778)
     )
 );
