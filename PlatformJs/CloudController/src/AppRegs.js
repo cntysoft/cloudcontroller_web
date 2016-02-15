@@ -8,13 +8,14 @@
 /**
  * 这个文件为了包含css打包
  */
-Ext.define('AppRegs',{
-   requires : [
+Ext.define('AppRegs', {
+   requires: [
       'App.Sys.Login.Main',
       'App.Sys.SysUiRender.Main',
       'App.Sys.User.Main',
       'App.Sys.Setting.Main',
       'App.Sys.AppInstaller.Main',
+      'App.Sys.SoftwareRepo.Main',
       'Daemon.Init.Main'
    ]
 });

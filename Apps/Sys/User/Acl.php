@@ -122,11 +122,6 @@ class Acl extends AbstractLib
       }
       $modules = array_unique($modules);
       $this->setupSupportedModules($userInfo, $modules);
-
-      //一些设置信息,这样做好吗？
-      $userInfo['siteSetting'] = array(
-         'tplProject' => Kernel\get_tpl_project()
-      );
       //设置一些系统的配置信息
       $this->setSysSetting($userInfo);
       return $userInfo;
@@ -712,7 +707,8 @@ class Acl extends AbstractLib
             'img' => \Cntysoft\Kernel\get_image_cdn_server_url()
          )
       );
-      
+      $gcfg = ConfigProxy::getGlobalConfig();
+      $data["websocket"] = $gcfg->websocket->toArray();
    }
 
    protected function getPhpSetting(array &$data)

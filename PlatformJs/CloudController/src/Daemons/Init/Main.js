@@ -12,9 +12,7 @@ Ext.define('Daemon.Init.Main', {
    extend: 'WebOs.Kernel.ProcessModel.Daemon',
    requires: [
       'Cntysoft.Utils.Common',
-      'Daemon.Init.Lang.zh_CN',
-      "Cntysoft.Framework.Rpc.ServiceInvoker",
-      "Cntysoft.Framework.Rpc.Request"
+      'Daemon.Init.Lang.zh_CN'
    ],
    auth: null,
    /**
@@ -81,6 +79,7 @@ Ext.define('Daemon.Init.Main', {
       env.set(C.ENV_PHP_SETTING, data.phpSetting);
       env.set(C.ENV_SITE_SETTING, data.siteSetting);
       env.set(C.ENV_SYS_SETTING, data.sysSetting);
+      env.set(C.ENV_WEBSOCKET, data.websocket);
    },
    /**
     * 设置用户相关信息
@@ -125,12 +124,6 @@ Ext.define('Daemon.Init.Main', {
          module: 'Sys',
          name: 'SysUiRender'
       });
-      //创建全局的服务调用接口,现在这个接口先写死
-      var invoker = new Cntysoft.Framework.Rpc.ServiceInvoker({
-         serviceHost: "ws://console.kelecloud.cn/websocket"
-      });
-      invoker.connectToServer();
-      WebOs.ME.G_OBJ_REFS.SERVICE_INVOKER = invoker;
    },
    /**
     * 获取超级管理员的详细信息

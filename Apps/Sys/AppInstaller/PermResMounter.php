@@ -6,7 +6,7 @@
 namespace App\Sys\AppInstaller;
 use Cntysoft\Kernel\App\AbstractLib;
 use Cntysoft\Kernel;
-use FengHuang\Kernel\StdDir;
+use CloudController\Kernel\StdDir;
 use Cntysoft\Kernel\StdErrorType;
 use Cntysoft\Kernel\App\AppObject;
 use App\Sys\User\Model\ApiAuthCode as ApiAuthCodeModel;

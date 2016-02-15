@@ -17,6 +17,7 @@ Ext.define('CloudController.Kernel.Const', {
          WE_QI_YE : 'WeQiYe'
       },
       ENV_SITE_SETTING : 'ENV_SITE_SETTING',
+      ENV_WEBSOCKET : 'ENV_WEBSOCKET',
       OSS_BACKEND : 1,
       LOCAL_BACKEND : 2
    }

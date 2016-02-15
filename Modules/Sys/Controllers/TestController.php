@@ -10,11 +10,15 @@
 
 use Cntysoft\Phalcon\Mvc\AbstractController;
 use App\Sys\User\AjaxHandler\Authorizer;
+use App\Sys\AppInstaller\PermResMounter;
 class TestController extends AbstractController
 {
 
    public function indexAction()
    {
+      $mounter = new PermResMounter();
+      $mounter->mountPermRes("Sys", "SoftwareRepo");
+      exit();
       $auth = new Authorizer();
       $auth->retrieveUserInfo();
       exit();

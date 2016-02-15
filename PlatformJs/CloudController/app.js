@@ -13,6 +13,7 @@ Ext.define('CC', {
         'CloudController.Kernel.StdPath',
         'CloudController.Lang.zh_CN',
         'CloudController.Kernel.Const',
+        "CloudController.Kernel.Funcs",
         'CloudController.Os.SysMenuHandler',
         'CloudController.Os.DesktopMenuHandler',
         'CloudController.Utils'
