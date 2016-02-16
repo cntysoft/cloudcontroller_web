@@ -18,6 +18,10 @@ Ext.define('App.Sys.SoftwareRepo.Lang.zh_CN', {
       ENTRY : {
          ERROR : {
             CONNECT_WEBSOCKET_FAIL : "连接到 [{0}] WebSocket服务器失败"
+         },
+         COLS : {
+            FILE_NAME : "文件名称",
+            FILE_SIZE : "文件大小"
          }
       }
    }
