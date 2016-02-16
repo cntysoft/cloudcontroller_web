@@ -59,7 +59,7 @@ return array(
         'Sys'
     ),
     'websocket' => array(
-        'upgrademgr' => 'websocekt/upgrademgr',
+        'upgrademgr' => 'websocket/upgrademgr',
         'metaserver' => 'websocket/metaserver'
     )
 );

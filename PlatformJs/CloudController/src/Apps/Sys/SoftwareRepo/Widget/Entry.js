@@ -8,7 +8,8 @@
 Ext.define("App.Sys.SoftwareRepo.Widget.Entry", {
    extend: "WebOs.Kernel.ProcessModel.AbstractWidget",
    requires : [
-      "Cntysoft.Utils.ColRenderer"
+      "Cntysoft.Utils.ColRenderer",
+      "CloudController.Comp.Uploader.SimpleUploader"
    ],
    LANG_TEXT: null,
    initPmTextRef: function()
@@ -41,7 +42,8 @@ Ext.define("App.Sys.SoftwareRepo.Widget.Entry", {
 //         scope: this
 //      });
       Ext.apply(this, {
-         items: this.getGridPanelConfig()
+         items: this.getGridPanelConfig(),
+         bbar : this.getBBarConfig()
       });
       this.callParent(arguments);
    },
@@ -74,5 +76,12 @@ Ext.define("App.Sys.SoftwareRepo.Widget.Entry", {
             }
          })
       };
+   },
+   getBBarConfig : function()
+   {
+      return [{
+            xtype : "ccsimpleuploader",
+            text : "上传软件包"
+      }];
    }
 });
