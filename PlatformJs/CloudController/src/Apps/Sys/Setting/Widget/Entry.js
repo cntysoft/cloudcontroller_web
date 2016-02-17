@@ -33,7 +33,11 @@ Ext.define('App.Sys.Setting.Widget.Entry', {
             //    id : 'WallPaper',
             //    leaf : true
             //}
-            ]
+            {
+               text : U_NAMES.VERSION_INFO,
+               id : 'VersionInfo',
+               leaf : true
+            }]
       };
    }
 });

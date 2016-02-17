@@ -24,7 +24,8 @@ Ext.define('App.Sys.SoftwareRepo.Lang.zh_CN', {
             FILE_SIZE : "文件大小"
          },
          BTN : {
-            DELETE_FILE : "删除选中文件"
+            DELETE_FILE : "删除选中文件",
+            UPLOAD_SOFTWARE : "上传软件包"
          }
       }
    }

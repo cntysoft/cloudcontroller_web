@@ -35,13 +35,6 @@ Ext.define("App.Sys.SoftwareRepo.Widget.Entry", {
    },
    initComponent: function()
    {
-//      this.addListener({
-//         afterrender: function()
-//         {
-//            this.appRef.getRepoFileList();
-//         },
-//         scope: this
-//      });
       Ext.apply(this, {
          items: this.getGridPanelConfig(),
          bbar: this.getBBarConfig()
@@ -99,12 +92,8 @@ Ext.define("App.Sys.SoftwareRepo.Widget.Entry", {
          store: new Ext.data.Store({
             autoLoad: true,
             fields: [
-               {name: "module", type: "string"},
-               {name: "key", type: "string"},
-               {name: "text", type: "string"},
-               {name: "status", type: "integer"},
-               {name: "aclDataFile", type: "string"},
-               {name: "hasAclFile", type: "boolean"}
+               {name: "filename", type: "string"},
+               {name: "filesize", type: "string"}
             ],
             proxy: {
                type: "websocketgateway",
@@ -127,9 +116,10 @@ Ext.define("App.Sys.SoftwareRepo.Widget.Entry", {
    },
    getBBarConfig: function()
    {
+      var L = this.LANG_TEXT.BTN;
       return [{
             xtype: "ccsimpleuploader",
-            text: "上传软件包",
+            text: L.UPLOAD_SOFTWARE,
             maskTarget: this,
             listeners: {
                uploadsuccess: function()
