@@ -25,10 +25,11 @@ Ext.define("CloudController.Comp.Uploader.SimpleUploader", {
     * 提交几次数据然后进行等待
     */
    cycleSize: 1,
-   chunkSize: 1024,
+   chunkSize: 1024*512,
    totalReaded: 0,
    uploadFile: null,
    fileReader: null,
+   uploadFileSetInput: null,
    /**
     * 上传提示信息显示的组件
     *
@@ -46,6 +47,7 @@ Ext.define("CloudController.Comp.Uploader.SimpleUploader", {
          {
             var input = this.el.query("input", false);
             input = input[0];
+            this.uploadFileSetInput = input;
             input.addListener("change", function(){
                this.initUploadProcess(input.dom.files.item(0));
             }, this);
@@ -66,6 +68,7 @@ Ext.define("CloudController.Comp.Uploader.SimpleUploader", {
    },
    initUploadProcess: function(file)
    {
+
       this.totalToBeUpload = file.size;
       var request = new Cntysoft.Framework.Rpc.Request("Common/Uploader", "init", {
          filename: file.name,
@@ -153,17 +156,21 @@ Ext.define("CloudController.Comp.Uploader.SimpleUploader", {
    {
       var request = new Cntysoft.Framework.Rpc.Request("Common/Uploader", "notifyUploadComplete");
       this.serviceInvoker.request(request, function(response){
+         this.resetContext();
+         this.uploadFileSetInput.dom.value = "";
+         this.uploadFileSetInput.dom.type = "";
+         this.uploadFileSetInput.dom.type = "file";
          if(response.status){
             if(this.hasListeners.uploadsuccess){
                this.fireEvent("uploadsuccess", this.uploadFile);
             }
+
          }else{
-            this.resetContext();
             if(this.hasListeners.uploaderror){
                this.fireEvent("uploaderror", response.setErrorString());
             }
          }
-      });
+      }, this);
       if(this.maskTarget){
          this.maskTarget.loadMask.hide();
       }
@@ -193,6 +200,7 @@ Ext.define("CloudController.Comp.Uploader.SimpleUploader", {
    {
       Ext.destroy(this.serviceInvoker);
       delete this.LANG_TEXT;
+      delete this.uploadFileSetInput;
       delete this.maskTarget;
       this.callParent();
    }
