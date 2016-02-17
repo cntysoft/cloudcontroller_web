@@ -7,7 +7,7 @@
  */
 Ext.define("App.Sys.SoftwareRepo.Widget.Entry", {
    extend: "WebOs.Kernel.ProcessModel.AbstractWidget",
-   requires : [
+   requires: [
       "Cntysoft.Utils.ColRenderer",
       "CloudController.Comp.Uploader.SimpleUploader"
    ],
@@ -20,6 +20,7 @@ Ext.define("App.Sys.SoftwareRepo.Widget.Entry", {
    {
       this.LANG_TEXT = this.GET_LANG_TEXT("ENTRY");
    },
+   contextMenu: null,
    applyConstraintConfig: function(config)
    {
       this.callParent([config]);
@@ -43,9 +44,35 @@ Ext.define("App.Sys.SoftwareRepo.Widget.Entry", {
 //      });
       Ext.apply(this, {
          items: this.getGridPanelConfig(),
-         bbar : this.getBBarConfig()
+         bbar: this.getBBarConfig()
       });
       this.callParent(arguments);
+   },
+   itemContextMenuHandler: function(view, record, item, index, event)
+   {
+      var pos = event.getXY()
+      var menu;
+      event.stopEvent();
+      menu = this.createContextMenu();
+      menu.record = record;
+      menu.showAt(pos[0], pos[1]);
+   },
+   createContextMenu: function()
+   {
+      if(!this.contextMenu){
+         this.contextMenu = new Ext.menu.Menu({
+            ignoreParentClicks: true,
+            width: 150,
+            items: [{
+                  text: "删除选中文件"
+               }],
+//            listeners: {
+//               click: this.dirMenuClickHandler,
+//               scope: this
+//            }
+         });
+      }
+      return this.contextMenu;
    },
    getGridPanelConfig: function()
    {
@@ -54,8 +81,9 @@ Ext.define("App.Sys.SoftwareRepo.Widget.Entry", {
          xtype: "grid",
          columns: [
             {text: L.FILE_NAME, dataIndex: "filename", flex: 1, resizable: false, menuDisabled: true},
-            {text: L.FILE_SIZE, dataIndex: "filesize", width: 200, resizable: false, menuDisabled: true, renderer : Cntysoft.Utils.ColRenderer.filesizeRenderer}
+            {text: L.FILE_SIZE, dataIndex: "filesize", width: 200, resizable: false, menuDisabled: true, renderer: Cntysoft.Utils.ColRenderer.filesizeRenderer}
          ],
+         autoScroll: true,
          store: new Ext.data.Store({
             autoLoad: true,
             fields: [
@@ -68,21 +96,45 @@ Ext.define("App.Sys.SoftwareRepo.Widget.Entry", {
             ],
             proxy: {
                type: "websocketgateway",
-               websocketEntryName : "upgrademgr",
+               websocketEntryName: "upgrademgr",
                invokeMetaInfo: {
                   name: "Repo/Info",
                   method: "lsSoftwareRepoDir"
                }
             }
-         })
+         }),
+         listeners: {
+            afterrender: function(grid)
+            {
+               this.fsview = grid;
+            },
+            itemcontextmenu: this.itemContextMenuHandler,
+            scope: this
+         }
       };
    },
-   getBBarConfig : function()
+   getBBarConfig: function()
    {
       return [{
-            xtype : "ccsimpleuploader",
-            text : "上传软件包",
-            maskTarget : this
-      }];
+            xtype: "ccsimpleuploader",
+            text: "上传软件包",
+            maskTarget: this,
+            listeners: {
+               uploadsuccess: function()
+               {
+                  this.fsview.store.reload();
+               },
+               scope: this
+            }
+         }];
+   },
+   destroy: function()
+   {
+      delete this.fsview;
+      if(this.contextMenu){
+         this.contextMenu.destroy();
+         delete this.contextMenu;
+      }
+      this.callParent();
    }
 });
