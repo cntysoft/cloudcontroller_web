@@ -81,7 +81,8 @@ Ext.define("App.Sys.SoftwareRepo.Widget.Entry", {
    {
       return [{
             xtype : "ccsimpleuploader",
-            text : "上传软件包"
+            text : "上传软件包",
+            maskTarget : this
       }];
    }
 });
