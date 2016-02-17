@@ -60,20 +60,32 @@ Ext.define("App.Sys.SoftwareRepo.Widget.Entry", {
    createContextMenu: function()
    {
       if(!this.contextMenu){
+         var L = this.LANG_TEXT.BTN;
          this.contextMenu = new Ext.menu.Menu({
             ignoreParentClicks: true,
             width: 150,
             items: [{
-                  text: "删除选中文件"
+                  text: L.DELETE_FILE
                }],
-//            listeners: {
-//               click: this.dirMenuClickHandler,
-//               scope: this
-//            }
+            listeners: {
+               click: this.deleteFileHandler,
+               scope: this
+            }
          });
       }
       return this.contextMenu;
    },
+   
+   deleteFileHandler : function(menu, item)
+   {
+      var record = menu.record;
+      this.setLoading(Cntysoft.GET_LANG_TEXT("MSG.DELETE"));
+      this.appRef.removeSoftware(record.get("filename"), function(response){
+         this.loadMask.hide();
+         this.fsview.store.reload();
+      }, this);
+   },
+   
    getGridPanelConfig: function()
    {
       var L = this.LANG_TEXT.COLS;

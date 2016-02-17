@@ -54,6 +54,14 @@ Ext.define('App.Sys.SoftwareRepo.Main', {
       });
    },
    
+   removeSoftware : function(filename, callback, scope)
+   {
+      var request = new Cntysoft.Framework.Rpc.Request("Repo/Info", "removeSoftware",{
+         filename : filename
+      });
+      this.serviceInvoker.request(request, callback, scope);
+   },
+   
    destroy : function()
    {
       this.serviceInvoker.disconnectFromServer();
