@@ -25,9 +25,15 @@ Ext.define("App.Sys.Setting.Main", {
       VersionInfo : "App.Sys.Setting.Widget.VersionInfo"
    },
    /**
-    * @var {[]Cntysoft.Framework.Rpc.ServiceInvoker} serviceInvoker
+    * @var {Ext.util.HashMap} serviceInvokerPool
     */
-   serviceInvokerPool : {},
+   serviceInvokerPool : null,
+   
+   constructor : function(config)
+   {
+      this.serviceInvokerPool = new Ext.util.HashMap();
+      this.callParent([config]);
+   },
    
    getCloudControllerVersion : function(callback, scope)
    {
@@ -42,9 +48,9 @@ Ext.define("App.Sys.Setting.Main", {
    
    getServiceInvoker : function(entry)
    {
-      if(!this.serviceInvokerPool[entry]){
+      if(!this.serviceInvokerPool.containsKey(entry)){
          var websocketUrl = CloudController.Kernel.Funcs.getWebSocketEntry(entry);
-         this.serviceInvokerPool[entry] = new Cntysoft.Framework.Rpc.ServiceInvoker({
+         this.serviceInvokerPool.add(entry, new Cntysoft.Framework.Rpc.ServiceInvoker({
             serviceHost: websocketUrl,
             listeners : {
                connecterror : function(invoker, event){
@@ -54,16 +60,16 @@ Ext.define("App.Sys.Setting.Main", {
                },
                scope : this
             }
-         });
+         }));
       }
-      return this.serviceInvokerPool[entry];
+      return this.serviceInvokerPool.get(entry);
    },
    destroy : function()
    {
-      for(var entry in serviceInvokerPool){
-         Ext.destroy(this.serviceInvokerPool[entry]);
-      }
-      this.serviceInvokerPool = {};
+      this.serviceInvokerPool.each(function(key, value){
+         Ext.destroy(value);
+      }, this);
+      this.serviceInvokerPool.clear();
       this.callParent();
    }
 });

@@ -31,7 +31,7 @@ Ext.define('App.Sys.Setting.Widget.VersionInfo', {
          minWidth : 600,
          minHeight : 300,
          height : 300,
-         resizable : true,
+         resizable : false,
          layout : 'fit',
          maximizable : false
       });
