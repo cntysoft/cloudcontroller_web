@@ -11,7 +11,8 @@ Ext.define("App.Sys.Setting.Main", {
       "App.Sys.Setting.Lang.zh_CN",
       //"App.Sys.User.Const",
       "App.Sys.Setting.Widget.Entry",
-      "App.Sys.Setting.Widget.VersionInfo"
+      "App.Sys.Setting.Widget.VersionInfo",
+      "App.Sys.Setting.Widget.UpgradeMetaInfo"
    ],
    /**
     * @inheritdoc
@@ -22,7 +23,8 @@ Ext.define("App.Sys.Setting.Main", {
     */
    widgetMap: {
       Entry: "App.Sys.Setting.Widget.Entry",
-      VersionInfo : "App.Sys.Setting.Widget.VersionInfo"
+      VersionInfo : "App.Sys.Setting.Widget.VersionInfo",
+      UpgradeMetaInfo : "App.Sys.Setting.Widget.UpgradeMetaInfo"
    },
    /**
     * @var {Ext.util.HashMap} serviceInvokerPool
@@ -44,6 +46,14 @@ Ext.define("App.Sys.Setting.Main", {
    {
       var serviceInvoker = this.getServiceInvoker("upgrademgr");
       serviceInvoker.callService("ServerStatus/Info", "getVersionInfo", {}, callback, scope);
+   },
+   
+   setServiceServerAddressMeta : function(data, callback, scope)
+   {
+      var serviceInvoker = this.getServiceInvoker("upgrademgr");
+      serviceInvoker.callService("ServerStatus/Info", "setServiceServerAddressMeta", {
+         servers : data
+      }, callback, scope);
    },
    
    getServiceInvoker : function(entry)

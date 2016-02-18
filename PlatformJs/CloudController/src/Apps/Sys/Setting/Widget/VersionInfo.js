@@ -5,16 +5,16 @@
  * @copyright  Copyright (c) 2010-2011 Cntysoft Technologies China Inc. <http://www.cntysoft.com>
  * @license    http://www.cntysoft.com/license/new-bsd     New BSD License
  */
-Ext.define('App.Sys.Setting.Widget.VersionInfo', {
-   extend: 'WebOs.Kernel.ProcessModel.AbstractWidget',
+Ext.define("App.Sys.Setting.Widget.VersionInfo", {
+   extend: "WebOs.Kernel.ProcessModel.AbstractWidget",
    initPmTextRef : function()
    {
-      this.pmText = this.GET_PM_TEXT('VERSION_INFO');
+      this.pmText = this.GET_PM_TEXT("VERSION_INFO");
    },
    
    initLangTextRef : function()
    {
-      this.LANG_TEXT = this.GET_LANG_TEXT('VERSION_INFO');
+      this.LANG_TEXT = this.GET_LANG_TEXT("VERSION_INFO");
    },
    
    versionGrid : null,
@@ -32,7 +32,7 @@ Ext.define('App.Sys.Setting.Widget.VersionInfo', {
          minHeight : 300,
          height : 300,
          resizable : false,
-         layout : 'fit',
+         layout : "fit",
          maximizable : false
       });
    },
@@ -49,7 +49,8 @@ Ext.define('App.Sys.Setting.Widget.VersionInfo', {
    getVersionGridConfig : function()
    {
       var COLS = this.LANG_TEXT.COLS;
-      var NAMES = this.LANG_TEXT.SYS_NAMES;
+      var NAMES = this.GET_LANG_TEXT("SYS_NAMES");
+      var QUERY_TEXT = this.LANG_TEXT.MSG.QUERY;
       return {
          xtype: "grid",
          columns: [
@@ -64,9 +65,9 @@ Ext.define('App.Sys.Setting.Widget.VersionInfo', {
                {name: "key", type : "string"}
             ],
             data : [
-               {name : NAMES.CLOUD_CONTROLLER, version : NAMES.QUERY, key : "CloudController"},
-               {name : NAMES.META_SERVER, version : NAMES.QUERY, key : "MetaServer"},
-               {name : NAMES.UPGRADEMGR_MASTER, version : NAMES.QUERY, key : "UpgrademgrMaster"}
+               {name : NAMES.CLOUD_CONTROLLER, version : QUERY_TEXT, key : "CloudController"},
+               {name : NAMES.META_SERVER, version : QUERY_TEXT, key : "MetaServer"},
+               {name : NAMES.UPGRADEMGR_MASTER, version : QUERY_TEXT, key : "UpgrademgrMaster"}
             ]
          }),
          listeners: {

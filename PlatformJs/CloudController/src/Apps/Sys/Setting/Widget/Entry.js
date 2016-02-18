@@ -5,11 +5,11 @@
  * @copyright  Copyright (c) 2010-2011 Cntysoft Technologies China Inc. <http://www.cntysoft.com>
  * @license    http://www.cntysoft.com/license/new-bsd     New BSD License
  */
-Ext.define('App.Sys.Setting.Widget.Entry', {
-   extend: 'WebOs.OsWidget.TreeNavWidget',
+Ext.define("App.Sys.Setting.Widget.Entry", {
+   extend: "WebOs.OsWidget.TreeNavWidget",
    initPmTextRef: function()
    {
-      this.pmText = this.GET_PM_TEXT('ENTRY');
+      this.pmText = this.GET_PM_TEXT("ENTRY");
    },
    applyConstraintConfig: function(config)
    {
@@ -22,21 +22,30 @@ Ext.define('App.Sys.Setting.Widget.Entry', {
    },
    getNavTreeData: function()
    {
-      var U_NAMES = this.GET_LANG_TEXT('WIDGET_NAMES');
+      var U_NAMES = this.GET_LANG_TEXT("WIDGET_NAMES");
       var me = this;
       return {
-         id: 'root',
+         id: "root",
          name: this.pmText.DISPLAY_TEXT,
          children: [
             //    {
             //    text : U_NAMES.WALL_PAPER,
-            //    id : 'WallPaper',
+            //    id : "WallPaper",
             //    leaf : true
             //}
             {
-               text : U_NAMES.VERSION_INFO,
-               id : 'VersionInfo',
-               leaf : true
+               text: U_NAMES.VERSION_INFO,
+               id: "VersionInfo",
+               leaf: true
+            }, {
+               text: U_NAMES.SYS_UPGRADE,
+               id: "SysUpgrade",
+               leaf: false,
+               children: [{
+                     text: U_NAMES.UPGRADE_META_INFO,
+                     id: "UpgradeMetaInfo",
+                     leaf: true
+                  }]
             }]
       };
    }
