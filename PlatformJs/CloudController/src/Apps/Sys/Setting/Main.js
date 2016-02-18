@@ -56,6 +56,13 @@ Ext.define("App.Sys.Setting.Main", {
       }, callback, scope);
    },
    
+   getServiceServerAddressMeta : function(callback, scope)
+   {
+      var serviceInvoker = this.getServiceInvoker("upgrademgr");
+      serviceInvoker.callService("ServerStatus/Info", "getServiceServerAddressMeta", null, callback, scope);
+   },
+   
+   
    getServiceInvoker : function(entry)
    {
       if(!this.serviceInvokerPool.containsKey(entry)){

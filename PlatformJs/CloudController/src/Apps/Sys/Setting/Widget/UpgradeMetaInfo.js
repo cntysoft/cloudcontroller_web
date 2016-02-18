@@ -63,7 +63,7 @@ Ext.define("App.Sys.Setting.Widget.UpgradeMetaInfo", {
       this.appRef.setServiceServerAddressMeta(items, function(response){
          this.loadMask.hide();
          if(response.status){
-            this.metaInfoGrid.store.reload();
+            this.loadMetaData();
          }else{
             Cntysoft.raiseError(Ext.getClassName(this), "saveHandler", response.getErrorString());
          }
@@ -86,7 +86,7 @@ Ext.define("App.Sys.Setting.Widget.UpgradeMetaInfo", {
             {text: COLS.PORT, dataIndex: "port", width: 150, resizable: false, menuDisabled: true, editor: {
                   xtype: "numberfield",
                   allowBlank: false,
-                  minValue : 1000
+                  minValue : 0
                }}
          ],
          plugins: {
@@ -109,11 +109,26 @@ Ext.define("App.Sys.Setting.Widget.UpgradeMetaInfo", {
             afterrender : function(grid)
             {
                this.metaInfoGrid = grid;
+               this.loadMetaData();
             },
             scope : this
          }
       };
    },
+   
+   loadMetaData : function()
+   {
+      this.setLoading(Cntysoft.GET_LANG_TEXT("MSG.LOAD"))
+      this.appRef.getServiceServerAddressMeta(function(response){
+         this.loadMask.hide();
+         if(response.status){
+            this.metaInfoGrid.store.loadData(response.getExtraData());
+         }else{
+            Cntysoft.raiseError(Ext.getClassName(this), "loadMetaData", response.getErrorString());
+         }
+      }, this);
+   },
+   
    destroy : function()
    {
       delete this.metaInfoGrid;
