@@ -78,7 +78,7 @@ Ext.define("App.Sys.Setting.Main", {
             serviceHost: websocketUrl,
             listeners : {
                connecterror : function(invoker, event){
-                  Cntysoft.showErrorWindow(Ext.String.format(cntysoft.GET_LANG_TEXT("MSG.CONNECT_WEBSOCKET_FAIL"), websocketUrl));
+                  Cntysoft.showErrorWindow(Ext.String.format(Cntysoft.GET_LANG_TEXT("MSG.CONNECT_WEBSOCKET_FAIL"), websocketUrl));
                   Cntysoft.raiseError(Ext.getClassName(this), "run", "connect to websocket server " + websocketUrl + " error");
                   
                },
