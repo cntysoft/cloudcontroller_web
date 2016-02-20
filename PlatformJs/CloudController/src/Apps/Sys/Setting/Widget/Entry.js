@@ -45,6 +45,11 @@ Ext.define("App.Sys.Setting.Widget.Entry", {
                      text: U_NAMES.UPGRADE_META_INFO,
                      id: "UpgradeMetaInfo",
                      leaf: true
+                  }, {
+                     text: U_NAMES.UPGRADE_CC,
+                     id: "UpgradeCloudController",
+                     leaf: true
+
                   }]
             }]
       };

@@ -15,8 +15,7 @@ Ext.define("App.Sys.Setting.Widget.UpgradeMetaInfo", {
    {
       this.LANG_TEXT = this.GET_LANG_TEXT("UPGRADE_META_INFO");
    },
-   
-   metaInfoGrid : null,
+   metaInfoGrid: null,
    /**
     * @template
     * @inheritdoc
@@ -40,18 +39,78 @@ Ext.define("App.Sys.Setting.Widget.UpgradeMetaInfo", {
          items: [
             this.getServiceMetaInfoConfig()
          ],
-         buttons : [{
-               text : this.LANG_TEXT.BTN.SAVE,
-               listeners : {
-                  click : this.saveHandler,
-                  scope : this
+         buttons: [{
+               text: this.LANG_TEXT.BTN.ADD_NEW_ITEM,
+               listeners: {
+                  click: this.addNewItemHandler,
+                  scope: this
                }
-         }]
+            }, {
+               text: this.LANG_TEXT.BTN.SAVE,
+               listeners: {
+                  click: this.saveHandler,
+                  scope: this
+               }
+            }]
       });
       this.callParent();
    },
-   
-   saveHandler : function()
+   addNewItemHandler: function()
+   {
+      var LABEL = this.LANG_TEXT.LABEL;
+      var win = new Ext.window.Window({
+         title: this.LANG_TEXT.META_INFO_WIN_TITLE,
+         modal: true,
+         autoShow: true,
+         width: 600,
+         minWidth: 600,
+         height: 300,
+         minHeight: 300,
+         constrainHeader: true,
+         layout: "fit",
+         bodyPadding: 10,
+         items: {
+            xtype: "form",
+            items: [{
+                  xtype: "textfield",
+                  fieldLabel: LABEL.KEY,
+                  allowBlank: false,
+                  name : "key"
+               }, {
+                  xtype: "textfield",
+                  fieldLabel: LABEL.NAME,
+                  allowBlank: false,
+                  name : "name"
+               }, {
+                  xtype: "textfield",
+                  fieldLabel: LABEL.IP,
+                  allowBlank: false,
+                  name : "ip"
+               }, {
+                  xtype: "numberfield",
+                  fieldLabel: LABEL.PORT,
+                  allowBlank: false,
+                  minValue : 0,
+                  name : "port"
+               }]
+         },
+         buttons: [{
+               text: Cntysoft.GET_LANG_TEXT("UI.BTN.SAVE"),
+               listeners : {
+                  click : function()
+                  {
+                     var form = win.child("form");
+                     if(form.isValid()){
+                        this.metaInfoGrid.store.add(form.getForm().getValues());
+                        win.close();
+                     }
+                  },
+                  scope : this
+               }
+            }]
+      });
+   },
+   saveHandler: function()
    {
       var items = [];
       this.metaInfoGrid.store.each(function(record){
@@ -69,7 +128,6 @@ Ext.define("App.Sys.Setting.Widget.UpgradeMetaInfo", {
          }
       }, this);
    },
-   
    getServiceMetaInfoConfig: function()
    {
       var COLS = this.LANG_TEXT.COLS;
@@ -86,7 +144,7 @@ Ext.define("App.Sys.Setting.Widget.UpgradeMetaInfo", {
             {text: COLS.PORT, dataIndex: "port", width: 150, resizable: false, menuDisabled: true, editor: {
                   xtype: "numberfield",
                   allowBlank: false,
-                  minValue : 0
+                  minValue: 0
                }}
          ],
          plugins: {
@@ -105,18 +163,17 @@ Ext.define("App.Sys.Setting.Widget.UpgradeMetaInfo", {
                {name: NAMES.CLOUD_CONTROLLER, key: "CloudController"}
             ]
          }),
-         listeners : {
-            afterrender : function(grid)
+         listeners: {
+            afterrender: function(grid)
             {
                this.metaInfoGrid = grid;
                this.loadMetaData();
             },
-            scope : this
+            scope: this
          }
       };
    },
-   
-   loadMetaData : function()
+   loadMetaData: function()
    {
       this.setLoading(Cntysoft.GET_LANG_TEXT("MSG.LOAD"))
       this.appRef.getServiceServerAddressMeta(function(response){
@@ -128,8 +185,7 @@ Ext.define("App.Sys.Setting.Widget.UpgradeMetaInfo", {
          }
       }, this);
    },
-   
-   destroy : function()
+   destroy: function()
    {
       delete this.metaInfoGrid;
       this.callParent();

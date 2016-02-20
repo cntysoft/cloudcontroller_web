@@ -25,6 +25,10 @@ Ext.define("App.Sys.Setting.Lang.zh_CN", {
          UPGRADE_META_INFO: {
             WIDGET_TITLE: "系统环境服务器元信息配置",
             TASK_BTN_TEXT: "服务元信息配置"
+         },
+         UPGRADE_CLOUD_CONTROLLER : {
+            WIDGET_TITLE: "更新云控制系统面板",
+            TASK_BTN_TEXT: "云系统更新"
          }
       },
       WIDGET_NAMES: {
@@ -32,7 +36,8 @@ Ext.define("App.Sys.Setting.Lang.zh_CN", {
          META_INFO: "元信息设置",
          VERSION_INFO: "版本信息",
          SYS_UPGRADE: "系统更新",
-         UPGRADE_META_INFO: "升级元信息管理"
+         UPGRADE_META_INFO: "升级元信息管理",
+         UPGRADE_CC : "升级云控制系统"
       },
       META_INFO: {
          BTN: {
@@ -60,7 +65,20 @@ Ext.define("App.Sys.Setting.Lang.zh_CN", {
             PORT: "端口号"
          },
          BTN : {
-            SAVE : "保存服务元信息"
+            SAVE : "保存服务元信息",
+            ADD_NEW_ITEM : "添加服务器信息"
+         },
+         LABEL : {
+            KEY : "识别KEY",
+            NAME : "服务名称",
+            IP : "服务器地址",
+            PORT : "服务器端口"
+         },
+         META_INFO_WIN_TITLE : "服务器元信息配置窗口"
+      },
+      UPGRADE_CLOUD_CONTROLLER: {
+         BTN : {
+            START : "开始更新系统"
          }
       }
    }

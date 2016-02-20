@@ -12,7 +12,8 @@ Ext.define("App.Sys.Setting.Main", {
       //"App.Sys.User.Const",
       "App.Sys.Setting.Widget.Entry",
       "App.Sys.Setting.Widget.VersionInfo",
-      "App.Sys.Setting.Widget.UpgradeMetaInfo"
+      "App.Sys.Setting.Widget.UpgradeMetaInfo",
+      "App.Sys.Setting.Widget.UpgradeCloudController"
    ],
    /**
     * @inheritdoc
@@ -24,7 +25,8 @@ Ext.define("App.Sys.Setting.Main", {
    widgetMap: {
       Entry: "App.Sys.Setting.Widget.Entry",
       VersionInfo : "App.Sys.Setting.Widget.VersionInfo",
-      UpgradeMetaInfo : "App.Sys.Setting.Widget.UpgradeMetaInfo"
+      UpgradeMetaInfo : "App.Sys.Setting.Widget.UpgradeMetaInfo",
+      UpgradeCloudController : "App.Sys.Setting.Widget.UpgradeCloudController"
    },
    /**
     * @var {Ext.util.HashMap} serviceInvokerPool
@@ -62,6 +64,11 @@ Ext.define("App.Sys.Setting.Main", {
       serviceInvoker.callService("ServerStatus/Info", "getServiceServerAddressMeta", null, callback, scope);
    },
    
+   upgradeCloudController : function(callback, scope)
+   {
+      var serviceInvoker = this.getServiceInvoker("upgrademgr");
+      serviceInvoker.callService("Upgrader/UpgradeCloudController", "upgrade", null, callback, scope);
+   },
    
    getServiceInvoker : function(entry)
    {
@@ -71,7 +78,7 @@ Ext.define("App.Sys.Setting.Main", {
             serviceHost: websocketUrl,
             listeners : {
                connecterror : function(invoker, event){
-                  Cntysoft.showErrorWindow(Ext.String.format(this.GET_LANG_TEXT("ENTRY.ERROR.CONNECT_WEBSOCKET_FAIL"), websocketUrl));
+                  Cntysoft.showErrorWindow(Ext.String.format(cntysoft.GET_LANG_TEXT("MSG.CONNECT_WEBSOCKET_FAIL"), websocketUrl));
                   Cntysoft.raiseError(Ext.getClassName(this), "run", "connect to websocket server " + websocketUrl + " error");
                   
                },
