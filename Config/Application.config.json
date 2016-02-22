@@ -1,0 +1,46 @@
+{
+   "db": {
+      "host": "127.0.0.1",
+      "username": "root",
+      "dbname": "cloudcontroller_devel",
+      "password": "cntysoft",
+      "charset": "utf8"
+   },
+   "lang": {
+      "webos": "zh_CN",
+      "sys": "zh_CN"
+   },
+   "modules": {
+      "Sys": {
+         "className": "Sys\\Module",
+         "path": "Modules/Sys/Module.php",
+         "hasConfig": true
+      },
+      "Utils": {
+         "className": "Utils\\Module",
+         "path": "Modules/Utils/Module.php",
+         "hasConfig": false
+      }
+   },
+   "systemMode": 2,
+   "sysEntry": "system",
+   "venderFramework": ["VsImage"],
+   "session": {
+      "name": "sWSwr3asd@#$@#kjakj2",
+      "cookie_httponly": false
+   },
+   "cookie": {
+      "prefix": "op-",
+      "encrypt": true,
+      "encryptKey": "obl0.wtYF/knDy3O",
+      "path": "/",
+      "domain": null
+   },
+   "supportedModules": [
+      "Sys"
+   ],
+   "websocket": {
+      "upgrademgr": "websocket/upgrademgr",
+      "metaserver": "websocket/metaserver"
+   }
+}

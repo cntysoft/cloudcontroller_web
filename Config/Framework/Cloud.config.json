@@ -1,0 +1,9 @@
+{
+   "ali": {
+      "accessKey": "twJjKngFf6uySA0P",
+      "accessKeySecret": "3edbGFcrayDU4kaDrS004sp5J5Auod",
+      "opensearch": {
+         "gzip": true
+      }
+   }
+}

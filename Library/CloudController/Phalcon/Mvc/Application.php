@@ -25,9 +25,9 @@ class Application extends BaseApplication
 
    public function __construct($dependencyInjector = null)
    {
-      $this->gcfg = ConfigProxy::getGlobalConfig();
       //初始化系统平台的数据库连接类
       parent::__construct($dependencyInjector);
+      $this->gcfg = ConfigProxy::getGlobalConfig();
    }
 
    protected function beforeInitialized()

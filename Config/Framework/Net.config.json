@@ -1,0 +1,29 @@
+{
+   "upload": {
+      "allowedDirs": [
+         "/Data/UploadFiles",
+         "/Statics/Templates",
+         "/Statics/Skins"
+      ],
+      "allowFileTypes": [
+         "jpg",
+         "jpeg",
+         "gif",
+         "png",
+         "doc",
+         "docx",
+         "rar",
+         "zip",
+         "html",
+         "css",
+         "js"
+      ]
+   },
+   "changYan": {
+      "appid": "cyrz25J2C",
+      "appkey": "cdee04a76adac4c9a84279acf7f1a49f"
+   },
+   "yunpian": {
+      "apikey": "85400ad25a8e80ffd1ac85a76f5fa6a8"
+   }
+}

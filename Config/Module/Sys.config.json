@@ -1,0 +1,23 @@
+{
+   "routes": [
+      {
+         "rule": "/ApiGate/{type:[A-Za-z]+}",
+         "option": {
+            "module": "Sys",
+            "controller": "Api",
+            "action": "index",
+            "type": 1
+         }
+      },
+      {
+         "key": "Test",
+         "rule": "/test",
+         "option": {
+            "module": "Sys",
+            "controller": "Test",
+            "action": "index"
+         }
+      }
+   ]
+}
+
