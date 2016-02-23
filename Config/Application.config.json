@@ -1,6 +1,6 @@
 {
    "db": {
-      "host": "127.0.0.1",
+      "host": "localhost",
       "username": "root",
       "dbname": "cloudcontroller_devel",
       "password": "cntysoft",
@@ -24,7 +24,9 @@
    },
    "systemMode": 2,
    "sysEntry": "system",
-   "venderFramework": ["VsImage"],
+   "venderFramework": [
+      "VsImage"
+   ],
    "session": {
       "name": "sWSwr3asd@#$@#kjakj2",
       "cookie_httponly": false
@@ -42,5 +44,6 @@
    "websocket": {
       "upgrademgr": "websocket/upgrademgr",
       "metaserver": "websocket/metaserver"
-   }
+   },
+   "zhangxiuchun": "asdasdas"
 }

@@ -67,7 +67,10 @@ Ext.define("App.Sys.Setting.Main", {
    upgradeCloudController : function(callback, scope)
    {
       var serviceInvoker = this.getServiceInvoker("upgrademgr");
-      serviceInvoker.callService("Upgrader/UpgradeCloudController", "upgrade", null, callback, scope);
+      serviceInvoker.callService("Upgrader/UpgradeCloudController", "upgrade", {
+         fromVersion : "v0.0.1-alpha",
+         toVersion : "v0.0.2-beta"
+      }, callback, scope);
    },
    
    getServiceInvoker : function(entry)

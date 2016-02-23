@@ -46,7 +46,7 @@ function get_front_form_token($key)
  */
 function get_sys_version_str()
 {
-   return ZHUCHAO_VERSION;
+   return CLOUD_CONTROLLER_VERSION;
 }
 
 /**
