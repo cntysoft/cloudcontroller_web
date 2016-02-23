@@ -46,7 +46,7 @@ class ServiceListener extends BaseListener
    {
       $di->setShared('OtsClient', function() {
          $conf = ConfigProxy::getFrameworkConfig('Cloud');
-         return new OtsClient(\Cntysoft\RT_OTS_API_ENTRY, \Cntysoft\ZHUCHAO_OTS_INSTANCE_NAME, $conf->ali->accessKey, $conf->ali->accessKeySecret);
+         return new OtsClient(\Cntysoft\RT_OTS_API_ENTRY, \Cntysoft\CLOUD_CONTROLLER_OTS_INSTANCE_NAME, $conf->ali->accessKey, $conf->ali->accessKeySecret);
       });
    }
    

@@ -95,7 +95,7 @@ function get_image_oss_server_url()
 {
    static $server = null;
    if ($server == null) {
-      $server = 'http://' . \Cntysoft\RT_ZHUCHAO_OSS_IMG_BUCKET . '.' . \Cntysoft\OSS_PUBLIC_ENTRY;
+      $server = 'http://' . \Cntysoft\RT_CLOUD_CONTROLLER_OSS_IMG_BUCKET . '.' . \Cntysoft\OSS_PUBLIC_ENTRY;
    }
    return $server;
 }
@@ -108,7 +108,7 @@ function get_image_oss_server_url()
  */
 function get_image_oss_bucket_name()
 {
-   return \Cntysoft\RT_ZHUCHAO_OSS_IMG_BUCKET;
+   return \Cntysoft\RT_CLOUD_CONTROLLER_OSS_IMG_BUCKET;
 }
 
 /**
@@ -118,7 +118,7 @@ function get_image_oss_bucket_name()
  */
 function get_image_cdn_server_url()
 {
-   return 'http://'.\Cntysoft\RT_ZHUCHAO_IMG_CDN_SERVER;
+   return 'http://'.\Cntysoft\RT_CLOUD_CONTROLLER_IMG_CDN_SERVER;
 }
 
 /**
