@@ -55,10 +55,20 @@ Ext.define("App.Sys.Setting.Widget.UpgradeCloudController", {
    startUpgradeHandler: function()
    {
       this.startBtn.setDisabled(true);
+//      console.log(this.displayer);
       this.appRef.upgradeCloudController(function(response){
          if(response.status){
             var value = this.displayer.getValue();
             var msg = response.getDataItem("msg");
+            if("" == value){
+               value = msg;
+            }else{
+               value += "\n"+msg;
+            }
+            this.displayer.setValue(value);
+         }else{
+            var value = this.displayer.getValue();
+            var msg = response.getErrorString();
             if("" == value){
                value = msg;
             }else{
@@ -77,6 +87,7 @@ Ext.define("App.Sys.Setting.Widget.UpgradeCloudController", {
             afterrender : function(displayer)
             {
                this.displayer = displayer;
+               
             },
             scope : this
          }
@@ -86,6 +97,8 @@ Ext.define("App.Sys.Setting.Widget.UpgradeCloudController", {
    {
       delete this.startBtn;
       delete this.displayer;
+      var serviceInvoker = this.appRef.getServiceInvoker("upgrademgr");
+      serviceInvoker.disconnectFromServer();
       this.callParent();
    }
 });
