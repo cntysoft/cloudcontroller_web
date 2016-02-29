@@ -16,7 +16,7 @@ Ext.define('CloudController.Kernel.Funcs', {
       {
          var C = CloudController.Const;
          var map = CC.getSysEnv().get(C.ENV_WEBSOCKET);
-         return "ws://console.kelecloud.cn/"+map[type];
+         return "ws://"+ window.location.host +"/"+map[type];
       }
    }
 });

@@ -6,10 +6,6 @@
             page
             and
             include
-            -namespace=${kele.modules.site.namespace}
-            -r
-            and
-            include
             -namespace=${kele.modules.sys.namespace}
             -r
             and
@@ -55,25 +51,6 @@
         </x-compile>
     </target>
     <target name="-build-modules-js">
-        <x-compile refid="${compiler.ref.id}">
-            <![CDATA[
-            exclude
-            -all
-            and
-            include
-            -namespace=${kele.modules.site.namespace}
-            and
-            ${build.optimize}
-            and
-            concat
-            -remove-text-references=${build.remove.references}
-            -optimize-string-references=${build.optimize.string.references}
-            -remove-requirement-nodes=${build.remove.requirement.nodes}
-            ${build.compression}
-            -out=${kele.modules.site.file}
-            ${build.concat.options}
-            ]]>
-        </x-compile>
         <x-compile refid="${compiler.ref.id}">
             <![CDATA[
             exclude
@@ -129,25 +106,6 @@
             -remove-requirement-nodes=${build.remove.requirement.nodes}
             ${build.compression}
             -out=${kele.modules.custom.file}
-            ${build.concat.options}
-            ]]>
-        </x-compile>
-        <x-compile refid="${compiler.ref.id}">
-            <![CDATA[
-            exclude
-            -all
-            and
-            include
-            -namespace=${kele.modules.zhuchao.namespace}
-            and
-            ${build.optimize}
-            and
-            concat
-            -remove-text-references=${build.remove.references}
-            -optimize-string-references=${build.optimize.string.references}
-            -remove-requirement-nodes=${build.remove.requirement.nodes}
-            ${build.compression}
-            -out=${kele.modules.zhuchao.file}
             ${build.concat.options}
             ]]>
         </x-compile>

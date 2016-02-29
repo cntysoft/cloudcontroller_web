@@ -43,6 +43,8 @@ Ext.define("CloudController.PackageRequires",{
       "SenchaExt.Data.Proxy.WebSocketProxy",
       //cntysoft-comp
       "Cntysoft.Component.TplSelect.Win",
-      "Cntysoft.Component.ImagePreview.View"
+      "Cntysoft.Component.ImagePreview.View",
+      //cloudcontroller
+      "CloudController.Comp.Uploader.SimpleUploader"
    ]
 });
