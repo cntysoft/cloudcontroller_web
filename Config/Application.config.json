@@ -1,6 +1,6 @@
 {
    "db": {
-      "host": 1231234342343,
+      "host": "localhost",
       "username": "root",
       "dbname": "cloudcontroller_devel",
       "password": "cntysoft",

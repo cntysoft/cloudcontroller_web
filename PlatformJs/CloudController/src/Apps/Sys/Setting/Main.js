@@ -64,12 +64,12 @@ Ext.define("App.Sys.Setting.Main", {
       serviceInvoker.callService("ServerStatus/Info", "getServiceServerAddressMeta", null, callback, scope);
    },
    
-   upgradeCloudController : function(callback, scope)
+   upgradeCloudController : function(fromVersion, toVersion, callback, scope)
    {
       var serviceInvoker = this.getServiceInvoker("upgrademgr");
       serviceInvoker.callService("Upgrader/UpgradeCloudController", "upgrade", {
-         fromVersion : "v0.0.1-alpha",
-         toVersion : "v0.0.2-beta"
+         fromVersion : fromVersion,
+         toVersion : toVersion
       }, callback, scope);
    },
    

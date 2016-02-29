@@ -78,7 +78,16 @@ Ext.define("App.Sys.Setting.Lang.zh_CN", {
       },
       UPGRADE_CLOUD_CONTROLLER: {
          BTN : {
-            START : "开始更新系统"
+            START : "开始更新系统",
+            RANGE : "设置升级范围"
+         },
+         LABEL : {
+            FROM : "起始版本",
+            TO : "目标版本"
+         },
+         MSG : {
+            RANGE_TEXT : "当前升级范围 {0} - {1}",
+            RANGE_INFO_WIN_TITLE : "升级范围设置窗口"
          }
       }
    }
