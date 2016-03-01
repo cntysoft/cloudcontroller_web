@@ -11,7 +11,7 @@ use Cntysoft\Kernel\App\AbstractHandler;
 use Cntysoft\Kernel;
 use App\Sys\User\Exception;
 use App\Sys\User\Constant;
-use FengHuang\Mixin\EnsurePermAbout;
+use CloudController\Mixin\EnsurePermAbout;
 use Cntysoft\Stdlib\Tree;
 use App\Sys\AppInstaller\Constant as AI_CONST;
 class PermMgr extends AbstractHandler

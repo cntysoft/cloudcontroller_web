@@ -85,7 +85,6 @@ Ext.define("App.Sys.Setting.Widget.VersionInfo", {
                   record.set("version", version);
                }, this);
                this.appRef.getUpgrademgrVersion(function(response){
-                  console.log(response)
                   var version;
                   if(response.status){
                      version = response.getDataItem("version");

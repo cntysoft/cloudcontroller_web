@@ -15,7 +15,7 @@ use Cntysoft\Kernel;
  */
 class Config extends AbstractLib
 {
-   const STD_CFG_M_CLS = 'FengHuang\StdModel\Config';
+   const STD_CFG_M_CLS = 'CloudController\StdModel\Config';
    /**
     * 设置一个配置项，如果不存在全新添加
     *
@@ -85,7 +85,7 @@ class Config extends AbstractLib
 
    /**
     * @param string $key
-    * @return \FengHuang\StdModel\Config
+    * @return \CloudController\StdModel\Config
     */
    public function getItemByKey($key)
    {
