@@ -14,7 +14,8 @@ Ext.define("App.Sys.Setting.Main", {
       "App.Sys.Setting.Widget.VersionInfo",
       "App.Sys.Setting.Widget.UpgradeMetaInfo",
       "App.Sys.Setting.Widget.UpgradeCloudController",
-      "App.Sys.Setting.Widget.UpgradeUpgradeMgrMaster"
+      "App.Sys.Setting.Widget.UpgradeUpgradeMgrMaster",
+      "App.Sys.Setting.Widget.ServerMgr"
    ],
    /**
     * @inheritdoc
@@ -28,7 +29,8 @@ Ext.define("App.Sys.Setting.Main", {
       VersionInfo : "App.Sys.Setting.Widget.VersionInfo",
       UpgradeMetaInfo : "App.Sys.Setting.Widget.UpgradeMetaInfo",
       UpgradeCloudController : "App.Sys.Setting.Widget.UpgradeCloudController",
-      UpgradeUpgradeMgrMaster : "App.Sys.Setting.Widget.UpgradeUpgradeMgrMaster"
+      UpgradeUpgradeMgrMaster : "App.Sys.Setting.Widget.UpgradeUpgradeMgrMaster",
+      ServerMgr : "App.Sys.Setting.Widget.ServerMgr"
    },
    /**
     * @var {Ext.util.HashMap} serviceInvokerPool

@@ -33,6 +33,10 @@ Ext.define("App.Sys.Setting.Lang.zh_CN", {
          UPGRADE_UPGRADEMGR_MASTER : {
             WIDGET_TITLE: "更新UpgradeMgr主系统",
             TASK_BTN_TEXT: "UpgradeMgr主系统更新"
+         },
+         SERVER_MGR : {
+            WIDGET_TITLE: "服务器信息管理面板",
+            TASK_BTN_TEXT: "服务器信息管理"
          }
       },
       WIDGET_NAMES: {
@@ -43,7 +47,8 @@ Ext.define("App.Sys.Setting.Lang.zh_CN", {
          UPGRADE_META_INFO: "升级元信息管理",
          UPGRADE_CC : "升级云控制系统",
          UPGRADE_UPGRADEMGR_MASTER : "更新主系统升级",
-         UPGRADE_UPGRADEMGR_SLAVE : "更新从系统升级"
+         UPGRADE_UPGRADEMGR_SLAVE : "更新从系统升级",
+         SERVER_MGR : "服务器信息管理"
       },
       META_INFO: {
          BTN: {
@@ -110,6 +115,17 @@ Ext.define("App.Sys.Setting.Lang.zh_CN", {
          MSG : {
             TARGET_VERSION_WIN_TITLE : "目标升级版本设置窗口",
             TARGET_VERSION_TEXT : "目标升级版本: {0}"
+         }
+      },
+      SERVER_MGR : {
+         COLS : {
+            ID : "ID",
+            IP : "服务器地址",
+            TYPE : "类型",
+            DESCRIPTION : "描述"
+         },
+         BTN : {
+            ADD_NEW_ITEM : "添加服务器"
          }
       }
    }

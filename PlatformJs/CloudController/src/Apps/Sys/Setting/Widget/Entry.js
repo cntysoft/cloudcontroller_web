@@ -59,6 +59,10 @@ Ext.define("App.Sys.Setting.Widget.Entry", {
                      id : "UpgradeUpgradeMgrSlave",
                      leaf : true
                   }]
+            },{
+               text : U_NAMES.SERVER_MGR,
+                     id : "ServerMgr",
+                     leaf : true
             }]
       };
    }
