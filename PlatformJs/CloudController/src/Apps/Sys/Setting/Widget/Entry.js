@@ -50,6 +50,14 @@ Ext.define("App.Sys.Setting.Widget.Entry", {
                      id: "UpgradeCloudController",
                      leaf: true
 
+                  },{
+                     text : U_NAMES.UPGRADE_UPGRADEMGR_MASTER,
+                     id : "UpgradeUpgradeMgrMaster",
+                     leaf : true
+                  },{
+                     text : U_NAMES.UPGRADE_UPGRADEMGR_SLAVE,
+                     id : "UpgradeUpgradeMgrSlave",
+                     leaf : true
                   }]
             }]
       };

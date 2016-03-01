@@ -29,6 +29,10 @@ Ext.define("App.Sys.Setting.Lang.zh_CN", {
          UPGRADE_CLOUD_CONTROLLER : {
             WIDGET_TITLE: "更新云控制系统面板",
             TASK_BTN_TEXT: "云系统更新"
+         },
+         UPGRADE_UPGRADEMGR_MASTER : {
+            WIDGET_TITLE: "更新UpgradeMgr主系统",
+            TASK_BTN_TEXT: "UpgradeMgr主系统更新"
          }
       },
       WIDGET_NAMES: {
@@ -37,7 +41,9 @@ Ext.define("App.Sys.Setting.Lang.zh_CN", {
          VERSION_INFO: "版本信息",
          SYS_UPGRADE: "系统更新",
          UPGRADE_META_INFO: "升级元信息管理",
-         UPGRADE_CC : "升级云控制系统"
+         UPGRADE_CC : "升级云控制系统",
+         UPGRADE_UPGRADEMGR_MASTER : "更新主系统升级",
+         UPGRADE_UPGRADEMGR_SLAVE : "更新从系统升级"
       },
       META_INFO: {
          BTN: {
@@ -88,6 +94,22 @@ Ext.define("App.Sys.Setting.Lang.zh_CN", {
          MSG : {
             RANGE_TEXT : "当前升级范围 {0} - {1}",
             RANGE_INFO_WIN_TITLE : "升级范围设置窗口"
+         }
+      },
+      UPGRADE_UPGRADEMGR_MASTER : {
+         BTN : {
+            START : "开始更新系统",
+            TARGET : "设置升级版本"
+         },
+         COLS : {
+            MSG : "升级信息"
+         },
+         LABEL : {
+            VERSION : "目标版本号"
+         },
+         MSG : {
+            TARGET_VERSION_WIN_TITLE : "目标升级版本设置窗口",
+            TARGET_VERSION_TEXT : "目标升级版本: {0}"
          }
       }
    }

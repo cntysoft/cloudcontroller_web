@@ -13,7 +13,8 @@ Ext.define("App.Sys.Setting.Main", {
       "App.Sys.Setting.Widget.Entry",
       "App.Sys.Setting.Widget.VersionInfo",
       "App.Sys.Setting.Widget.UpgradeMetaInfo",
-      "App.Sys.Setting.Widget.UpgradeCloudController"
+      "App.Sys.Setting.Widget.UpgradeCloudController",
+      "App.Sys.Setting.Widget.UpgradeUpgradeMgrMaster"
    ],
    /**
     * @inheritdoc
@@ -26,7 +27,8 @@ Ext.define("App.Sys.Setting.Main", {
       Entry: "App.Sys.Setting.Widget.Entry",
       VersionInfo : "App.Sys.Setting.Widget.VersionInfo",
       UpgradeMetaInfo : "App.Sys.Setting.Widget.UpgradeMetaInfo",
-      UpgradeCloudController : "App.Sys.Setting.Widget.UpgradeCloudController"
+      UpgradeCloudController : "App.Sys.Setting.Widget.UpgradeCloudController",
+      UpgradeUpgradeMgrMaster : "App.Sys.Setting.Widget.UpgradeUpgradeMgrMaster"
    },
    /**
     * @var {Ext.util.HashMap} serviceInvokerPool
@@ -73,6 +75,14 @@ Ext.define("App.Sys.Setting.Main", {
       }, callback, scope);
    },
    
+   UpgradeUpgradeMgrMaster : function(targetVersion, callback, scope)
+   {
+      var serviceInvoker = this.getServiceInvoker("upgrademgr");
+      serviceInvoker.callService("Upgrader/UpgradeUpgradeMgrMaster", "upgrade", {
+         version : targetVersion
+      }, callback, scope);
+   },
+   
    getServiceInvoker : function(entry)
    {
       if(!this.serviceInvokerPool.containsKey(entry)){
@@ -91,6 +101,8 @@ Ext.define("App.Sys.Setting.Main", {
       }
       return this.serviceInvokerPool.get(entry);
    },
+   
+   
    destroy : function()
    {
       this.serviceInvokerPool.each(function(key, value){
