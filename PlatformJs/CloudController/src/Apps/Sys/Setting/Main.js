@@ -104,6 +104,22 @@ Ext.define("App.Sys.Setting.Main", {
       return this.serviceInvokerPool.get(entry);
    },
    
+   addServerInfo : function(data, callback, scope)
+   {
+      this.callApp('ServerInfo/addServer', data, callback, scope);
+   },
+   
+   updateServerInfo : function(values, callback, scope)
+   {
+      this.callApp('ServerInfo/updateServerInfo', values, callback, scope);
+   },
+   
+   deleteServerInfo : function(id, callback, scope)
+   {
+      this.callApp('ServerInfo/deleteServerInfo', {
+         id : id
+      }, callback, scope);
+   },
    
    destroy : function()
    {
