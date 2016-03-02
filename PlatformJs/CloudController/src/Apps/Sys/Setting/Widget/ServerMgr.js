@@ -145,8 +145,6 @@ Ext.define("App.Sys.Setting.Widget.ServerMgr", {
       return this.infoEditorRef;
    },
    
-   
-   
    saveHandler: function(mode, values)
    {
       var fn;
