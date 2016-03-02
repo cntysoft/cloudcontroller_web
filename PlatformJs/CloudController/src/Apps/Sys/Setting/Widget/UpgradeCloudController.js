@@ -66,6 +66,32 @@ Ext.define("App.Sys.Setting.Widget.UpgradeCloudController", {
       });
       this.callParent();
    },
+   addMsg: function(msg, key, replace)
+   {
+      replace = !!replace;
+      if(!key){
+         key = "key"+this.self.KEY_SEED_ID++;
+      }
+      var store = this.displayer.store;
+      if(replace){
+         var record = store.findRecord("key", key);
+         if(record){
+            record.set("msg", msg);
+            this.displayer.getView().focusRow(record);
+            return;
+         }
+      }else{
+         var record = store.findRecord("key", key);
+         if(record){
+            key += this.self.KEY_SEED_ID++;
+         }
+      }
+      var added = this.displayer.store.add({
+         key: key,
+         msg: msg
+      });
+      this.displayer.getView().focusRow(added.pop());
+   },
    setUpgradeRangeHandler: function()
    {
       var LABEL = this.LANG_TEXT.LABEL;
@@ -105,14 +131,8 @@ Ext.define("App.Sys.Setting.Widget.UpgradeCloudController", {
                         var values = form.getForm().getValues();
                         this.upgradeFromVersion = values.from;
                         this.upgradeToVersion = values.to;
-                        var value = this.displayer.getValue();
                         var msg = Ext.String.format(this.LANG_TEXT.MSG.RANGE_TEXT, this.upgradeFromVersion, this.upgradeToVersion);
-                        if(""==value){
-                           value = msg;
-                        }else{
-                           value += "\n"+msg;
-                        }
-                        this.displayer.setValue(value);
+                        this.addMsg(msg);
                         this.startBtn.setDisabled(false);
                         this.rangeBtn.setDisabled(true);
                         win.close();
@@ -128,36 +148,35 @@ Ext.define("App.Sys.Setting.Widget.UpgradeCloudController", {
       this.startBtn.setDisabled(true);
       this.appRef.upgradeCloudController(this.upgradeFromVersion, this.upgradeToVersion, function(response){
          if(response.status){
-            var value = this.displayer.getValue();
             var msg = response.getDataItem("msg");
-            if(""==value){
-               value = msg;
-            }else{
-               value += "\n"+msg;
+            if(!Ext.isEmpty(msg)){
+               this.addMsg(response.getDataItem("msg"));
             }
-            this.displayer.setValue(value);
+            
          }else{
-            var value = this.displayer.getValue();
-            var msg = response.getErrorString();
-            if(""==value){
-               value = msg;
-            }else{
-               value += "\n"+msg;
-            }
-            this.displayer.setValue(value);
+            this.addMsg(response.getErrorString());
          }
       }, this);
    },
    getDisplayerConfig: function()
    {
+      var COLS = this.LANG_TEXT.COLS;
       return {
-         xtype: "textareafield",
-         readOnly: true,
+         xtype: "grid",
+         columns: [
+            {text: COLS.MSG, dataIndex: "msg", flex: 1, resizable: false, sortable: false, menuDisabled: true}
+         ],
+         autoScroll: true,
+         store: new Ext.data.Store({
+            fields: [
+               {name: "msg", type: "string"},
+               {name: "key", type: "string"}
+            ]
+         }),
          listeners: {
-            afterrender: function(displayer)
+            afterrender: function(grid)
             {
-               this.displayer = displayer;
-
+               this.displayer = grid;
             },
             scope: this
          }

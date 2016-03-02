@@ -96,6 +96,9 @@ Ext.define("App.Sys.Setting.Lang.zh_CN", {
             FROM: "起始版本",
             TO: "目标版本"
          },
+         COLS: {
+            MSG: "升级信息"
+         },
          MSG: {
             RANGE_TEXT: "当前升级范围 {0} - {1}",
             RANGE_INFO_WIN_TITLE: "升级范围设置窗口"
