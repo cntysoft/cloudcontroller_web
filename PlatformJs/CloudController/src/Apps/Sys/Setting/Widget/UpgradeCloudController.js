@@ -154,7 +154,8 @@ Ext.define("App.Sys.Setting.Widget.UpgradeCloudController", {
             }
             
          }else{
-            this.addMsg(response.getErrorString());
+            var msg = "<span style = 'color:red'>"+response.getErrorString()+"</span>";
+            this.addMsg(msg);
          }
       }, this);
    },
