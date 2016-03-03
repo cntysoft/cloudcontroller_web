@@ -34,6 +34,10 @@ Ext.define("App.Sys.Setting.Lang.zh_CN", {
             WIDGET_TITLE: "更新UpgradeMgr主系统",
             TASK_BTN_TEXT: "UpgradeMgr主系统更新"
          },
+         UPGRADE_UPGRADEMGR_SLAVE: {
+            WIDGET_TITLE: "更新UpgradeMgr从系统",
+            TASK_BTN_TEXT: "UpgradeMgr从系统更新"
+         },
          SERVER_MGR: {
             WIDGET_TITLE: "服务器信息管理面板",
             TASK_BTN_TEXT: "服务器信息管理"
@@ -128,15 +132,30 @@ Ext.define("App.Sys.Setting.Lang.zh_CN", {
             TYPE: "类型",
             DESCRIPTION: "描述"
          },
-         MENU : {
-            DELETE_ITEM : "删除当前服务器信息",
-            MODIFY_ITEM : "修改服务器信息"
+         MENU: {
+            DELETE_ITEM: "删除当前服务器信息",
+            MODIFY_ITEM: "修改服务器信息"
          },
-         MSG : {
-            DELETE_ASK : "确定要删除该服务器吗？"
+         MSG: {
+            DELETE_ASK: "确定要删除该服务器吗？"
          },
          BTN: {
             ADD_NEW_ITEM: "添加服务器"
+         }
+      },
+      UPGRADE_UPGRADEMGR_SLAVE: {
+         COLS: {
+            ID: "ID",
+            IP: "服务器地址",
+            TYPE: "类型",
+            DESCRIPTION: "描述"
+         },
+         MSG: {
+            VERSION_TITLE: "目标升级版本号输入窗口",
+            VERSION: "目标版本"
+         },
+         MENU: {
+            UPGRADE: "升级服务器"
          }
       },
       COMP: {
@@ -153,6 +172,12 @@ Ext.define("App.Sys.Setting.Lang.zh_CN", {
                {name: "数据库服务器", value: 4},
                {name: "备份服务器", value: 5}
             ]
+         },
+         UPGRADE_UPGRADEMGR_SLAVE_PROGRESS_WIN: {
+            COLS: {
+               MSG: "升级信息"
+            },
+            TITLE : "升级进度显示窗口"
          }
       }
    }

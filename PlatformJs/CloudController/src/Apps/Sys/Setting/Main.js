@@ -15,6 +15,7 @@ Ext.define("App.Sys.Setting.Main", {
       "App.Sys.Setting.Widget.UpgradeMetaInfo",
       "App.Sys.Setting.Widget.UpgradeCloudController",
       "App.Sys.Setting.Widget.UpgradeUpgradeMgrMaster",
+      "App.Sys.Setting.Widget.UpgradeUpgradeMgrSlave",
       "App.Sys.Setting.Widget.ServerMgr"
    ],
    /**
@@ -30,6 +31,7 @@ Ext.define("App.Sys.Setting.Main", {
       UpgradeMetaInfo : "App.Sys.Setting.Widget.UpgradeMetaInfo",
       UpgradeCloudController : "App.Sys.Setting.Widget.UpgradeCloudController",
       UpgradeUpgradeMgrMaster : "App.Sys.Setting.Widget.UpgradeUpgradeMgrMaster",
+      UpgradeUpgradeMgrSlave : "App.Sys.Setting.Widget.UpgradeUpgradeMgrSlave",
       ServerMgr : "App.Sys.Setting.Widget.ServerMgr"
    },
    /**
@@ -82,6 +84,15 @@ Ext.define("App.Sys.Setting.Main", {
       var serviceInvoker = this.getServiceInvoker("upgrademgr");
       serviceInvoker.callService("Upgrader/UpgradeUpgradeMgrMaster", "upgrade", {
          version : targetVersion
+      }, callback, scope);
+   },
+   
+   UpgradeUpgradeMgrSlave : function(targetVersion, targetIp, callback, scope)
+   {
+      var serviceInvoker = this.getServiceInvoker("upgrademgr");
+      serviceInvoker.callService("Upgrader/UpgradeUpgradeMgrSlave", "upgrade", {
+         version : targetVersion,
+         slaveServerAddress : targetIp
       }, callback, scope);
    },
    

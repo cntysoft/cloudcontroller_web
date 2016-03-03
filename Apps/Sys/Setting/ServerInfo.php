@@ -62,4 +62,14 @@ class ServerInfo extends AbstractLib
       }
       $server->delete();
    }
+   
+   public function setServerVersion($id, $version)
+   {
+      $server = ServerInfoModel::findFirst($id);
+      if(!$server){
+         return;
+      }
+      $server->setVersion($version);
+      $server->save();
+   }
 }

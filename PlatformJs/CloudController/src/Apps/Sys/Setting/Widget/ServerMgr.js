@@ -41,7 +41,7 @@ Ext.define("App.Sys.Setting.Widget.ServerMgr", {
    {
       Ext.apply(this, {
          items: [
-            this.getServiceMetaInfoConfig()
+            this.getServerMetaInfoConfig()
          ],
          buttonAlign: "left",
          buttons: [{
@@ -165,7 +165,7 @@ Ext.define("App.Sys.Setting.Widget.ServerMgr", {
       }, this);
    },
    
-   getServiceMetaInfoConfig: function()
+   getServerMetaInfoConfig: function()
    {
       var COLS = this.LANG_TEXT.COLS;
       return {
@@ -216,6 +216,10 @@ Ext.define("App.Sys.Setting.Widget.ServerMgr", {
       if(this.infoEditorRef){
          this.infoEditorRef.destroy();
          delete this.infoEditorRef;
+      }
+      if(this.contextMenuRef){
+         this.contextMenuRef.destroy();
+         delete this.contextMenuRef;
       }
       this.callParent();
    }
