@@ -91,7 +91,7 @@ Ext.define("App.Sys.Setting.Main", {
    {
       var serviceInvoker = this.getServiceInvoker("upgrademgr");
       serviceInvoker.callService("Upgrader/UpgradeUpgradeMgrSlave", "upgrade", {
-         version : targetVersion,
+         targetVersion : targetVersion,
          slaveServerAddress : targetIp
       }, callback, scope);
    },

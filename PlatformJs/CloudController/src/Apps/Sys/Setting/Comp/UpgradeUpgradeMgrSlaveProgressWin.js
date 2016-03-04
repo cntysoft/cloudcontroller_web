@@ -19,7 +19,7 @@ Ext.define("App.Sys.Setting.Comp.UpgradeUpgradeMgrSlaveProgressWin", {
    runableLangKey: 'App.Sys.Setting',
    LANG_TEXT: null,
    targetVersion: null,
-   displayer : null,
+   displayer: null,
    targetIp: null,
    applyConstraintConfig: function(config)
    {
@@ -41,10 +41,10 @@ Ext.define("App.Sys.Setting.Comp.UpgradeUpgradeMgrSlaveProgressWin", {
    initComponent: function()
    {
       Ext.apply(this, {
-         items : this.getDisplayerConfig(),
+         items: this.getDisplayerConfig(),
       });
       this.addListener({
-         afterrender: this.startUpgradeHandler,
+         show: this.startUpgradeHandler,
          scope: this
       });
       this.callParent();
@@ -52,16 +52,20 @@ Ext.define("App.Sys.Setting.Comp.UpgradeUpgradeMgrSlaveProgressWin", {
    startUpgradeHandler: function()
    {
       if(!Ext.isEmpty(this.targetVersion)&&!Ext.isEmpty(this.targetIp)){
+         this.addMsg(Ext.String.format(this.LANG_TEXT.MSG.UPGRADE_TPL, this.targetVersion));
          this.appRef.UpgradeUpgradeMgrSlave(this.targetVersion, this.targetIp, function(response){
             if(response.status){
                var msg = response.getDataItem("msg");
-               var key = response.getSignature();
-               var repeat = response.getDataItem("repeat");
-               if(repeat){
-                  this.addMsg(msg, key, true);
-               }else{
-                  this.addMsg(msg, key);
+               if(!Ext.isEmpty(msg)){
+                  var key = response.getSignature();
+                  var repeat = response.getDataItem("repeat");
+                  if(repeat){
+                     this.addMsg(msg, key, true);
+                  }else{
+                     this.addMsg(msg, key);
+                  }
                }
+
             }else{
                var msg = "<span style = 'color:red'>"+response.getErrorString()+"</span>";
                this.addMsg(msg);
@@ -116,8 +120,6 @@ Ext.define("App.Sys.Setting.Comp.UpgradeUpgradeMgrSlaveProgressWin", {
          listeners: {
             afterrender: function(grid)
             {
-               console.log("xiuxixu");
-               console.log(this.displayer);
                this.displayer = grid;
             },
             scope: this

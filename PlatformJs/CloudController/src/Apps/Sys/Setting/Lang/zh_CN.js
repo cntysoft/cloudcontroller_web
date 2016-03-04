@@ -177,7 +177,10 @@ Ext.define("App.Sys.Setting.Lang.zh_CN", {
             COLS: {
                MSG: "升级信息"
             },
-            TITLE : "升级进度显示窗口"
+            TITLE : "升级进度显示窗口",
+            MSG : {
+               UPGRADE_TPL : "目标升级版本:{0}"
+            }
          }
       }
    }
