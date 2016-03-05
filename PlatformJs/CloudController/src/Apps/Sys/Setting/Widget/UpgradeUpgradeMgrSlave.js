@@ -7,7 +7,7 @@
  */
 Ext.define("App.Sys.Setting.Widget.UpgradeUpgradeMgrSlave", {
    extend: "WebOs.Kernel.ProcessModel.AbstractWidget",
-   requires : [
+   requires: [
       "App.Sys.Setting.Comp.UpgradeUpgradeMgrSlaveProgressWin"
    ],
    initPmTextRef: function()
@@ -20,7 +20,6 @@ Ext.define("App.Sys.Setting.Widget.UpgradeUpgradeMgrSlave", {
    },
    metaInfoGridRef: null,
    contextMenuRef: null,
-   progressWinRef : null,
    applyConstraintConfig: function(config)
    {
       this.callParent([config]);
@@ -44,17 +43,12 @@ Ext.define("App.Sys.Setting.Widget.UpgradeUpgradeMgrSlave", {
       });
       this.callParent();
    },
-   
-   getProgressWin : function()
+   getProgressWin: function()
    {
-      if(this.progressWinRef == null){
-         this.progressWinRef = new App.Sys.Setting.Comp.UpgradeUpgradeMgrSlaveProgressWin({
-            appRef : this.appRef
-         });
-      }
-      return this.progressWinRef;
+      return new App.Sys.Setting.Comp.UpgradeUpgradeMgrSlaveProgressWin({
+         appRef: this.appRef
+      });
    },
-   
    upgradeHandler: function(item)
    {
       var record = item.parentMenu.record;

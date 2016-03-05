@@ -31,7 +31,6 @@ Ext.define("App.Sys.Setting.Comp.UpgradeUpgradeMgrSlaveProgressWin", {
          minHeight: 300,
          height: 300,
          layout: "fit",
-         closeAction: "hide",
          maximizable: false,
          resizable: false,
          title: this.LANG_TEXT.TITLE,
