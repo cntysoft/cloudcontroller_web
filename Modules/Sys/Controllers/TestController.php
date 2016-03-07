@@ -16,6 +16,9 @@ class TestController extends AbstractController
 
    public function indexAction()
    {
+       $mounter = new PermResMounter();
+       $mounter->mountPermRes("Sys", "KeleCloud");
+       exit();
       $auth = new Authorizer();
       $auth->login(json_decode('{"username":"admin","password":"344bba4200ad08694896aafa0b7507101798ac975744914bcc40856e87c3626d","chkcode":"3ftd"}', true));
       exit();
