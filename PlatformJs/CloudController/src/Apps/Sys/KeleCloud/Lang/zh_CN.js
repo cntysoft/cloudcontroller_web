@@ -17,6 +17,10 @@ Ext.define("App.Sys.KeleCloud.Lang.zh_CN", {
          SERVER_MGR: {
             WIDGET_TITLE: "欢迎使用服务器信息管理程序",
             TASK_BTN_TEXT: "服务器管理"
+         },
+         VERSION_MGR: {
+            WIDGET_TITLE: "欢迎使用服务器版本信息管理程序",
+            TASK_BTN_TEXT: "版本信息管理"
          }
       },
       WIDGET_NAMES: {
@@ -29,8 +33,8 @@ Ext.define("App.Sys.KeleCloud.Lang.zh_CN", {
          COLS: {
             ID: "ID",
             IP: "服务器地址",
-            NAME : "服务器名称",
-            INSTANCE_COUNT : "实例数量"
+            NAME: "服务器名称",
+            INSTANCE_COUNT: "实例数量"
          },
          MENU: {
             DELETE_ITEM: "删除当前服务器信息",
@@ -43,11 +47,37 @@ Ext.define("App.Sys.KeleCloud.Lang.zh_CN", {
             ADD_NEW_ITEM: "添加服务器"
          }
       },
+      VERSION_MGR: {
+         BTN: {
+            ADD_NEW_ITEM: "添加版本升级信息"
+         },
+         COLS: {
+            ID: "ID",
+            FROM_VERSION: "起始版本",
+            TO_VERSION: "目标版本",
+            DESCRIPTION: "版本描述",
+            RELEASE_TIME: "发布时间"
+         },
+         MENU: {
+            DELETE_ITEM: "删除当前版本信息",
+            MODIFY_ITEM: "修改版本信息"
+         },
+         MSG : {
+            DELETE_ASK : "确定要删除该版本号吗？"
+         }
+      },
       COMP: {
          SERVER_INFO_EDITOR_WIN: {
             LABEL: {
                NAME: "服务器名称",
                IP: "服务器IP"
+            }
+         },
+         VERSION_INFO_EDITOR_WIN: {
+            LABEL: {
+               FROM_VERSION: "起始版本号",
+               TO_VERSION: "目标版本号",
+               DESCRIPTION: "简单描述"
             }
          }
       }

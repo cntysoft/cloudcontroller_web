@@ -10,7 +10,8 @@ Ext.define("App.Sys.KeleCloud.Main", {
    requires : [
       "App.Sys.KeleCloud.Lang.zh_CN",
       "App.Sys.KeleCloud.Widget.Entry",
-      "App.Sys.KeleCloud.Widget.ServerMgr"
+      "App.Sys.KeleCloud.Widget.ServerMgr",
+      "App.Sys.KeleCloud.Widget.VersionMgr"
    ],
    /**
     * @inheritdoc
@@ -21,21 +22,38 @@ Ext.define("App.Sys.KeleCloud.Main", {
     */
    widgetMap: {
       Entry: "App.Sys.KeleCloud.Widget.Entry",
-      ServerMgr : "App.Sys.KeleCloud.Widget.ServerMgr"
+      ServerMgr : "App.Sys.KeleCloud.Widget.ServerMgr",
+      VersionMgr : "App.Sys.KeleCloud.Widget.VersionMgr"
    },
    addServerInfo : function(data, callback, scope)
    {
-      this.callApp('ServerInfo/addServer', data, callback, scope);
+      this.callApp("ServerInfo/addServer", data, callback, scope);
    },
    
    updateServerInfo : function(values, callback, scope)
    {
-      this.callApp('ServerInfo/updateServerInfo', values, callback, scope);
+      this.callApp("ServerInfo/updateServerInfo", values, callback, scope);
    },
    
    deleteServerInfo : function(id, callback, scope)
    {
-      this.callApp('ServerInfo/deleteServerInfo', {
+      this.callApp("ServerInfo/deleteServerInfo", {
+         id : id
+      }, callback, scope);
+   },
+   addVersionInfo : function(data, callback, scope)
+   {
+      this.callApp("VersionInfo/addVersion", data, callback, scope);
+   },
+   
+   updateVersionInfo : function(values, callback, scope)
+   {
+      this.callApp("VersionInfo/updateVersion", values, callback, scope);
+   },
+   
+   deleteVersionInfo : function(id, callback, scope)
+   {
+      this.callApp("VersionInfo/deleteVersion", {
          id : id
       }, callback, scope);
    }

@@ -9,8 +9,8 @@
 namespace App\Sys\KeleCloud;
 final class Constant
 {
-   
    const MODULE_NAME = 'Sys';
    const APP_NAME = 'KeleCloud';
    const APP_API_SERVER_MGR = 'ServerMgr';
+   const APP_API_VERSION_MGR = 'VersionMgr';
 }
