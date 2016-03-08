@@ -7,6 +7,11 @@
  */
 Ext.define("App.Sys.KeleCloud.Main", {
    extend: "WebOs.Kernel.ProcessModel.App",
+   requires : [
+      "App.Sys.KeleCloud.Lang.zh_CN",
+      "App.Sys.KeleCloud.Widget.Entry",
+      "App.Sys.KeleCloud.Widget.ServerMgr"
+   ],
    /**
     * @inheritdoc
     */
@@ -15,7 +20,24 @@ Ext.define("App.Sys.KeleCloud.Main", {
     * @inheritdoc
     */
    widgetMap: {
-//      Entry: "App.Sys.SoftwareRepo.Widget.Entry"
+      Entry: "App.Sys.KeleCloud.Widget.Entry",
+      ServerMgr : "App.Sys.KeleCloud.Widget.ServerMgr"
+   },
+   addServerInfo : function(data, callback, scope)
+   {
+      this.callApp('ServerInfo/addServer', data, callback, scope);
+   },
+   
+   updateServerInfo : function(values, callback, scope)
+   {
+      this.callApp('ServerInfo/updateServerInfo', values, callback, scope);
+   },
+   
+   deleteServerInfo : function(id, callback, scope)
+   {
+      this.callApp('ServerInfo/deleteServerInfo', {
+         id : id
+      }, callback, scope);
    }
  
 });

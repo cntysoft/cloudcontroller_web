@@ -6,13 +6,14 @@
  * @copyright  Copyright (c) 2010-2011 Cntysoft Technologies China Inc. <http://www.cntysoft.com>
  * @license    http://www.cntysoft.com/license/new-bsd     New BSD License
  */
-namespace App\Sys\Setting;
+namespace App\Sys\KeleCloud;
 use Cntysoft\Kernel\App\AbstractLib;
-use App\Sys\Setting\Model\ServerInfoModel;
+use Cntysoft\Kernel;
+use App\Sys\KeleCloud\Model\ServerInfoModel;
 /**
  * 服务器信息相关接口
  */
-class ServerInfo extends AbstractLib
+class ServerMgr extends AbstractLib
 {
    public function getInfoById($id)
    {
@@ -38,6 +39,7 @@ class ServerInfo extends AbstractLib
    {
       unset($data["id"]);
       $server = new ServerInfoModel();
+      $data['instanceCount'] = 0;
       $this->checkRequireFields($data, $server->getRequireFields(array("id")));
       $server->assignBySetter($data);
       return $server->save();
@@ -50,6 +52,7 @@ class ServerInfo extends AbstractLib
          return;
       }
       unset($data['id']);
+      unset($data['instanceCount']);
       $server->assignBySetter($data);
       $server->save();
    }
@@ -60,16 +63,12 @@ class ServerInfo extends AbstractLib
       if(!$server){
          return;
       }
-      $server->delete();
-   }
-   
-   public function setServerVersion($id, $version)
-   {
-      $server = ServerInfoModel::findFirst($id);
-      if(!$server){
-         return;
+      if($server->getInstanceCount() > 0){
+         $errorType = $this->getErrorType();
+         Kernel\throw_exception(
+                    new Exception($errorType->msg('E_SERVER_HAS_INSTANCE'), $errorType->code('E_SERVER_HAS_INSTANCE')), 
+                    $this->getErrorTypeContext());
       }
-      $server->setVersion($version);
-      $server->save();
+      $server->delete();
    }
 }
