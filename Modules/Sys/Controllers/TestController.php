@@ -11,11 +11,15 @@
 use Cntysoft\Phalcon\Mvc\AbstractController;
 use App\Sys\User\AjaxHandler\Authorizer;
 use App\Sys\AppInstaller\PermResMounter;
+use App\Sys\KeleCloud\AjaxHandler\ServerInfo;
 class TestController extends AbstractController
 {
 
    public function indexAction()
    {
+       $serverMgr = new ServerInfo();
+       $serverMgr->getServerListForTree();
+       exit();
        $mounter = new PermResMounter();
        $mounter->mountPermRes("Sys", "KeleCloud");
        exit();

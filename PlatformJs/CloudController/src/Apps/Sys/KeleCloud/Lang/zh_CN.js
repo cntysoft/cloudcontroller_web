@@ -21,6 +21,10 @@ Ext.define("App.Sys.KeleCloud.Lang.zh_CN", {
          VERSION_MGR: {
             WIDGET_TITLE: "欢迎使用服务器版本信息管理程序",
             TASK_BTN_TEXT: "版本信息管理"
+         },
+         SITE_MGR : {
+            WIDGET_TITLE: "欢迎使用站点管理程序",
+            TASK_BTN_TEXT: "站点管理"
          }
       },
       WIDGET_NAMES: {
@@ -66,6 +70,15 @@ Ext.define("App.Sys.KeleCloud.Lang.zh_CN", {
             DELETE_ASK : "确定要删除该版本号吗？"
          }
       },
+      SITE_MGR : {
+         SITE_INSTANCE : {
+            COLS : {
+               ID : "ID",
+               NAME : "实例名称",
+               CREATE_TIME : "创建时间"
+            }
+         }
+      },
       COMP: {
          SERVER_INFO_EDITOR_WIN: {
             LABEL: {
@@ -78,6 +91,11 @@ Ext.define("App.Sys.KeleCloud.Lang.zh_CN", {
                FROM_VERSION: "起始版本号",
                TO_VERSION: "目标版本号",
                DESCRIPTION: "简单描述"
+            }
+         },
+         SITE_MGR : {
+            SERVER_INFO_TREE : {
+               ROOT_NODE : "服务器列表"
             }
          }
       }

@@ -33,6 +33,31 @@ class ServerInfo extends AbstractHandler
       );
    }
    
+   public function getServerListForTree(array $params = array())
+   {
+      $orderBy = $limit = $offset = null;
+      $this->getPageParams($orderBy, $limit, $offset, $params);
+      $list = $this->getAppCaller()->call(
+         Constant::MODULE_NAME,
+         Constant::APP_NAME,
+         Constant::APP_API_SERVER_MGR,
+         'getList',
+         array(
+            false, 'id desc', $offset, $limit
+         )
+      );
+      $ret = [];
+      foreach ($list as $item){
+         $ret[] = array(
+            'id' => $item->getId(),
+            'text' => $item->getName()." <span style = 'color:blue'>[{$item->getInstanceCount()}]</span>",
+            'ip' => $item->getIp(),
+            'leaf' => true
+         );
+      }
+      return $ret;
+   }
+   
    public function addServer(array $params)
    {
       $this->getAppCaller()->call(

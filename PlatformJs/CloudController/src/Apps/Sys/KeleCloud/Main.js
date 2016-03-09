@@ -11,7 +11,8 @@ Ext.define("App.Sys.KeleCloud.Main", {
       "App.Sys.KeleCloud.Lang.zh_CN",
       "App.Sys.KeleCloud.Widget.Entry",
       "App.Sys.KeleCloud.Widget.ServerMgr",
-      "App.Sys.KeleCloud.Widget.VersionMgr"
+      "App.Sys.KeleCloud.Widget.VersionMgr",
+      "App.Sys.KeleCloud.Widget.SiteMgr"
    ],
    /**
     * @inheritdoc
@@ -23,7 +24,8 @@ Ext.define("App.Sys.KeleCloud.Main", {
    widgetMap: {
       Entry: "App.Sys.KeleCloud.Widget.Entry",
       ServerMgr : "App.Sys.KeleCloud.Widget.ServerMgr",
-      VersionMgr : "App.Sys.KeleCloud.Widget.VersionMgr"
+      VersionMgr : "App.Sys.KeleCloud.Widget.VersionMgr",
+      SiteMgr : "App.Sys.KeleCloud.Widget.SiteMgr"
    },
    addServerInfo : function(data, callback, scope)
    {
