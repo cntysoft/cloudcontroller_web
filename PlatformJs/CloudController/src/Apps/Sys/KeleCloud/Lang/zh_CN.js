@@ -14,6 +14,10 @@ Ext.define("App.Sys.KeleCloud.Lang.zh_CN", {
             WIDGET_TITLE: "欢迎使用可乐云商管理平台",
             TASK_BTN_TEXT: "可乐云商"
          },
+         PACKAGE_REPO : {
+            WIDGET_TITLE: "欢迎使用程序包管理程序",
+            TASK_BTN_TEXT: "程序包管理"
+         },
          SERVER_MGR: {
             WIDGET_TITLE: "欢迎使用服务器信息管理程序",
             TASK_BTN_TEXT: "服务器管理"
@@ -28,9 +32,23 @@ Ext.define("App.Sys.KeleCloud.Lang.zh_CN", {
          }
       },
       WIDGET_NAMES: {
+         PACKAGE_REPO : "程序包管理",
          SERVER_MGR: "服务器信息管理",
          VERSION_MGR: "版本管理",
          SITE_MGR: "站点管理"
+      },
+      PACKAGE_REPO :{
+         ERROR : {
+            CONNECT_WEBSOCKET_FAIL : "连接到 [{0}] WebSocket服务器失败"
+         },
+         COLS : {
+            FILE_NAME : "文件名称",
+            FILE_SIZE : "文件大小"
+         },
+         BTN : {
+            DELETE_FILE : "删除选中文件",
+            UPLOAD_SOFTWARE : "上传软件包"
+         }
       },
       SERVER_MGR: {
          SERVER_INFO_WIN_TITLE: "服务器信息添加/修改窗口",

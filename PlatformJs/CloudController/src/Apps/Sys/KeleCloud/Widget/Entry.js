@@ -31,6 +31,10 @@ Ext.define("App.Sys.KeleCloud.Widget.Entry", {
          id : "root",
          name : this.pmText.DISPLAY_TEXT,
          children : [{
+            text : U_NAMES.PACKAGE_REPO,
+            id : "PackageRepo",
+            leaf : true
+         },{
             text : U_NAMES.SERVER_MGR,
             id : "ServerMgr",
             leaf : true
