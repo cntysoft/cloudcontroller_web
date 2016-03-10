@@ -10,7 +10,9 @@ Ext.define("App.Sys.KeleCloud.Widget.SiteMgr", {
    requires: [
       "App.Sys.KeleCloud.Comp.VersionInfoEditorWin",
       "Cntysoft.Utils.ColRenderer",
-      "App.Sys.KeleCloud.Comp.SiteMgr.ServerInfoTree"
+      "App.Sys.KeleCloud.Comp.SiteMgr.ServerInfoTree",
+      "App.Sys.KeleCloud.Comp.SiteMgr.InstanceInfoWin",
+      "App.Sys.KeleCloud.Comp.OperateProgressWin"
    ],
    initPmTextRef: function()
    {
@@ -21,6 +23,8 @@ Ext.define("App.Sys.KeleCloud.Widget.SiteMgr", {
       this.LANG_TEXT = this.GET_LANG_TEXT("SITE_MGR");
    },
    metaInfoFormRef: null,
+   contextMenuRef: null,
+   instanceInfoRef : null,
    applyConstraintConfig: function(config)
    {
       this.callParent([config]);
@@ -76,9 +80,87 @@ Ext.define("App.Sys.KeleCloud.Widget.SiteMgr", {
                xtype: "syskelecloudcompsitemgrserverinfotree",
                width: 240,
                region: "west",
-               margin: "0 1 0 0"
-            }, this.getSiteInstanceListGridConfig()]
+               margin: "0 1 0 0",
+               listeners: {
+                  itemcontextmenu: this.nodeRightClickHandler,
+                  scope: this
+               }
+            }, this.getSiteInstanceListGridConfig()
+         ]
       };
+   },
+   nodeRightClickHandler: function(tree, record, item, index, e)
+   {
+      if(record.isRoot()){
+         return;
+      }
+      var menu = this.getContextMenu();
+      var pos = e.getXY();
+      menu.record = record;
+      menu.showAt(pos[0], pos[1]);
+      e.stopEvent();
+   },
+   getContextMenu: function()
+   {
+      if(null==this.contextMenuRef){
+         var M_TEXT = this.LANG_TEXT.SITE_INSTANCE.MENU;
+         this.contextMenuRef = new Ext.menu.Menu({
+            ignoreParentClicks: true,
+            items: [{
+                  text: M_TEXT.CREATE_SITE,
+                  listeners: {
+                     click: this.createNewInstanceHandler,
+                     scope: this
+                  }
+               }]
+         });
+      }
+
+      return this.contextMenuRef;
+   },
+   createNewInstanceHandler: function(item)
+   {
+      this.createInstanceInfoReadyHandler(CloudController.Const.NEW_MODE, {
+         name : "可乐云商测试站",
+         instanceKey : "kelecloud",
+         serviceEndTime : 1231231423,
+         admin : "小张",
+         phone : "18503710163"
+      });
+//      var win = this.getInstanceInfoWin();
+//      win.setTargetServerId(item.parentMenu.record.get("id"));
+//      win.center();
+//      win.show();
+   },
+   
+   createInstanceInfoReadyHandler : function(mode, data)
+   {
+      if(mode == CloudController.Const.NEW_MODE){
+         var win = new App.Sys.KeleCloud.Comp.OperateProgressWin({
+            listeners : {
+               show : function()
+               {
+                  console.log(data);
+               },
+               scope : this
+            }
+         });
+         win.center();
+         win.show();
+      }
+   },
+   
+   getInstanceInfoWin: function()
+   {
+      if(!this.instanceInfoRef){
+         this.instanceInfoRef = new App.Sys.KeleCloud.Comp.SiteMgr.InstanceInfoWin({
+            listeners : {
+               saverequest : this.createInstanceInfoReadyHandler,
+               scope : this
+            }
+         });
+      }
+      return this.instanceInfoRef;
    },
    getSiteInstanceListGridConfig: function()
    {
@@ -167,6 +249,14 @@ Ext.define("App.Sys.KeleCloud.Widget.SiteMgr", {
    destroy: function()
    {
       delete this.metaInfoFormRef;
+      if(this.contextMenuRef){
+         this.contextMenuRef.destroy();
+         delete this.contextMenuRef;
+      }
+      if(this.instanceInfoRef){
+         this.instanceInfoRef.destroy();
+         delete this.instanceInfoRef;
+      }
       this.callParent();
    }
 });

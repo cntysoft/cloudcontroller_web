@@ -5,8 +5,7 @@
  * @copyright  Copyright (c) 2010-2011 Cntysoft Technologies China Inc. <http://www.cntysoft.com>
  * @license    http://www.cntysoft.com/license/new-bsd     New BSD License
  */
-
-Ext.define("App.Sys.Setting.Comp.UpgradeUpgradeMgrSlaveProgressWin", {
+Ext.define("App.Sys.KeleCloud.Comp.OperateProgressWin", {
    extend: "WebOs.Component.Window",
    mixins: {
       langTextPrinfoEditorRefovider: 'WebOs.Mixin.RunableLangTextProvider'
@@ -16,18 +15,16 @@ Ext.define("App.Sys.Setting.Comp.UpgradeUpgradeMgrSlaveProgressWin", {
     *
     * @property {String} runableLangKey
     */
-   runableLangKey: 'App.Sys.Setting',
+   runableLangKey: 'App.Sys.KeleCloud',
    LANG_TEXT: null,
-   targetVersion: null,
    displayer: null,
-   targetIp: null,
    applyConstraintConfig: function(config)
    {
-      this.LANG_TEXT = this.GET_LANG_TEXT("COMP.UPGRADE_UPGRADEMGR_SLAVE_PROGRESS_WIN");
+      this.LANG_TEXT = this.GET_LANG_TEXT("COMP.OPERATE_PROGRESS_WIN");
       this.callParent([config]);
       Ext.apply(config, {
-         width: 800,
-         minWidth: 800,
+         width: 700,
+         minWidth: 700,
          minHeight: 300,
          height: 300,
          layout: "fit",
@@ -42,38 +39,9 @@ Ext.define("App.Sys.Setting.Comp.UpgradeUpgradeMgrSlaveProgressWin", {
       Ext.apply(this, {
          items: this.getDisplayerConfig()
       });
-      this.addListener({
-         show: this.startUpgradeHandler,
-         scope: this
-      });
       this.callParent();
    },
-   startUpgradeHandler: function()
-   {
-      if(!Ext.isEmpty(this.targetVersion)&&!Ext.isEmpty(this.targetIp)){
-         this.addMsg(Ext.String.format(this.LANG_TEXT.MSG.UPGRADE_TPL, this.targetVersion));
-         this.appRef.UpgradeUpgradeMgrSlave(this.targetVersion, this.targetIp, function(response){
-            if(response.status){
-               var msg = response.getDataItem("msg");
-               if(!Ext.isEmpty(msg)){
-                  var key = response.getSignature();
-                  var repeat = response.getDataItem("repeat");
-                  if(repeat){
-                     this.addMsg(msg, key, true);
-                  }else{
-                     this.addMsg(msg, key);
-                  }
-               }
-
-            }else{
-               var msg = "<span style = 'color:red'>"+response.getErrorString()+"</span>";
-               this.addMsg(msg);
-            }
-         }, this);
-      }else{
-         Cntysoft.raiseError(Ext.getClassName(this), "startUpgradeHandler", "targetVersion and targetId must set");
-      }
-   },
+   
    addMsg: function(msg, key, replace)
    {
       replace = !!replace;
@@ -125,22 +93,10 @@ Ext.define("App.Sys.Setting.Comp.UpgradeUpgradeMgrSlaveProgressWin", {
          }
       };
    },
-   setTargetVersion: function(version)
-   {
-      this.targetVersion = version;
-   },
-   setTargetSlaveIp: function(ip)
-   {
-      this.targetIp = ip;
-   },
    destroy: function()
    {
-      delete this.targetVersion;
-      delete this.targetIp;
       delete this.displayer;
       delete this.appRef;
       this.callParent();
    }
 });
-
-

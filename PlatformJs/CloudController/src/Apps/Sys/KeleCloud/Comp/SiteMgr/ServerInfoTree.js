@@ -18,10 +18,6 @@ Ext.define("App.Sys.KeleCloud.Comp.SiteMgr.ServerInfoTree", {
       langTextProvider : "WebOs.Mixin.RunableLangTextProvider"
    },
    runableLangKey : "App.Sys.KeleCloud",
-   plugins : [{
-         ptype : "nodedisabled"
-      }],
-   
    constructor : function(config)
    {
       config = config || {};
@@ -35,15 +31,6 @@ Ext.define("App.Sys.KeleCloud.Comp.SiteMgr.ServerInfoTree", {
       Ext.apply(this, {
          store : this.createTreeStore()
       });
-//      this.addListener({
-//         beforeitemexpand : function (obj){
-//            var proxy = this.getStore().getProxy();
-//            proxy.setInvokeParams({
-//               id : obj.getId()
-//            });
-//         },
-//         scope : this
-//      });
       this.callParent();
    },
    

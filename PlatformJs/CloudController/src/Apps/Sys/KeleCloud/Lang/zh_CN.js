@@ -77,6 +77,9 @@ Ext.define("App.Sys.KeleCloud.Lang.zh_CN", {
                ID : "ID",
                NAME : "实例名称",
                CREATE_TIME : "创建时间"
+            },
+            MENU : {
+               CREATE_SITE : "创建新站点实例"
             }
          },
          META_INFO : {
@@ -103,6 +106,25 @@ Ext.define("App.Sys.KeleCloud.Lang.zh_CN", {
          SITE_MGR : {
             SERVER_INFO_TREE : {
                ROOT_NODE : "服务器列表"
+            },
+            INSTANCE_INFO_WIN : {
+               TITLE : "站点实例添加/修改窗口",
+               BTN : {
+                  CREATE_SITE : "创建新站点"
+               },
+               LABEL : {
+                  NAME : "站点名称",
+                  SITE_KEY : "站点识别KEY",
+                  END_TIME : "到期时间",
+                  ADMIN : "网站负责人",
+                  PHONE : "联系电话"
+               }
+            }
+         },
+         OPERATE_PROGRESS_WIN : {
+            TITLE : "操作进度显示窗口",
+            COLS : {
+               MSG : "日志信息"
             }
          }
       }

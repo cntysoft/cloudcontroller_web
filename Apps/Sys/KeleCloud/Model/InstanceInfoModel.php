@@ -18,6 +18,8 @@ class InstanceInfoModel extends BaseModel
    private $serviceStartTime;
    private $serviceEndTime;
    private $ip;
+   private $admin;
+   private $phone;
    public function getSource()
    {
       return "app_sys_kelecloud_instance_info";
@@ -96,6 +98,28 @@ class InstanceInfoModel extends BaseModel
    function setIp($ip)
    {
       $this->ip = $ip;
+      return $this;
+   }
+
+   function getAdmin()
+   {
+      return $this->admin;
+   }
+
+   function getPhone()
+   {
+      return $this->phone;
+   }
+
+   function setAdmin($admin)
+   {
+      $this->admin = $admin;
+      return $this;
+   }
+
+   function setPhone($phone)
+   {
+      $this->phone = $phone;
       return $this;
    }
 
