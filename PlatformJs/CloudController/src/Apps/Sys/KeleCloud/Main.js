@@ -58,6 +58,15 @@ Ext.define("App.Sys.KeleCloud.Main", {
       this.callApp("VersionInfo/deleteVersion", {
          id : id
       }, callback, scope);
+   },
+   
+   saveInstanceMetaInfo : function(data, callback, scope)
+   {
+      this.callApp("InstanceMgr/setMetaInfo", data, callback, scope);
+   },
+   
+   getInstanceMetaInfo : function(callback, scope)
+   {
+      this.callApp("InstanceMgr/getMetaInfo", null, callback, scope);
    }
- 
 });

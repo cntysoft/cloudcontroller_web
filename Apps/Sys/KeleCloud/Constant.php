@@ -13,4 +13,7 @@ final class Constant
    const APP_NAME = 'KeleCloud';
    const APP_API_SERVER_MGR = 'ServerMgr';
    const APP_API_VERSION_MGR = 'VersionMgr';
+   const APP_API_INSTANCE_MGR = "InstanceMgr";
+   
+   const SYS_CFG_GROUP = "Sys.KeleCloud";
 }

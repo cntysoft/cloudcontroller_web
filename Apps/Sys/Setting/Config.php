@@ -26,7 +26,7 @@ class Config extends AbstractLib
    public function setItem($group, $key, $value)
    {
       $item = ConfigModel::findFirst(array(
-         '[group] = ?1 AND key = ?2',
+         '[group] = ?0 AND [key] = ?1',
          'bind' => array(
             0 => $group,
             1 => $key

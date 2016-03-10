@@ -72,10 +72,17 @@ Ext.define("App.Sys.KeleCloud.Lang.zh_CN", {
       },
       SITE_MGR : {
          SITE_INSTANCE : {
+            TITLE : "站点实例管理",
             COLS : {
                ID : "ID",
                NAME : "实例名称",
                CREATE_TIME : "创建时间"
+            }
+         },
+         META_INFO : {
+            TITLE : "元信息设置",
+            FIELD_LABLES : {
+               CURRENT_VERSION : "当前版本号"
             }
          }
       },
