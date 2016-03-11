@@ -42,7 +42,7 @@ Ext.define("App.Sys.KeleCloud.Main", {
          serviceHost: websocketUrl,
          listeners : {
             connecterror : function(invoker, event){
-               Cntysoft.showErrorWindow(Ext.String.format(this.GET_LANG_TEXT("ENTRY.ERROR.CONNECT_WEBSOCKET_FAIL"), websocketUrl));
+               Cntysoft.showErrorWindow(Ext.String.format(this.GET_LANG_TEXT("ERROR.CONNECT_WEBSOCKET_FAIL"), websocketUrl));
                Cntysoft.raiseError(Ext.getClassName(this), "run", "connect to websocket server " + websocketUrl + " error");
                
             },
@@ -94,6 +94,24 @@ Ext.define("App.Sys.KeleCloud.Main", {
    {
       this.callApp("InstanceMgr/getMetaInfo", null, callback, scope);
    },
+   
+   removeSoftware : function(filename, callback, scope)
+   {
+      var request = new Cntysoft.Framework.Rpc.Request("SoftwareRepo/RepoInfo", "removeSoftware",{
+         filename : filename
+      });
+      this.serviceInvoker.request(request, callback, scope);
+   },
+   
+   instanceDeploy : function(serverAddress, instanceKey, currenVersion, callback, scope)
+   {
+      this.serviceInvoker.callService("KeleCloud/InstanceDeploy", "deploy", {
+         serverAddress : serverAddress,
+         instanceKey : instanceKey,
+         currentVersion : currenVersion
+      }, callback, scope);
+   },
+   
    destroy : function()
    {
       this.serviceInvoker.disconnectFromServer();

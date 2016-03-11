@@ -24,7 +24,9 @@ Ext.define("App.Sys.KeleCloud.Widget.SiteMgr", {
    },
    metaInfoFormRef: null,
    contextMenuRef: null,
-   instanceInfoRef : null,
+   instanceInfoRef: null,
+   defaultPackageVersion: null,
+   serverAddress: null,
    applyConstraintConfig: function(config)
    {
       this.callParent([config]);
@@ -43,6 +45,15 @@ Ext.define("App.Sys.KeleCloud.Widget.SiteMgr", {
       Ext.apply(this, {
          items: this.getTabPanelConfig()
       });
+      this.addListener("afterrender", function(){
+         this.appRef.getInstanceMetaInfo(function(response){
+            if(!response.status){
+               Cntysoft.showErrorWindow(response.msg);
+            }else{
+               this.defaultPackageVersion = response.data.currentVersion;
+            }
+         }, this);
+      }, this);
       this.callParent();
    },
    saveMetaInfoHandler: function()
@@ -94,6 +105,7 @@ Ext.define("App.Sys.KeleCloud.Widget.SiteMgr", {
       if(record.isRoot()){
          return;
       }
+      this.serverAddress = record.get("ip");
       var menu = this.getContextMenu();
       var pos = e.getXY();
       menu.record = record;
@@ -121,42 +133,59 @@ Ext.define("App.Sys.KeleCloud.Widget.SiteMgr", {
    createNewInstanceHandler: function(item)
    {
       this.createInstanceInfoReadyHandler(CloudController.Const.NEW_MODE, {
-         name : "可乐云商测试站",
-         instanceKey : "kelecloud",
-         serviceEndTime : 1231231423,
-         admin : "小张",
-         phone : "18503710163"
+         name: "可乐云商测试站",
+         instanceKey: "kelecloud",
+         serviceEndTime: 1231231423,
+         admin: "小张",
+         phone: "18503710163",
+         currentVersion: this.defaultPackageVersion,
+         serverAddress: this.serverAddress
       });
 //      var win = this.getInstanceInfoWin();
 //      win.setTargetServerId(item.parentMenu.record.get("id"));
 //      win.center();
 //      win.show();
    },
-   
-   createInstanceInfoReadyHandler : function(mode, data)
+   createInstanceInfoReadyHandler: function(mode, data)
    {
-      if(mode == CloudController.Const.NEW_MODE){
+      if(mode==CloudController.Const.NEW_MODE){
          var win = new App.Sys.KeleCloud.Comp.OperateProgressWin({
-            listeners : {
-               show : function()
+            listeners: {
+               show: function()
                {
-                  console.log(data);
+                  this.appRef.instanceDeploy(data.serverAddress, data.instanceKey, data.currentVersion, function(response){
+                     if(response.status){
+                        var msg = response.getDataItem("msg");
+                        if(!Ext.isEmpty(msg)){
+                           var key = response.getSignature();
+                           var repeat = response.getDataItem("repeat");
+                           if(repeat){
+                              win.addMsg(msg, key, true);
+                           }else{
+                              win.addMsg(msg, key);
+                           }
+                        }
+
+                     }else{
+                        var msg = "<span style = 'color:red'>"+response.getErrorString()+"</span>";
+                        win.addMsg(msg);
+                     }
+                  }, this);
                },
-               scope : this
+               scope: this
             }
          });
          win.center();
          win.show();
       }
    },
-   
    getInstanceInfoWin: function()
    {
       if(!this.instanceInfoRef){
          this.instanceInfoRef = new App.Sys.KeleCloud.Comp.SiteMgr.InstanceInfoWin({
-            listeners : {
-               saverequest : this.createInstanceInfoReadyHandler,
-               scope : this
+            listeners: {
+               saverequest: this.createInstanceInfoReadyHandler,
+               scope: this
             }
          });
       }
@@ -257,6 +286,8 @@ Ext.define("App.Sys.KeleCloud.Widget.SiteMgr", {
          this.instanceInfoRef.destroy();
          delete this.instanceInfoRef;
       }
+      delete this.defaultPackageVersion;
+      delete this.serverAddress;
       this.callParent();
    }
 });

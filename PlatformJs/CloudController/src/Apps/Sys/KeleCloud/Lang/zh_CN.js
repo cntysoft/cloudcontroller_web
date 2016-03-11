@@ -107,6 +107,9 @@ Ext.define("App.Sys.KeleCloud.Lang.zh_CN", {
             }
          }
       },
+      ERROR : {
+         CONNECT_WEBSOCKET_FAIL : "连接到websocket服务器失败"
+      },
       COMP: {
          SERVER_INFO_EDITOR_WIN: {
             LABEL: {
