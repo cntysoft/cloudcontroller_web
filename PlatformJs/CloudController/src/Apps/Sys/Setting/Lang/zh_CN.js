@@ -115,7 +115,7 @@ Ext.define("App.Sys.Setting.Lang.zh_CN", {
             START: "开始更新系统",
             TARGET: "设置升级版本"
          },
-         COLS: {从
+         COLS: {
             MSG: "升级信息"
          },
          LABEL: {
