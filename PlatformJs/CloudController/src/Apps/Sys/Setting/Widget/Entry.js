@@ -58,6 +58,14 @@ Ext.define("App.Sys.Setting.Widget.Entry", {
                      text : U_NAMES.UPGRADE_UPGRADEMGR_SLAVE,
                      id : "UpgradeUpgradeMgrSlave",
                      leaf : true
+                  },{
+                     text : U_NAMES.UPGRADE_METASERVER,
+                     id : "UpgradeMetaServer",
+                     leaf : true
+                  },{
+                     text : U_NAMES.UPGRADE_LUOXI,
+                     id : "UpgradeLuoXi",
+                     leaf : true
                   }]
             },{
                text : U_NAMES.SERVER_MGR,

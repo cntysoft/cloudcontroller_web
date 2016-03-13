@@ -52,7 +52,9 @@ Ext.define("App.Sys.Setting.Lang.zh_CN", {
          UPGRADE_CC: "升级云控制系统",
          UPGRADE_UPGRADEMGR_MASTER: "更新主系统升级",
          UPGRADE_UPGRADEMGR_SLAVE: "更新从系统升级",
-         SERVER_MGR: "服务器信息管理"
+         SERVER_MGR: "服务器信息管理",
+         UPGRADE_METASERVER : "更新运维主系统",
+         UPGRADE_LUOXI : "更新运维从系统"
       },
       META_INFO: {
          BTN: {
@@ -113,7 +115,7 @@ Ext.define("App.Sys.Setting.Lang.zh_CN", {
             START: "开始更新系统",
             TARGET: "设置升级版本"
          },
-         COLS: {
+         COLS: {从
             MSG: "升级信息"
          },
          LABEL: {
