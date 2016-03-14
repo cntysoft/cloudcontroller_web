@@ -41,6 +41,14 @@ Ext.define("App.Sys.Setting.Lang.zh_CN", {
          SERVER_MGR: {
             WIDGET_TITLE: "服务器信息管理面板",
             TASK_BTN_TEXT: "服务器信息管理"
+         },
+         UPGRADE_META_SERVER: {
+            WIDGET_TITLE: "更新MetaServer主系统",
+            TASK_BTN_TEXT: "MetaServer主系统更新"
+         },
+         UPGRADE_LUOXI: {
+            WIDGET_TITLE: "更新LuoXi从系统",
+            TASK_BTN_TEXT: "LuoXi从系统更新"
          }
       },
       WIDGET_NAMES: {
@@ -160,6 +168,39 @@ Ext.define("App.Sys.Setting.Lang.zh_CN", {
             UPGRADE: "升级服务器"
          }
       },
+      UPGRADE_META_SERVER: {
+         BTN: {
+            START: "开始更新系统",
+            TARGET: "设置升级版本"
+         },
+         COLS: {
+            MSG: "升级信息"
+         },
+         LABEL: {
+            VERSION: "目标版本号"
+         },
+         MSG: {
+            TARGET_VERSION_WIN_TITLE: "目标升级版本设置窗口",
+            TARGET_VERSION_TEXT: "目标升级版本: {0}"
+         }
+      },
+      UPGRADE_LUOXI: {
+         BTN: {
+            START: "开始更新系统",
+            TARGET: "设置升级版本"
+         },
+         COLS: {
+            MSG: "升级信息"
+         },
+         LABEL: {
+            VERSION: "目标版本号"
+         },
+         MSG: {
+            TARGET_VERSION_WIN_TITLE: "目标升级版本设置窗口",
+            TARGET_VERSION_TEXT: "目标升级版本: {0}"
+         }
+      },
+      
       COMP: {
          SERVER_INFO_EDITOR_WIN: {
             LABEL: {
