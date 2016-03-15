@@ -16,13 +16,18 @@ class ServerInfo extends AbstractHandler
    {
       $orderBy = $limit = $offset = null;
       $this->getPageParams($orderBy, $limit, $offset, $params);
+      if(!array_key_exists("cond", $params)){
+         $cond = null;
+      }else{
+         $cond = $params['cond'];
+      }
       $list = $this->getAppCaller()->call(
          Constant::MODULE_NAME,
          Constant::APP_NAME,
          Constant::APP_API_SERVER_INFO,
          'getList',
          array(
-            true, 'id desc', $offset, $limit
+            $cond, true, 'id desc', $offset, $limit
          )
       );
       $total = $list[1];

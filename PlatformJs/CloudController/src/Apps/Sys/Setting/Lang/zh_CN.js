@@ -185,19 +185,18 @@ Ext.define("App.Sys.Setting.Lang.zh_CN", {
          }
       },
       UPGRADE_LUOXI: {
-         BTN: {
-            START: "开始更新系统",
-            TARGET: "设置升级版本"
-         },
          COLS: {
-            MSG: "升级信息"
-         },
-         LABEL: {
-            VERSION: "目标版本号"
+            ID: "ID",
+            IP: "服务器地址",
+            TYPE: "类型",
+            DESCRIPTION: "描述"
          },
          MSG: {
-            TARGET_VERSION_WIN_TITLE: "目标升级版本设置窗口",
-            TARGET_VERSION_TEXT: "目标升级版本: {0}"
+            VERSION_TITLE: "目标升级版本号输入窗口",
+            VERSION: "目标版本"
+         },
+         MENU: {
+            UPGRADE: "升级服务器"
          }
       },
       
@@ -223,6 +222,12 @@ Ext.define("App.Sys.Setting.Lang.zh_CN", {
             TITLE : "升级进度显示窗口",
             MSG : {
                UPGRADE_TPL : "目标升级版本:{0}"
+            }
+         },
+         OPERATE_PROGRESS_WIN : {
+            TITLE : "操作进度显示窗口",
+            COLS : {
+               MSG : "日志信息"
             }
          }
       }

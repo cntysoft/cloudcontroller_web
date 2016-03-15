@@ -18,10 +18,11 @@ class ServerInfo extends AbstractLib
    {
       return ServerInfoModel::findFirst($id);
    }
-   
-   public function getList($total = false, $orderBy = null, $offset = 0, $limit = 15)
+      
+   public function getList($cond = null, $total = false, $orderBy = null, $offset = 0, $limit = 15)
    {
       $items = ServerInfoModel::find(array(
+          $cond,
             'order' => $orderBy,
             'limit' => array(
                'number' => $limit,
@@ -33,7 +34,7 @@ class ServerInfo extends AbstractLib
       }
       return $items;
    }
-   
+      
    public function addServer(array $data)
    {
       unset($data["id"]);
@@ -42,7 +43,7 @@ class ServerInfo extends AbstractLib
       $server->assignBySetter($data);
       return $server->save();
    }
-   
+      
    public function updateServer($id, array $data)
    {
       $server = ServerInfoModel::findFirst($id);
@@ -53,7 +54,7 @@ class ServerInfo extends AbstractLib
       $server->assignBySetter($data);
       $server->save();
    }
-   
+      
    public function deleteServer($id)
    {
       $server = ServerInfoModel::findFirst($id);
@@ -62,7 +63,7 @@ class ServerInfo extends AbstractLib
       }
       $server->delete();
    }
-   
+      
    public function setServerVersion($id, $version)
    {
       $server = ServerInfoModel::findFirst($id);

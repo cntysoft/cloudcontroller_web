@@ -7,6 +7,9 @@
  */
 Ext.define("App.Sys.Setting.Widget.UpgradeLuoXi", {
    extend: "WebOs.Kernel.ProcessModel.AbstractWidget",
+   requires: [
+      "App.Sys.Setting.Comp.OperateProgressWin"
+   ],
    initPmTextRef: function()
    {
       this.pmText = this.GET_PM_TEXT("UPGRADE_LUOXI");
@@ -15,25 +18,16 @@ Ext.define("App.Sys.Setting.Widget.UpgradeLuoXi", {
    {
       this.LANG_TEXT = this.GET_LANG_TEXT("UPGRADE_LUOXI");
    },
-   statics: {
-      KEY_SEED_ID: 1
-   },
-   startBtn: null,
-   targetBtn: null,
-   displayer: null,
-   targetVersion: null,
-   /**
-    * @template
-    * @inheritdoc
-    */
+   metaInfoGridRef: null,
+   contextMenuRef: null,
    applyConstraintConfig: function(config)
    {
       this.callParent([config]);
       Ext.apply(config, {
-         width: 800,
-         minWidth: 800,
-         minHeight: 400,
-         height: 400,
+         width: 1000,
+         minWidth: 1000,
+         minHeight: 500,
+         height: 500,
          resizable: false,
          layout: "fit",
          modal: true,
@@ -43,151 +37,140 @@ Ext.define("App.Sys.Setting.Widget.UpgradeLuoXi", {
    initComponent: function()
    {
       Ext.apply(this, {
-         items: this.getDisplayerConfig(),
-         buttons: [{
-               text: this.LANG_TEXT.BTN.TARGET,
-               listeners: {
-                  click: this.setUpgradeVersionHandler,
-                  afterrender: function(btn)
-                  {
-                     this.targetBtn = btn;
-                  },
-                  scope: this
-               }
-            }, {
-               text: this.LANG_TEXT.BTN.START,
-               disabled: true,
-               listeners: {
-                  click: this.startUpgradeHandler,
-                  afterrender: function(btn)
-                  {
-                     this.startBtn = btn;
-                  },
-                  scope: this
-               }
-            }]
+         items: [
+            this.getServerMetaInfoConfig()
+         ]
       });
       this.callParent();
    },
-   addMsg: function(msg, key, replace)
+   upgradeHandler: function(item)
    {
-      replace = !!replace;
-      if(!key){
-         key = "key"+this.self.KEY_SEED_ID++;
-      }
-      var store = this.displayer.store;
-      if(replace){
-         var record = store.findRecord("key", key);
-         if(record){
-            record.set("msg", msg);
-            this.displayer.getView().focusRow(record);
-            return;
-         }
-      }else{
-         var record = store.findRecord("key", key);
-         if(record){
-            key += this.self.KEY_SEED_ID++;
-         }
-      }
-      var added = this.displayer.store.add({
-         key: key,
-         msg: msg
-      });
-      this.displayer.getView().focusRow(added.pop());
-   },
-   setUpgradeVersionHandler: function()
-   {
-      var LABEL = this.LANG_TEXT.LABEL;
-      var win = new Ext.window.Window({
-         title: this.LANG_TEXT.MSG.TARGET_VERSION_WIN_TITLE,
-         modal: true,
-         autoShow: true,
-         width: 350,
-         minWidth: 350,
-         height: 150,
-         minHeight: 150,
-         constrainHeader: true,
-         layout: "fit",
-         bodyPadding: 10,
-         resizable: false,
-         items: {
-            xtype: "form",
-            items: [{
-                  xtype: "textfield",
-                  fieldLabel: LABEL.VERSION,
-                  allowBlank: false,
-                  name: "version"
-               }]
-         },
-         buttons: [{
-               text: Cntysoft.GET_LANG_TEXT("UI.BTN.OK"),
+      var record = item.parentMenu.record;
+      Ext.Msg.prompt(this.LANG_TEXT.MSG.VERSION_TITLE, this.LANG_TEXT.MSG.VERSION, function(btn, version){
+         if(btn=='ok'){
+            var win = new App.Sys.Setting.Comp.OperateProgressWin({
                listeners: {
-                  click: function()
+                  show: function()
                   {
-                     var form = win.child("form");
-                     if(form.isValid()){
-                        var values = form.getForm().getValues();
-                        this.targetVersion = values.version;
-                        this.addMsg(Ext.String.format(this.LANG_TEXT.MSG.TARGET_VERSION_TEXT, this.targetVersion));
-                        this.startBtn.setDisabled(false);
-                        this.targetBtn.setDisabled(true);
-                        win.close();
-                     }
+                     this.appRef.upgradeLuoXi(record.get("ip"), version, function(response){
+                        if(response.status){
+                           var msg = response.getDataItem("msg");
+                           if(!Ext.isEmpty(msg)){
+                              var key = response.getSignature();
+                              var repeat = response.getDataItem("repeat");
+                              if(repeat){
+                                 win.addMsg(msg, key, true);
+                              }else{
+                                 win.addMsg(msg, key);
+                              }
+                           }
+
+                        }else{
+                           var msg = "<span style = 'color:red'>"+response.getErrorString()+"</span>";
+                           win.addMsg(msg);
+                        }
+                     }, this);
                   },
                   scope: this
                }
-            }]
-      });
-   },
-   startUpgradeHandler: function()
-   {
-      this.startBtn.setDisabled(true);
-      this.appRef.UpgradeUpgradeMgrMaster(this.targetVersion, function(response){
-         if(response.status){
-            var msg = response.getDataItem("msg");
-            var key = response.getSignature();
-            var repeat = response.getDataItem("repeat");
-            if(repeat){
-               this.addMsg(msg, key, true);
-            }else{
-               this.addMsg(msg, key);
-            }
-         }else{
-            var msg = "<span style = 'color:red'>"+response.getErrorString()+"</span>";
-            this.addMsg(msg);
+            });
+            win.center();
+            win.show();
          }
       }, this);
    },
-   getDisplayerConfig: function()
+   typeRenderer: function(value)
+   {
+      var L = this.GET_LANG_TEXT("COMP.SERVER_INFO_EDITOR_WIN.SERVER_TYPES");
+      for(var i = 0; i<L.length; i++){
+         var item = L[i];
+         if(item.value==value){
+            return item.name;
+         }
+      }
+   },
+   getContextMenu: function(record)
+   {
+      if(null==this.contextMenuRef){
+         var MENU_TEXT = this.LANG_TEXT.MENU;
+         this.contextMenuRef = new Ext.menu.Menu({
+            ignoreParentClicks: true,
+            items: [{
+                  text: MENU_TEXT.UPGRADE,
+                  listeners: {
+                     click: this.upgradeHandler,
+                     scope: this
+                  }
+               }]
+         });
+      }
+      this.contextMenuRef.record = record;
+      return this.contextMenuRef;
+   },
+   gridItemContextClickHandler: function(grid, record, htmlItem, index, event)
+   {
+      var menu;
+      var pos = event.getXY();
+      menu = this.getContextMenu(record);
+      menu.record = record;
+      event.stopEvent();
+      menu.showAt(pos[0], pos[1]);
+   },
+   getServerMetaInfoConfig: function()
    {
       var COLS = this.LANG_TEXT.COLS;
       return {
          xtype: "grid",
          columns: [
-            {text: COLS.MSG, dataIndex: "msg", flex: 1, resizable: false, sortable: false, menuDisabled: true}
+            {text: COLS.ID, dataIndex: "id", width: 80, resizable: false, menuDisabled: true},
+            {text: COLS.IP, dataIndex: "ip", width: 250, resizable: false, menuDisabled: true},
+            {text: COLS.TYPE, dataIndex: "type", width: 150, resizable: false, menuDisabled: true, renderer: Ext.bind(this.typeRenderer, this)},
+            {text: COLS.DESCRIPTION, dataIndex: "description", flex: 1, resizable: false, menuDisabled: true}
          ],
          autoScroll: true,
          store: new Ext.data.Store({
+            autoLoad: true,
             fields: [
-               {name: "msg", type: "string"},
-               {name: "key", type: "string"}
-            ]
+               {name: "id", type: "integer"},
+               {name: "ip", type: "string"},
+               {name: "type", type: "integer"},
+               {name: "description", type: "string"}
+            ],
+            proxy: {
+               type: 'apigateway',
+               callType: 'App',
+               invokeMetaInfo: {
+                  module: 'Sys',
+                  name: 'Setting',
+                  method: 'ServerInfo/getServerList'
+               },
+               pArgs: {
+                  cond: "type = 2"
+               },
+               reader: {
+                  type: 'json',
+                  rootProperty: 'items',
+                  totalProperty: 'total'
+               }
+            }
          }),
          listeners: {
             afterrender: function(grid)
             {
-               this.displayer = grid;
+               this.metaInfoGridRef = grid;
             },
+            itemcontextmenu: this.gridItemContextClickHandler,
             scope: this
          }
       };
    },
    destroy: function()
    {
-      delete this.startBtn;
-      delete this.targetBtn;
-      delete this.targetVersion;
-      delete this.displayer;
+      delete this.metaInfoGridRef;
+      if(this.contextMenuRef){
+         this.contextMenuRef.destroy();
+         delete this.contextMenuRef;
+      }
       var serviceInvoker = this.appRef.getServiceInvoker("upgrademgr");
       serviceInvoker.disconnectFromServer();
       this.callParent();

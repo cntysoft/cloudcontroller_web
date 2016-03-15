@@ -98,6 +98,14 @@ Ext.define("App.Sys.Setting.Main", {
          version: targetVersion
       }, callback, scope);
    },
+   upgradeLuoXi : function(serverAddress, targetVersion, callback, scope)
+   {
+      var serviceInvoker = this.getServiceInvoker("upgrademgr");
+      serviceInvoker.callService("Upgrader/UpgradeLuoXi", "upgrade", {
+         targetVersion: targetVersion,
+         targetServerAddress: serverAddress
+      }, callback, scope);
+   },
    getServiceInvoker: function(entry)
    {
       if(!this.serviceInvokerPool.containsKey(entry)){
@@ -108,7 +116,6 @@ Ext.define("App.Sys.Setting.Main", {
                connecterror: function(invoker, event){
                   Cntysoft.showErrorWindow(Ext.String.format(Cntysoft.GET_LANG_TEXT("MSG.CONNECT_WEBSOCKET_FAIL"), websocketUrl));
                   Cntysoft.raiseError(Ext.getClassName(this), "run", "connect to websocket server "+websocketUrl+" error");
-
                },
                scope: this
             }
