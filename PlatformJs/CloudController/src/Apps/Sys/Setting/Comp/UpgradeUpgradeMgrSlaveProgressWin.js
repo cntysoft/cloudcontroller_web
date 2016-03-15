@@ -52,7 +52,7 @@ Ext.define("App.Sys.Setting.Comp.UpgradeUpgradeMgrSlaveProgressWin", {
    {
       if(!Ext.isEmpty(this.targetVersion)&&!Ext.isEmpty(this.targetIp)){
          this.addMsg(Ext.String.format(this.LANG_TEXT.MSG.UPGRADE_TPL, this.targetVersion));
-         this.appRef.UpgradeUpgradeMgrSlave(this.targetVersion, this.targetIp, function(response){
+         this.appRef.upgradeUpgradeMgrSlave(this.targetVersion, this.targetIp, function(response){
             if(response.status){
                var msg = response.getDataItem("msg");
                if(!Ext.isEmpty(msg)){

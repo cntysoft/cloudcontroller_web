@@ -29,114 +29,108 @@ Ext.define("App.Sys.Setting.Main", {
     */
    widgetMap: {
       Entry: "App.Sys.Setting.Widget.Entry",
-      VersionInfo : "App.Sys.Setting.Widget.VersionInfo",
-      UpgradeMetaInfo : "App.Sys.Setting.Widget.UpgradeMetaInfo",
-      UpgradeCloudController : "App.Sys.Setting.Widget.UpgradeCloudController",
-      UpgradeUpgradeMgrMaster : "App.Sys.Setting.Widget.UpgradeUpgradeMgrMaster",
-      UpgradeUpgradeMgrSlave : "App.Sys.Setting.Widget.UpgradeUpgradeMgrSlave",
-      ServerMgr : "App.Sys.Setting.Widget.ServerMgr",
-      UpgradeMetaServer : "App.Sys.Setting.Widget.UpgradeMetaServer",
-      UpgradeLuoXi : "App.Sys.Setting.Widget.UpgradeLuoXi"
+      VersionInfo: "App.Sys.Setting.Widget.VersionInfo",
+      UpgradeMetaInfo: "App.Sys.Setting.Widget.UpgradeMetaInfo",
+      UpgradeCloudController: "App.Sys.Setting.Widget.UpgradeCloudController",
+      UpgradeUpgradeMgrMaster: "App.Sys.Setting.Widget.UpgradeUpgradeMgrMaster",
+      UpgradeUpgradeMgrSlave: "App.Sys.Setting.Widget.UpgradeUpgradeMgrSlave",
+      ServerMgr: "App.Sys.Setting.Widget.ServerMgr",
+      UpgradeMetaServer: "App.Sys.Setting.Widget.UpgradeMetaServer",
+      UpgradeLuoXi: "App.Sys.Setting.Widget.UpgradeLuoXi"
    },
    /**
     * @var {Ext.util.HashMap} serviceInvokerPool
     */
-   serviceInvokerPool : null,
-   
-   constructor : function(config)
+   serviceInvokerPool: null,
+   constructor: function(config)
    {
       this.serviceInvokerPool = new Ext.util.HashMap();
       this.callParent([config]);
    },
-   
-   getCloudControllerVersion : function(callback, scope)
+   getCloudControllerVersion: function(callback, scope)
    {
       this.callApp('VersionInfo/getCloudControllerVersion', null, callback, scope);
    },
-   
-   getUpgrademgrVersion : function(callback, scope)
+   getUpgrademgrVersion: function(callback, scope)
    {
       var serviceInvoker = this.getServiceInvoker("upgrademgr");
       serviceInvoker.callService("ServerStatus/Info", "getVersionInfo", {}, callback, scope);
    },
-   
-   setServiceServerAddressMeta : function(data, callback, scope)
+   setServiceServerAddressMeta: function(data, callback, scope)
    {
       var serviceInvoker = this.getServiceInvoker("upgrademgr");
       serviceInvoker.callService("ServerStatus/Info", "setServiceServerAddressMeta", {
-         servers : data
+         servers: data
       }, callback, scope);
    },
-   
-   getServiceServerAddressMeta : function(callback, scope)
+   getServiceServerAddressMeta: function(callback, scope)
    {
       var serviceInvoker = this.getServiceInvoker("upgrademgr");
       serviceInvoker.callService("ServerStatus/Info", "getServiceServerAddressMeta", null, callback, scope);
    },
-   
-   upgradeCloudController : function(fromVersion, toVersion, callback, scope)
+   upgradeCloudController: function(fromVersion, toVersion, callback, scope)
    {
       var serviceInvoker = this.getServiceInvoker("upgrademgr");
       serviceInvoker.callService("Upgrader/UpgradeCloudController", "upgrade", {
-         fromVersion : fromVersion,
-         toVersion : toVersion
+         fromVersion: fromVersion,
+         toVersion: toVersion
       }, callback, scope);
    },
-   
-   UpgradeUpgradeMgrMaster : function(targetVersion, callback, scope)
+   upgradeUpgradeMgrMaster: function(targetVersion, callback, scope)
    {
       var serviceInvoker = this.getServiceInvoker("upgrademgr");
       serviceInvoker.callService("Upgrader/UpgradeUpgradeMgrMaster", "upgrade", {
-         version : targetVersion
+         version: targetVersion
       }, callback, scope);
    },
-   
-   UpgradeUpgradeMgrSlave : function(targetVersion, targetIp, callback, scope)
+   upgradeUpgradeMgrSlave: function(targetVersion, targetIp, callback, scope)
    {
       var serviceInvoker = this.getServiceInvoker("upgrademgr");
       serviceInvoker.callService("Upgrader/UpgradeUpgradeMgrSlave", "upgrade", {
-         targetVersion : targetVersion,
-         slaveServerAddress : targetIp
+         targetVersion: targetVersion,
+         slaveServerAddress: targetIp
       }, callback, scope);
    },
-   
-   getServiceInvoker : function(entry)
+   upgradeMetaServer: function(targetVersion, callback, scope)
+   {
+      var serviceInvoker = this.getServiceInvoker("upgrademgr");
+      serviceInvoker.callService("Upgrader/UpgradeMetaServer", "upgrade", {
+         version: targetVersion
+      }, callback, scope);
+   },
+   getServiceInvoker: function(entry)
    {
       if(!this.serviceInvokerPool.containsKey(entry)){
          var websocketUrl = CloudController.Kernel.Funcs.getWebSocketEntry(entry);
          this.serviceInvokerPool.add(entry, new Cntysoft.Framework.Rpc.ServiceInvoker({
             serviceHost: websocketUrl,
-            listeners : {
-               connecterror : function(invoker, event){
+            listeners: {
+               connecterror: function(invoker, event){
                   Cntysoft.showErrorWindow(Ext.String.format(Cntysoft.GET_LANG_TEXT("MSG.CONNECT_WEBSOCKET_FAIL"), websocketUrl));
-                  Cntysoft.raiseError(Ext.getClassName(this), "run", "connect to websocket server " + websocketUrl + " error");
-                  
+                  Cntysoft.raiseError(Ext.getClassName(this), "run", "connect to websocket server "+websocketUrl+" error");
+
                },
-               scope : this
+               scope: this
             }
          }));
       }
       return this.serviceInvokerPool.get(entry);
    },
-   
-   addServerInfo : function(data, callback, scope)
+   addServerInfo: function(data, callback, scope)
    {
       this.callApp('ServerInfo/addServer', data, callback, scope);
    },
-   
-   updateServerInfo : function(values, callback, scope)
+   updateServerInfo: function(values, callback, scope)
    {
       this.callApp('ServerInfo/updateServerInfo', values, callback, scope);
    },
-   
-   deleteServerInfo : function(id, callback, scope)
+   deleteServerInfo: function(id, callback, scope)
    {
       this.callApp('ServerInfo/deleteServerInfo', {
-         id : id
+         id: id
       }, callback, scope);
    },
-   
-   destroy : function()
+   destroy: function()
    {
       this.serviceInvokerPool.each(function(key, value){
          Ext.destroy(value);

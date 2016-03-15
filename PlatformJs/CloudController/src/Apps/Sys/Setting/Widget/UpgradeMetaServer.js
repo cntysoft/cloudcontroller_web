@@ -142,7 +142,7 @@ Ext.define("App.Sys.Setting.Widget.UpgradeMetaServer", {
    startUpgradeHandler: function()
    {
       this.startBtn.setDisabled(true);
-      this.appRef.UpgradeUpgradeMgrMaster(this.targetVersion, function(response){
+      this.appRef.upgradeMetaServer(this.targetVersion, function(response){
          if(response.status){
             var msg = response.getDataItem("msg");
             var key = response.getSignature();
