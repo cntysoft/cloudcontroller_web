@@ -9,7 +9,8 @@ Ext.define("App.Sys.SoftwareRepo.Widget.Entry", {
    extend: "WebOs.Kernel.ProcessModel.AbstractWidget",
    requires: [
       "Cntysoft.Utils.ColRenderer",
-      "CloudController.Comp.Uploader.SimpleUploader"
+      "CloudController.Comp.Uploader.SimpleUploader",
+      "CloudController.Comp.FsView.GridView"
    ],
    LANG_TEXT: null,
    initPmTextRef: function()
@@ -25,8 +26,8 @@ Ext.define("App.Sys.SoftwareRepo.Widget.Entry", {
    {
       this.callParent([config]);
       Ext.apply(config, {
-         width: 1000,
-         minWidth: 1000,
+         width: 1100,
+         minWidth: 1100,
          height: 500,
          minHeight: 500,
          maximizable: true,
@@ -36,8 +37,8 @@ Ext.define("App.Sys.SoftwareRepo.Widget.Entry", {
    initComponent: function()
    {
       Ext.apply(this, {
-         items: this.getGridPanelConfig(),
-         bbar: this.getBBarConfig()
+         items: this.getFsViewConfig(),
+//         bbar: this.getBBarConfig()
       });
       this.callParent(arguments);
    },
@@ -79,41 +80,51 @@ Ext.define("App.Sys.SoftwareRepo.Widget.Entry", {
       }, this);
    },
    
-   getGridPanelConfig: function()
+   getFsViewConfig : function()
    {
-      var L = this.LANG_TEXT.COLS;
       return {
-         xtype: "grid",
-         columns: [
-            {text: L.FILE_NAME, dataIndex: "filename", flex: 1, resizable: false, menuDisabled: true},
-            {text: L.FILE_SIZE, dataIndex: "filesize", width: 200, resizable: false, menuDisabled: true, renderer: Cntysoft.Utils.ColRenderer.filesizeRenderer}
+         xtype : "cloudcontrollercompfsviewgridview",
+         startPaths : [
+            "/softwarerepo"
          ],
-         autoScroll: true,
-         store: new Ext.data.Store({
-            autoLoad: true,
-            fields: [
-               {name: "filename", type: "string"},
-               {name: "filesize", type: "string"}
-            ],
-            proxy: {
-               type: "websocketgateway",
-               websocketEntryName: "upgrademgr",
-               invokeMetaInfo: {
-                  name: "Repo/Info",
-                  method: "lsSoftwareRepoDir"
-               }
-            }
-         }),
-         listeners: {
-            afterrender: function(grid)
-            {
-               this.fsview = grid;
-            },
-            itemcontextmenu: this.itemContextMenuHandler,
-            scope: this
-         }
       };
    },
+   
+//   getGridPanelConfig: function()
+//   {
+//      var L = this.LANG_TEXT.COLS;
+//      return {
+//         xtype: "grid",
+//         columns: [
+//            {text: L.FILE_NAME, dataIndex: "filename", flex: 1, resizable: false, menuDisabled: true},
+//            {text: L.FILE_SIZE, dataIndex: "filesize", width: 200, resizable: false, menuDisabled: true, renderer: Cntysoft.Utils.ColRenderer.filesizeRenderer}
+//         ],
+//         autoScroll: true,
+//         store: new Ext.data.Store({
+//            autoLoad: true,
+//            fields: [
+//               {name: "filename", type: "string"},
+//               {name: "filesize", type: "string"}
+//            ],
+//            proxy: {
+//               type: "websocketgateway",
+//               websocketEntryName: "upgrademgr",
+//               invokeMetaInfo: {
+//                  name: "Repo/Info",
+//                  method: "lsSoftwareRepoDir"
+//               }
+//            }
+//         }),
+//         listeners: {
+//            afterrender: function(grid)
+//            {
+//               this.fsview = grid;
+//            },
+//            itemcontextmenu: this.itemContextMenuHandler,
+//            scope: this
+//         }
+//      };
+//   },
    getBBarConfig: function()
    {
       var L = this.LANG_TEXT.BTN;

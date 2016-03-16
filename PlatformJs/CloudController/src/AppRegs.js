@@ -17,6 +17,7 @@ Ext.define("AppRegs", {
       "App.Sys.AppInstaller.Main",
       "App.Sys.SoftwareRepo.Main",
       "App.Sys.KeleCloud.Main",
+      "App.Sys.ZhuChao.Main",
       "Daemon.Init.Main"
    ]
 });
