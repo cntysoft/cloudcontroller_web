@@ -107,6 +107,9 @@ Ext.define('CloudController.Lang.zh_CN', {
             UPLOAD_BTN : "点击这里上传文件",
             PROGRESS_TEXT : "正在上传文件 <span style = 'color:blue'>{0}</span>"
          }
+      },
+      FSVIEW : {
+         UPLOAD : "上传文件"
       }
    }
 });

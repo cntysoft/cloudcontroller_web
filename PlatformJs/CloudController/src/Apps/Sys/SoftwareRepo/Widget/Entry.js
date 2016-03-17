@@ -87,6 +87,7 @@ Ext.define("App.Sys.SoftwareRepo.Widget.Entry", {
          startPaths : [
             "/softwarerepo"
          ],
+         websocketEntry : "upgrademgr"
       };
    },
    

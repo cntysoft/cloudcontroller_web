@@ -30,6 +30,7 @@ Ext.define("CloudController.Comp.Uploader.SimpleUploader", {
    uploadFile: null,
    fileReader: null,
    uploadFileSetInput: null,
+   uploadDir : "",
    /**
     * 上传提示信息显示的组件
     *
@@ -74,7 +75,8 @@ Ext.define("CloudController.Comp.Uploader.SimpleUploader", {
          filename: file.name,
          filesize: file.size,
          cycleSize: this.cycleSize,
-         chunkSize: this.chunkSize
+         chunkSize: this.chunkSize,
+         uploadDir : this.uploadDir
       });
       this.fileReader = new FileReader();
       this.fileReader.onloadstart = Ext.bind(this.loadStartHandler, this);
@@ -92,6 +94,11 @@ Ext.define("CloudController.Comp.Uploader.SimpleUploader", {
             }
          }
       }, this);
+   },
+   
+   changeUploadDir : function(uploadDir)
+   {
+      this.uploadDir = uploadDir;
    },
    loadStartHandler: function()
    {

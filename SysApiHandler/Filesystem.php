@@ -384,7 +384,7 @@ class Filesystem extends AbstractScript
                         Kernel\throw_exception(new Exception(
                            $errorType->msg('E_FILE_NOT_EXIST', $source), $errorType->code('E_FILE_NOT_EXIST')
                         ), $errorType);
-                    }
+                    }改造文件浏览器
                     if (is_file(Kernel\real_path($source))) {
                         Fs::copyFile($source, $targetName);
                     } else if (is_dir(Kernel\real_path($source))) {

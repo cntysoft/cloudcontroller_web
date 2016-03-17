@@ -46,6 +46,8 @@ Ext.define("CloudController.PackageRequires",{
       "Cntysoft.Component.ImagePreview.View",
       //cloudcontroller
       "CloudController.Comp.Uploader.SimpleUploader",
-      "CloudController.Comp.FsView.GridView"
+      "CloudController.Comp.FsView.GridView",
+      "CloudController.Framework.Core.WsFilesystem",
+      "CloudController.Comp.Editor.WsText"
    ]
 });
