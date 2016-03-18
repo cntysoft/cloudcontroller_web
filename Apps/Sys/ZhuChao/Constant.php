@@ -6,15 +6,11 @@
  * @copyright  Copyright (c) 2010-2011 Cntysoft Technologies China Inc. <http://www.cntysoft.com>
  * @license    http://www.cntysoft.com/license/new-bsd     New BSD License
  */
-namespace App\Sys\Setting;
+namespace App\Sys\ZhuChao;
 final class Constant
 {
-   const PK_SITE_MANAGE = 'SiteConfig';
-   const PK_UI_MANAGE = 'UiManage';
    const MODULE_NAME = 'Sys';
-   const APP_NAME = 'Setting';
-   const APP_API_CFG = 'Config';
-   const APP_API_SITE_KEY_SETTING = 'SiteKeySetting';
+   const APP_NAME = 'ZhuChao';
    const APP_API_SERVER_INFO = 'ServerInfo';
    
    const MASTER_SERVER = 1;
@@ -23,7 +19,4 @@ final class Constant
    const DB_SERVER = 4;
    const BACKUP_SERVER = 5;
    const ZHUCHAO_MAIN_SERVER = 6;
-   
-   const SITE_KEY_MAP_OTS_TABEL_NAME = 'site_key_map';
-   const SITE_KEY_MAP_OTS_TABEL_NAME_DEVEL = 'site_key_map_devel';
 }

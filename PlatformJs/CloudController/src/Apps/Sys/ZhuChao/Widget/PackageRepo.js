@@ -5,7 +5,7 @@
  * @copyright  Copyright (c) 2010-2011 Cntysoft Technologies China Inc. <http://www.cntysoft.com>
  * @license    http://www.cntysoft.com/license/new-bsd     New BSD License
  */
-Ext.define("App.Sys.SoftwareRepo.Widget.Entry", {
+Ext.define("App.Sys.ZhuChao.Widget.PackageRepo", {
    extend: "WebOs.Kernel.ProcessModel.AbstractWidget",
    requires: [
       "CloudController.Comp.FsView.GridView"
@@ -13,11 +13,11 @@ Ext.define("App.Sys.SoftwareRepo.Widget.Entry", {
    LANG_TEXT: null,
    initPmTextRef: function()
    {
-      this.pmText = this.GET_PM_TEXT("ENTRY");
+      this.pmText = this.GET_PM_TEXT("PACKAGE_REPO");
    },
    initLangTextRef: function()
    {
-      this.LANG_TEXT = this.GET_LANG_TEXT("ENTRY");
+      this.LANG_TEXT = this.GET_LANG_TEXT("PACKAGE_REPO");
    },
    contextMenu: null,
    applyConstraintConfig: function(config)
@@ -47,7 +47,8 @@ Ext.define("App.Sys.SoftwareRepo.Widget.Entry", {
          startPaths : [
             "/softwarerepo"
          ],
-         websocketEntry : "upgrademgr"
+         isCreateFsTree : true,
+         websocketEntry : "metaserver"
       };
    },
    

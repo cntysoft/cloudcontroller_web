@@ -212,7 +212,8 @@ Ext.define("App.Sys.Setting.Lang.zh_CN", {
                {name: "站点部署服务器", value: 2},
                {name: "消息队列服务器", value: 3},
                {name: "数据库服务器", value: 4},
-               {name: "备份服务器", value: 5}
+               {name: "备份服务器", value: 5},
+               {name: "凤凰筑巢主服务器", value: 6}
             ]
          },
          UPGRADE_UPGRADEMGR_SLAVE_PROGRESS_WIN: {

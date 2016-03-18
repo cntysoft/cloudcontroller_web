@@ -136,7 +136,7 @@ class Filesystem extends AbstractScript
     {
         $this->checkRequireParams($params, array('path'));
         $path = explode('|', $params['path']);
-        if (1 == $path) {
+        if (1 == count($path)) {
             //正常
             $data = $this->ls($params['path']);
         } else {
