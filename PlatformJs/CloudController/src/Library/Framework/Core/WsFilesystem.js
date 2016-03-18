@@ -128,6 +128,6 @@ Ext.define("CloudController.Framework.Core.WsFilesystem",{
     */
    paste : function(data, callback, scope)
    {
-      return this.callSys('paste',data, callback, scope);
+      this.serviceInvoker.callService("Common/Filesystem", "paste", data, callback, scope);
    }
 });
