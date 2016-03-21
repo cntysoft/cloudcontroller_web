@@ -12,7 +12,8 @@ Ext.define("App.Sys.ZhuChao.Main", {
       //"App.Sys.User.Const",
       "App.Sys.Setting.Widget.Entry",
       "App.Sys.ZhuChao.Widget.PackageRepo",
-      "App.Sys.ZhuChao.Widget.NewDeploy"
+      "App.Sys.ZhuChao.Widget.NewDeploy",
+      "App.Sys.ZhuChao.Widget.UpgradeDeploy"
    ],
    /**
     * @inheritdoc
@@ -21,7 +22,8 @@ Ext.define("App.Sys.ZhuChao.Main", {
    widgetMap: {
       Entry: "App.Sys.ZhuChao.Widget.Entry",
       PackageRepo : "App.Sys.ZhuChao.Widget.PackageRepo",
-      NewDeploy : "App.Sys.ZhuChao.Widget.NewDeploy"
+      NewDeploy : "App.Sys.ZhuChao.Widget.NewDeploy",
+      UpgradeDeploy : "App.Sys.ZhuChao.Widget.UpgradeDeploy"
    },
    /**
     * @var {Cntysoft.Framework.Rpc.ServiceInvoker} serviceInvoker
@@ -43,6 +45,27 @@ Ext.define("App.Sys.ZhuChao.Main", {
       });
       this.callParent(arguments);
    },
+   
+   newDeployZhuChao : function(serverAddress, targetVersion, withoutDb, callback, scope)
+   {
+      this.serviceInvoker.callService("ZhuChao/NewDeploy", "deploy", {
+         serverAddress : serverAddress,
+         targetVersion : targetVersion,
+         withoutDb : withoutDb
+      }, callback, scope);
+   },
+   
+   upgradeDeployZhuChao : function(serverAddress, fromVersion, toVersion, forceUpgrade, withoutUpgradeScript, callback, scope)
+   {
+      this.serviceInvoker.callService("ZhuChao/UpgradeDeploy", "upgrade", {
+         serverAddress : serverAddress,
+         fromVersion : fromVersion,
+         toVersion : toVersion,
+         forceUpgrade : forceUpgrade,
+         withoutUpgradeScript: withoutUpgradeScript
+      }, callback, scope);
+   },
+   
    destroy : function()
    {
       this.serviceInvoker.disconnectFromServer();

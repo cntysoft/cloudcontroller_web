@@ -36,7 +36,7 @@ Ext.define("App.Sys.ZhuChao.Widget.Entry", {
                leaf: true
             },{
                text: U_NAMES.UPGRADE,
-               id: "Upgrade",
+               id: "UpgradeDeploy",
                leaf: true
             }]
       };

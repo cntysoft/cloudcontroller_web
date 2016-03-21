@@ -5,24 +5,26 @@
  * @copyright  Copyright (c) 2010-2011 Cntysoft Technologies China Inc. <http://www.cntysoft.com>
  * @license    http://www.cntysoft.com/license/new-bsd     New BSD License
  */
-Ext.define("App.Sys.ZhuChao.Widget.NewDeploy", {
+Ext.define("App.Sys.ZhuChao.Widget.UpgradeDeploy", {
    extend: "WebOs.Kernel.ProcessModel.AbstractWidget",
    initPmTextRef: function()
    {
-      this.pmText = this.GET_PM_TEXT("NEW_DEPLOY");
+      this.pmText = this.GET_PM_TEXT("UPGRADE_DEPLOY");
    },
    initLangTextRef: function()
    {
-      this.LANG_TEXT = this.GET_LANG_TEXT("NEW_DEPLOY");
+      this.LANG_TEXT = this.GET_LANG_TEXT("UPGRADE_DEPLOY");
    },
    statics: {
       KEY_SEED_ID: 1
    },
    startBtn: null,
    targetBtn: null,
-   displayer: null,
-   withoutDbCheckboxRef: null,
-   targetVersion: null,
+   displayerRef: null,
+   forceUpgradeCheckboxRef: null,
+   withoutRunUpgradeScriptRef : null,
+   toVersion: null,
+   fromVersion : null,
    serverAddress : null,
    /**
     * @template
@@ -48,12 +50,24 @@ Ext.define("App.Sys.ZhuChao.Widget.NewDeploy", {
          items: this.getDisplayerConfig(),
          buttons: [{
                xtype: "checkboxfield",
-               fieldLabel: this.LANG_TEXT.BTN.WITHOUT_DB,
+               fieldLabel: this.LANG_TEXT.BTN.FORCE,
                inputValue: true,
                listeners: {
                   afterrender: function(comp)
                   {
-                     this.withoutDbCheckboxRef = comp;
+                     this.forceUpgradeCheckboxRef = comp;
+                  },
+                  scope: this
+               }
+            },{
+               xtype: "checkboxfield",
+               fieldLabel: this.LANG_TEXT.BTN.NO_UPGRADE_SCRIPT,
+               inputValue: true,
+               labelWidth : 120,
+               listeners: {
+                  afterrender: function(comp)
+                  {
+                     this.withoutRunUpgradeScriptRef = comp;
                   },
                   scope: this
                }
@@ -88,12 +102,12 @@ Ext.define("App.Sys.ZhuChao.Widget.NewDeploy", {
       if(!key){
          key = "key"+this.self.KEY_SEED_ID++;
       }
-      var store = this.displayer.store;
+      var store = this.displayerRef.store;
       if(replace){
          var record = store.findRecord("key", key);
          if(record){
             record.set("msg", msg);
-            this.displayer.getView().focusRow(record);
+            this.displayerRef.getView().focusRow(record);
             return;
          }
       }else{
@@ -102,11 +116,11 @@ Ext.define("App.Sys.ZhuChao.Widget.NewDeploy", {
             key += this.self.KEY_SEED_ID++;
          }
       }
-      var added = this.displayer.store.add({
+      var added = this.displayerRef.store.add({
          key: key,
          msg: msg
       });
-      this.displayer.getView().focusRow(added.pop());
+      this.displayerRef.getView().focusRow(added.pop());
    },
    setDeployMetaInfoHandler: function()
    {
@@ -117,8 +131,8 @@ Ext.define("App.Sys.ZhuChao.Widget.NewDeploy", {
          autoShow: true,
          width: 350,
          minWidth: 350,
-         height: 200,
-         minHeight: 200,
+         height: 250,
+         minHeight: 250,
          constrainHeader: true,
          layout: "fit",
          bodyPadding: 10,
@@ -155,9 +169,14 @@ Ext.define("App.Sys.ZhuChao.Widget.NewDeploy", {
                   name: "serverAddress"
                }, {
                   xtype: "textfield",
-                  fieldLabel: LABEL.VERSION,
+                  fieldLabel: LABEL.FROM_VERSION,
                   allowBlank: false,
-                  name: "version"
+                  name: "fromVersion"
+               }, {
+                  xtype: "textfield",
+                  fieldLabel: LABEL.TO_VERSION,
+                  allowBlank: false,
+                  name: "toVersion"
                }]
          },
          buttons: [{
@@ -168,9 +187,10 @@ Ext.define("App.Sys.ZhuChao.Widget.NewDeploy", {
                      var form = win.child("form");
                      if(form.isValid()){
                         var values = form.getForm().getValues();
-                        this.targetVersion = values.version;
+                        this.fromVersion = values.fromVersion;
+                        this.toVersion = values.toVersion;
                         this.serverAddress = values.serverAddress;
-                        this.addMsg(Ext.String.format(this.LANG_TEXT.MSG.TARGET_VERSION_TEXT, this.serverAddress, this.targetVersion));
+                        this.addMsg(Ext.String.format(this.LANG_TEXT.MSG.TARGET_VERSION_TEXT, this.serverAddress, this.fromVersion, this.toVersion));
                         this.startBtn.setDisabled(false);
                         this.targetBtn.setDisabled(true);
                         win.close();
@@ -184,7 +204,10 @@ Ext.define("App.Sys.ZhuChao.Widget.NewDeploy", {
    startDeployHandler: function()
    {
       this.startBtn.setDisabled(true);
-      this.appRef.newDeployZhuChao(this.serverAddress, this.targetVersion, this.withoutDbCheckboxRef.getValue(), function(response){
+      this.appRef.upgradeDeployZhuChao(this.serverAddress, this.fromVersion, 
+      this.toVersion, this.forceUpgradeCheckboxRef.getValue(),
+      this.withoutRunUpgradeScriptRef.getValue(),
+      function(response){
          if(response.status){
             var msg = response.getDataItem("msg");
             var key = response.getSignature();
@@ -220,7 +243,7 @@ Ext.define("App.Sys.ZhuChao.Widget.NewDeploy", {
          listeners: {
             afterrender: function(grid)
             {
-               this.displayer = grid;
+               this.displayerRef = grid;
             },
             scope: this
          }
@@ -230,10 +253,12 @@ Ext.define("App.Sys.ZhuChao.Widget.NewDeploy", {
    {
       delete this.startBtn;
       delete this.targetBtn;
-      delete this.targetVersion;
+      delete this.fromVersion;
+      delete this.toVersion;
       delete this.serverAddress;
-      delete this.displayer;
-      delete this.withoutDbCheckboxRef;
+      delete this.displayerRef;
+      delete this.forceUpgradeCheckboxRef;
+      delete this.withoutRunUpgradeScriptRef;
       this.callParent();
    }
 });
