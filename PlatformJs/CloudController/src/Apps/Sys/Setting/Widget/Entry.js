@@ -50,27 +50,41 @@ Ext.define("App.Sys.Setting.Widget.Entry", {
                      id: "UpgradeCloudController",
                      leaf: true
 
-                  },{
-                     text : U_NAMES.UPGRADE_UPGRADEMGR_MASTER,
-                     id : "UpgradeUpgradeMgrMaster",
-                     leaf : true
-                  },{
-                     text : U_NAMES.UPGRADE_UPGRADEMGR_SLAVE,
-                     id : "UpgradeUpgradeMgrSlave",
-                     leaf : true
-                  },{
-                     text : U_NAMES.UPGRADE_METASERVER,
-                     id : "UpgradeMetaServer",
-                     leaf : true
-                  },{
-                     text : U_NAMES.UPGRADE_LUOXI,
-                     id : "UpgradeLuoXi",
-                     leaf : true
+                  }, {
+                     text: U_NAMES.UPGRADE_UPGRADEMGR_MASTER,
+                     id: "UpgradeUpgradeMgrMaster",
+                     leaf: true
+                  }, {
+                     text: U_NAMES.UPGRADE_UPGRADEMGR_SLAVE,
+                     id: "UpgradeUpgradeMgrSlave",
+                     leaf: true
+                  }, {
+                     text: U_NAMES.UPGRADE_METASERVER,
+                     id: "UpgradeMetaServer",
+                     leaf: true
+                  }, {
+                     text: U_NAMES.UPGRADE_LUOXI,
+                     id: "UpgradeLuoXi",
+                     leaf: true
                   }]
-            },{
-               text : U_NAMES.SERVER_MGR,
-                     id : "ServerMgr",
-                     leaf : true
+            }, {
+               text: U_NAMES.SERVER_RUN_STATUS,
+               id: "ServerRunStatus",
+               leaf: false,
+               children: [{
+                     text: U_NAMES.META_SERVER_STATUS,
+                     id: "MetaServerStatus",
+                     leaf: true
+
+                  }, {
+                     text: U_NAMES.LUOXI_SERVER_STATUS,
+                     id: "LuoXiServerStatus",
+                     leaf: true
+                  }]
+            }, {
+               text: U_NAMES.SERVER_MGR,
+               id: "ServerMgr",
+               leaf: true
             }]
       };
    }

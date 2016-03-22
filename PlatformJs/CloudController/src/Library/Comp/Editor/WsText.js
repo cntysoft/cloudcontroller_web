@@ -21,5 +21,5 @@ Ext.define("CloudController.Comp.Editor.WsText", {
          });
       }
       return this.fs;
-   },
+   }
 });

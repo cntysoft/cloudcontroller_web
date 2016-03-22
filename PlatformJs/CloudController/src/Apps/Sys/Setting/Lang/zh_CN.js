@@ -49,6 +49,14 @@ Ext.define("App.Sys.Setting.Lang.zh_CN", {
          UPGRADE_LUOXI: {
             WIDGET_TITLE: "更新LuoXi从系统",
             TASK_BTN_TEXT: "LuoXi从系统更新"
+         },
+         META_SERVER_STATUS_MGR : {
+            WIDGET_TITLE: "运维主服务器状态管理窗口",
+            TASK_BTN_TEXT: "运维主服务器"
+         },
+         LUOXI_SERVER_STATUS : {
+            WIDGET_TITLE: "运维从服务器状态管理窗口",
+            TASK_BTN_TEXT: "运维从服务器"
          }
       },
       WIDGET_NAMES: {
@@ -62,7 +70,10 @@ Ext.define("App.Sys.Setting.Lang.zh_CN", {
          UPGRADE_UPGRADEMGR_SLAVE: "更新从系统升级",
          SERVER_MGR: "服务器信息管理",
          UPGRADE_METASERVER : "更新运维主系统",
-         UPGRADE_LUOXI : "更新运维从系统"
+         UPGRADE_LUOXI : "更新运维从系统",
+         SERVER_RUN_STATUS : "服务器状态管理",
+         LUOXI_SERVER_STATUS : "洛熙服务器管理",
+         META_SERVER_STATUS : "运维主控服务器管理"
       },
       META_INFO: {
          BTN: {
@@ -197,6 +208,31 @@ Ext.define("App.Sys.Setting.Lang.zh_CN", {
          },
          MENU: {
             UPGRADE: "升级服务器"
+         }
+      },
+      
+      META_SERVER_STATUS_MGR : {
+         BTN : {
+            START : "启动服务器",
+            STOP : "关闭服务器",
+            RESTART : "重启服务器"
+         }
+      },
+      
+      LUOXI_SERVER_STATUS_MGR : {
+         COLS: {
+            ID: "ID",
+            IP: "服务器地址",
+            TYPE: "类型",
+            DESCRIPTION: "描述"
+         },
+         MENU: {
+            START : "启动服务器",
+            STOP : "关闭服务器",
+            RESTART : "重启服务器"
+         },
+         MSG: {
+            DELETE_ASK: "确定要删除该服务器吗？"
          }
       },
       
