@@ -1,6 +1,7 @@
 .idea/
 Data/Cache/
 Data/UploadFiles/
+Modules/Sys/Controllers/TestController.php
 Modules/Pages/Controllers/TestController.php
 Data/LoginSeq/
 Data/Platform/LoginSeq/
