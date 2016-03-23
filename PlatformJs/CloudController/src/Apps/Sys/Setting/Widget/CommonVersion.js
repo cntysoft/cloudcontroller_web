@@ -5,16 +5,16 @@
  * @copyright  Copyright (c) 2010-2011 Cntysoft Technologies China Inc. <http://www.cntysoft.com>
  * @license    http://www.cntysoft.com/license/new-bsd     New BSD License
  */
-Ext.define("App.Sys.Setting.Widget.VersionInfo", {
+Ext.define("App.Sys.Setting.Widget.CommonVersion", {
    extend: "WebOs.Kernel.ProcessModel.AbstractWidget",
    initPmTextRef : function()
    {
-      this.pmText = this.GET_PM_TEXT("VERSION_INFO");
+      this.pmText = this.GET_PM_TEXT("COMMON_VERSION");
    },
    
    initLangTextRef : function()
    {
-      this.LANG_TEXT = this.GET_LANG_TEXT("VERSION_INFO");
+      this.LANG_TEXT = this.GET_LANG_TEXT("COMMON_VERSION");
    },
    
    versionGrid : null,

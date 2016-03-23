@@ -18,7 +18,7 @@ Ext.define("App.Sys.Setting.Lang.zh_CN", {
             WIDGET_TITLE: "欢迎使用系统元信息设置程序",
             TASK_BTN_TEXT: "元信息设置"
          },
-         VERSION_INFO: {
+         COMMON_VERSION: {
             WIDGET_TITLE: "可乐云商云控制系统版本号显示面板",
             TASK_BTN_TEXT: "系统版本信息"
          },
@@ -50,30 +50,41 @@ Ext.define("App.Sys.Setting.Lang.zh_CN", {
             WIDGET_TITLE: "更新LuoXi从系统",
             TASK_BTN_TEXT: "LuoXi从系统更新"
          },
-         META_SERVER_STATUS_MGR : {
+         META_SERVER_STATUS_MGR: {
             WIDGET_TITLE: "运维主服务器状态管理窗口",
             TASK_BTN_TEXT: "运维主服务器"
          },
-         LUOXI_SERVER_STATUS : {
+         LUOXI_SERVER_STATUS: {
             WIDGET_TITLE: "运维从服务器状态管理窗口",
             TASK_BTN_TEXT: "运维从服务器"
+         },
+         LUOXI_VERSION_INFO: {
+            WIDGET_TITLE: "洛熙运维从服务器版本信息获取窗口",
+            TASK_BTN_TEXT: "洛熙运维从服务器版本"
+         },
+         UPGRADEMGR_SLAVE_VERSION_INFO: {
+            WIDGET_TITLE: "Upgrademgr Slave服务器版本信息获取窗口",
+            TASK_BTN_TEXT: "Upgrademgr Slave服务器版本"
          }
       },
       WIDGET_NAMES: {
          WALL_PAPER: "桌面壁纸设置",
          META_INFO: "元信息设置",
          VERSION_INFO: "版本信息",
+         COMMON_VERSION: "通用系统版本信息",
+         UPGRADEMGR_SLAVE_VERSION: "upgrademgr_slave版本信息",
+         LUOXI_VERSION: "洛熙版本信息",
          SYS_UPGRADE: "系统更新",
          UPGRADE_META_INFO: "升级元信息管理",
          UPGRADE_CC: "升级云控制系统",
          UPGRADE_UPGRADEMGR_MASTER: "更新主系统升级",
          UPGRADE_UPGRADEMGR_SLAVE: "更新从系统升级",
          SERVER_MGR: "服务器信息管理",
-         UPGRADE_METASERVER : "更新运维主系统",
-         UPGRADE_LUOXI : "更新运维从系统",
-         SERVER_RUN_STATUS : "服务器状态管理",
-         LUOXI_SERVER_STATUS : "洛熙服务器管理",
-         META_SERVER_STATUS : "运维主控服务器管理"
+         UPGRADE_METASERVER: "更新运维主系统",
+         UPGRADE_LUOXI: "更新运维从系统",
+         SERVER_RUN_STATUS: "服务器状态管理",
+         LUOXI_SERVER_STATUS: "洛熙服务器管理",
+         META_SERVER_STATUS: "运维主控服务器管理"
       },
       META_INFO: {
          BTN: {
@@ -85,13 +96,35 @@ Ext.define("App.Sys.Setting.Lang.zh_CN", {
          META_SERVER: "元信息服务器",
          UPGRADEMGR_MASTER: "更新服务器master系统"
       },
-      VERSION_INFO: {
+      COMMON_VERSION: {
          COLS: {
             NAME: "系统名称",
             VERSION: "版本号"
          },
          MSG: {
             QUERY: "正在查询中 ... "
+         }
+      },
+      LUOXI_VERSION_INFO: {
+         COLS: {
+            ID: "ID",
+            IP: "服务器地址",
+            TYPE: "类型",
+            DESCRIPTION: "描述"
+         },
+         MENU: {
+            GET_VERSION: "获取版本信息"
+         }
+      },
+      UPGRADEMGR_SLAVE_VERSION_INFO : {
+         COLS: {
+            ID: "ID",
+            IP: "服务器地址",
+            TYPE: "类型",
+            DESCRIPTION: "描述"
+         },
+         MENU: {
+            GET_VERSION: "获取版本信息"
          }
       },
       UPGRADE_META_INFO: {
@@ -210,16 +243,14 @@ Ext.define("App.Sys.Setting.Lang.zh_CN", {
             UPGRADE: "升级服务器"
          }
       },
-      
-      META_SERVER_STATUS_MGR : {
-         BTN : {
-            START : "启动服务器",
-            STOP : "关闭服务器",
-            RESTART : "重启服务器"
+      META_SERVER_STATUS_MGR: {
+         BTN: {
+            START: "启动服务器",
+            STOP: "关闭服务器",
+            RESTART: "重启服务器"
          }
       },
-      
-      LUOXI_SERVER_STATUS_MGR : {
+      LUOXI_SERVER_STATUS_MGR: {
          COLS: {
             ID: "ID",
             IP: "服务器地址",
@@ -227,12 +258,9 @@ Ext.define("App.Sys.Setting.Lang.zh_CN", {
             DESCRIPTION: "描述"
          },
          MENU: {
-            START : "启动服务器",
-            STOP : "关闭服务器",
-            RESTART : "重启服务器"
-         },
-         MSG: {
-            DELETE_ASK: "确定要删除该服务器吗？"
+            START: "启动服务器",
+            STOP: "关闭服务器",
+            RESTART: "重启服务器"
          }
       },
       
@@ -256,15 +284,15 @@ Ext.define("App.Sys.Setting.Lang.zh_CN", {
             COLS: {
                MSG: "升级信息"
             },
-            TITLE : "升级进度显示窗口",
-            MSG : {
-               UPGRADE_TPL : "目标升级版本:{0}"
+            TITLE: "升级进度显示窗口",
+            MSG: {
+               UPGRADE_TPL: "目标升级版本:{0}"
             }
          },
-         OPERATE_PROGRESS_WIN : {
-            TITLE : "操作进度显示窗口",
-            COLS : {
-               MSG : "日志信息"
+         OPERATE_PROGRESS_WIN: {
+            TITLE: "操作进度显示窗口",
+            COLS: {
+               MSG: "日志信息"
             }
          }
       }

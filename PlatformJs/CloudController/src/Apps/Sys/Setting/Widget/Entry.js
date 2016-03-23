@@ -36,7 +36,20 @@ Ext.define("App.Sys.Setting.Widget.Entry", {
             {
                text: U_NAMES.VERSION_INFO,
                id: "VersionInfo",
-               leaf: true
+               leaf: false,
+               children: [{
+                     text: U_NAMES.COMMON_VERSION,
+                     id: "CommonVersion",
+                     leaf: true
+                  },{
+                     text: U_NAMES.UPGRADEMGR_SLAVE_VERSION,
+                     id: "UpgrademgrSlaveVersion",
+                     leaf: true
+                  },{
+                     text: U_NAMES.LUOXI_VERSION,
+                     id: "LuoXiVersion",
+                     leaf: true
+                  }]
             }, {
                text: U_NAMES.SYS_UPGRADE,
                id: "SysUpgrade",

@@ -11,7 +11,8 @@ Ext.define("App.Sys.Setting.Main", {
       "App.Sys.Setting.Lang.zh_CN",
       //"App.Sys.User.Const",
       "App.Sys.Setting.Widget.Entry",
-      "App.Sys.Setting.Widget.VersionInfo",
+      "App.Sys.Setting.Widget.CommonVersion",
+      "App.Sys.Setting.Widget.LuoXiVersion",
       "App.Sys.Setting.Widget.UpgradeMetaInfo",
       "App.Sys.Setting.Widget.UpgradeCloudController",
       "App.Sys.Setting.Widget.UpgradeUpgradeMgrMaster",
@@ -20,7 +21,8 @@ Ext.define("App.Sys.Setting.Main", {
       "App.Sys.Setting.Widget.UpgradeMetaServer",
       "App.Sys.Setting.Widget.UpgradeLuoXi",
       "App.Sys.Setting.Widget.MetaServerStatusMgr",
-      "App.Sys.Setting.Widget.LuoXiServerStatusMgr"
+      "App.Sys.Setting.Widget.LuoXiServerStatusMgr",
+      "App.Sys.Setting.Widget.UpgrademgrSlaveVersion"
    ],
    /**
     * @inheritdoc
@@ -31,7 +33,9 @@ Ext.define("App.Sys.Setting.Main", {
     */
    widgetMap: {
       Entry: "App.Sys.Setting.Widget.Entry",
-      VersionInfo: "App.Sys.Setting.Widget.VersionInfo",
+      CommonVersion: "App.Sys.Setting.Widget.CommonVersion",
+      LuoXiVersion : "App.Sys.Setting.Widget.LuoXiVersion",
+      UpgrademgrSlaveVersion : "App.Sys.Setting.Widget.UpgrademgrSlaveVersion",
       UpgradeMetaInfo: "App.Sys.Setting.Widget.UpgradeMetaInfo",
       UpgradeCloudController: "App.Sys.Setting.Widget.UpgradeCloudController",
       UpgradeUpgradeMgrMaster: "App.Sys.Setting.Widget.UpgradeUpgradeMgrMaster",
@@ -65,7 +69,20 @@ Ext.define("App.Sys.Setting.Main", {
       var serviceInvoker = this.getServiceInvoker("metaserver");
       serviceInvoker.callService("ServerStatus/ServerInfo", "getVersionInfo", {}, callback, scope);
    },
-   
+   getLuoXiVersion : function(serverAddress, callback, scope)
+   {
+      var serviceInvoker = this.getServiceInvoker("metaserver");
+      serviceInvoker.callService("ServerStatus/LuoXiServerInfo", "getServerVersion", {
+         serverAddress : serverAddress
+      }, callback, scope);
+   },
+   getUpgrademgrSlaveVersion : function(serverAddress, callback, scope)
+   {
+      var serviceInvoker = this.getServiceInvoker("upgrademgr");
+      serviceInvoker.callService("ServerStatus/UpgradeMgrSlaveServerInfo", "getServerVersion", {
+         serverAddress : serverAddress
+      }, callback, scope);
+   },
    setServiceServerAddressMeta: function(data, callback, scope)
    {
       var serviceInvoker = this.getServiceInvoker("upgrademgr");
