@@ -7,46 +7,42 @@
  */
 Ext.define("App.Sys.Setting.Widget.CommonVersion", {
    extend: "WebOs.Kernel.ProcessModel.AbstractWidget",
-   initPmTextRef : function()
+   initPmTextRef: function()
    {
       this.pmText = this.GET_PM_TEXT("COMMON_VERSION");
    },
-   
-   initLangTextRef : function()
+   initLangTextRef: function()
    {
       this.LANG_TEXT = this.GET_LANG_TEXT("COMMON_VERSION");
    },
-   
-   versionGrid : null,
-   
+   versionGrid: null,
    /**
     * @template
     * @inheritdoc
     */
-   applyConstraintConfig : function(config)
+   applyConstraintConfig: function(config)
    {
       this.callParent([config]);
       Ext.apply(config, {
-         width : 600,
-         minWidth : 600,
-         minHeight : 300,
-         height : 300,
-         resizable : false,
-         layout : "fit",
-         maximizable : false
+         width: 600,
+         minWidth: 600,
+         minHeight: 300,
+         height: 300,
+         resizable: false,
+         layout: "fit",
+         maximizable: false
       });
    },
-   initComponent : function()
+   initComponent: function()
    {
-      Ext.apply(this,{
-         items : [
+      Ext.apply(this, {
+         items: [
             this.getVersionGridConfig()
          ]
       });
       this.callParent();
    },
-   
-   getVersionGridConfig : function()
+   getVersionGridConfig: function()
    {
       var COLS = this.LANG_TEXT.COLS;
       var NAMES = this.GET_LANG_TEXT("SYS_NAMES");
@@ -62,12 +58,12 @@ Ext.define("App.Sys.Setting.Widget.CommonVersion", {
             fields: [
                {name: "name", type: "string"},
                {name: "version", type: "string"},
-               {name: "key", type : "string"}
+               {name: "key", type: "string"}
             ],
-            data : [
-               {name : NAMES.CLOUD_CONTROLLER, version : QUERY_TEXT, key : "CloudController"},
-               {name : NAMES.META_SERVER, version : QUERY_TEXT, key : "MetaServer"},
-               {name : NAMES.UPGRADEMGR_MASTER, version : QUERY_TEXT, key : "UpgrademgrMaster"}
+            data: [
+               {name: NAMES.CLOUD_CONTROLLER, version: QUERY_TEXT, key: "CloudController"},
+               {name: NAMES.META_SERVER, version: QUERY_TEXT, key: "MetaServer"},
+               {name: NAMES.UPGRADEMGR_MASTER, version: QUERY_TEXT, key: "UpgrademgrMaster"}
             ]
          }),
          listeners: {
@@ -91,7 +87,7 @@ Ext.define("App.Sys.Setting.Widget.CommonVersion", {
                   }else{
                      version = response.getErrorString();
                   }
-                   var record = grid.store.findRecord("key", "UpgrademgrMaster");
+                  var record = grid.store.findRecord("key", "UpgrademgrMaster");
                   record.set("version", version);
                }, this);
                this.appRef.getMetaServerVersion(function(response){
@@ -101,16 +97,16 @@ Ext.define("App.Sys.Setting.Widget.CommonVersion", {
                   }else{
                      version = response.getErrorString();
                   }
-                   var record = grid.store.findRecord("key", "MetaServer");
+                  var record = grid.store.findRecord("key", "MetaServer");
                   record.set("version", version);
                }, this);
-               
+
             },
             scope: this
          }
       };
    },
-   destroy : function()
+   destroy: function()
    {
       delete this.versionGrid;
       this.callParent();
