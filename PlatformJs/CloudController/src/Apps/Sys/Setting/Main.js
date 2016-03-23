@@ -60,6 +60,12 @@ Ext.define("App.Sys.Setting.Main", {
       var serviceInvoker = this.getServiceInvoker("upgrademgr");
       serviceInvoker.callService("ServerStatus/Info", "getVersionInfo", {}, callback, scope);
    },
+   getMetaServerVersion : function(callback, scope)
+   {
+      var serviceInvoker = this.getServiceInvoker("metaserver");
+      serviceInvoker.callService("ServerStatus/ServerInfo", "getVersionInfo", {}, callback, scope);
+   },
+   
    setServiceServerAddressMeta: function(data, callback, scope)
    {
       var serviceInvoker = this.getServiceInvoker("upgrademgr");

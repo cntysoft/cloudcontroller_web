@@ -94,6 +94,17 @@ Ext.define("App.Sys.Setting.Widget.VersionInfo", {
                    var record = grid.store.findRecord("key", "UpgrademgrMaster");
                   record.set("version", version);
                }, this);
+               this.appRef.getMetaServerVersion(function(response){
+                  var version;
+                  if(response.status){
+                     version = response.getDataItem("version");
+                  }else{
+                     version = response.getErrorString();
+                  }
+                   var record = grid.store.findRecord("key", "MetaServer");
+                  record.set("version", version);
+               }, this);
+               
             },
             scope: this
          }
