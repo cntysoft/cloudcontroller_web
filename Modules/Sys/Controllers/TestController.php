@@ -19,16 +19,16 @@ class TestController extends AbstractController
 
    public function indexAction()
    {
-      $instanceMgr = new InstanceMgr();
-      $instanceMgr->setMetaInfo(array(
-          "currentVersion" => "123123asdjfgasd"
-      ));
-      exit();
-      $serverMgr = new ServerInfo();
-      $serverMgr->getServerListForTree();
-      exit();
+//      $instanceMgr = new InstanceMgr();
+//      $instanceMgr->setMetaInfo(array(
+//          "currentVersion" => "123123asdjfgasd"
+//      ));
+//      exit();
+//      $serverMgr = new ServerInfo();
+//      $serverMgr->getServerListForTree();
+//      exit();
       $mounter = new PermResMounter();
-      $mounter->mountPermRes("Sys", "KeleCloud");
+      $mounter->mountPermRes("Sys", "ZhuChao");
       exit();
       $auth = new Authorizer();
       $auth->login(json_decode('{"username":"admin","password":"344bba4200ad08694896aafa0b7507101798ac975744914bcc40856e87c3626d","chkcode":"3ftd"}', true));

@@ -152,25 +152,25 @@ Ext.define("App.Sys.Setting.Main", {
    startMetaServer : function(callback, scope)
    {
       var serviceInvoker = this.getServiceInvoker("upgrademgr");
-      serviceInvoker.callService("ServerStatus/DeploySystemRuntime", "startMetaServer", null, callback, scope);
+      serviceInvoker.callService("ServerStatus/DeploySystemMetaServerRuntime", "startServer", null, callback, scope);
    },
    
    restartMetaServer : function(callback, scope)
    {
       var serviceInvoker = this.getServiceInvoker("upgrademgr");
-      serviceInvoker.callService("ServerStatus/DeploySystemRuntime", "restartMetaServer", null, callback, scope);
+      serviceInvoker.callService("ServerStatus/DeploySystemMetaServerRuntime", "restartServer", null, callback, scope);
    },
    
    stopMetaServer : function(callback, scope)
    {
       var serviceInvoker = this.getServiceInvoker("upgrademgr");
-      serviceInvoker.callService("ServerStatus/DeploySystemRuntime", "stopMetaServer", null, callback, scope);
+      serviceInvoker.callService("ServerStatus/DeploySystemMetaServerRuntime", "stopServer", null, callback, scope);
    },
    
    startLuoXiServer : function(serverAddress, callback, scope)
    {
       var serviceInvoker = this.getServiceInvoker("upgrademgr");
-      serviceInvoker.callService("ServerStatus/DeploySystemRuntime", "startLuoXiServer", {
+      serviceInvoker.callService("ServerStatus/DeploySystemLuoXiRuntime", "startServer", {
          serverAddress : serverAddress
       }, callback, scope);
    },
@@ -178,7 +178,7 @@ Ext.define("App.Sys.Setting.Main", {
    restartLuoXiServer : function(serverAddress, callback, scope)
    {
       var serviceInvoker = this.getServiceInvoker("upgrademgr");
-      serviceInvoker.callService("ServerStatus/DeploySystemRuntime", "restartLuoXiServer", {
+      serviceInvoker.callService("ServerStatus/DeploySystemLuoXiRuntime", "restartServer", {
          serverAddress : serverAddress
       }, callback, scope);
    },
@@ -186,7 +186,7 @@ Ext.define("App.Sys.Setting.Main", {
    stopLuoXiServer : function(serverAddress, callback, scope)
    {
       var serviceInvoker = this.getServiceInvoker("upgrademgr");
-      serviceInvoker.callService("ServerStatus/DeploySystemRuntime", "stopLuoXiServer", {
+      serviceInvoker.callService("ServerStatus/DeploySystemLuoXiRuntime", "stopServer", {
          serverAddress : serverAddress
       }, callback, scope);
    },

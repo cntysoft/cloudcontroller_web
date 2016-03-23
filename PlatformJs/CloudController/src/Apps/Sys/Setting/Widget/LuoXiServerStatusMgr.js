@@ -92,19 +92,65 @@ Ext.define("App.Sys.Setting.Widget.LuoXiServerStatusMgr", {
       return this.contextMenuRef;
    },
    
-   startServerHandler : function()
+   startServerHandler : function(item)
    {
-      
+      this.setLoading(Cntysoft.GET_LANG_TEXT("MSG.OP"));
+      this.appRef.startLuoXiServer(item.parentMenu.record.get("ip"), function(response){
+         if(response.getStatus()){
+            if(!response.getDataItem("isFinal")){
+               this.setLoading(response.getDataItem("msg"));
+            }else{
+               this.loadMask.hide();
+               if(!Ext.isEmpty(response.getDataItem("msg"))){
+                  Cntysoft.showAlertWindow(response.getDataItem("msg"));
+               }
+            }
+         }else{
+            this.loadMask.hide();
+            Cntysoft.showAlertWindow(response.getErrorString());
+         }
+         
+      }, this);
    },
    
-   restartServerHandler : function()
+   restartServerHandler : function(item)
    {
-      
+      this.setLoading(Cntysoft.GET_LANG_TEXT("MSG.OP"));
+      this.appRef.restartLuoXiServer(item.parentMenu.record.get("ip"), function(response){
+         if(response.getStatus()){
+            if(!response.getDataItem("isFinal")){
+               this.setLoading(response.getDataItem("msg"));
+            }else{
+               this.loadMask.hide();
+               if(!Ext.isEmpty(response.getDataItem("msg"))){
+                  Cntysoft.showAlertWindow(response.getDataItem("msg"));
+               }
+            }
+         }else{
+            this.loadMask.hide();
+            Cntysoft.showAlertWindow(response.getErrorString());
+         }
+      }, this);
    },
    
-   stopServerHandler : function()
+   stopServerHandler : function(item)
    {
-      
+      this.setLoading(Cntysoft.GET_LANG_TEXT("MSG.OP"));
+      this.appRef.stopLuoXiServer(item.parentMenu.record.get("ip"), function(response){
+         if(response.getStatus()){
+            if(!response.getDataItem("isFinal")){
+               this.setLoading(response.getDataItem("msg"));
+            }else{
+               this.loadMask.hide();
+               if(!Ext.isEmpty(response.getDataItem("msg"))){
+                  Cntysoft.showAlertWindow(response.getDataItem("msg"));
+               }
+            }
+         }else{
+            this.loadMask.hide();
+            Cntysoft.showAlertWindow(response.getErrorString());
+         }
+      }, this);
    },
    
    typeRenderer: function(value)
