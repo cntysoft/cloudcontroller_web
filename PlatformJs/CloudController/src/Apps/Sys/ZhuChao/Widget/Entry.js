@@ -38,6 +38,14 @@ Ext.define("App.Sys.ZhuChao.Widget.Entry", {
                text: U_NAMES.UPGRADE,
                id: "UpgradeDeploy",
                leaf: true
+            },{
+               text: U_NAMES.DB_BACKUP,
+               id: "DatabaseBackup",
+               leaf: true
+            },{
+               text: U_NAMES.BACKUP_REPO,
+               id: "BackupRepo",
+               leaf: true
             }]
       };
    }

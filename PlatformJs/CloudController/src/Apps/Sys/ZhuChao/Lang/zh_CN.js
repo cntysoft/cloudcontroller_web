@@ -25,13 +25,19 @@ Ext.define("App.Sys.ZhuChao.Lang.zh_CN", {
          UPGRADE_DEPLOY : {
             WIDGET_TITLE: "欢迎使用凤凰筑巢升级部署管理应用",
             TASK_BTN_TEXT: "升级部署"
+         },
+         DB_BACKUP : {
+            WIDGET_TITLE: "欢迎使用凤凰筑巢数据库备份应用程序",
+            TASK_BTN_TEXT: "数据库备份"
          }
       },
       WIDGET_NAMES: {
          SERVER_MGR : "服务器管理",
          PACKAGE_REPO : "程序包管理",
          NEW_DEPLOY : "全新部署",
-         UPGRADE : "升级部署"
+         UPGRADE : "升级部署",
+         DB_BACKUP : "数据库备份",
+         BACKUP_REPO : "备份文件浏览"
       },
       PACKAGE_REPO : {
          
@@ -72,6 +78,19 @@ Ext.define("App.Sys.ZhuChao.Lang.zh_CN", {
          MSG: {
             TARGET_VERSION_WIN_TITLE: "目标升级版本设置窗口",
             TARGET_VERSION_TEXT: "目标部署服务器 : {0} ,版本范围 : {1} -> {2}"
+         }
+      },
+      DB_BACKUP : {
+         BTN : {
+            START_BACKUP : "开始备份数据库",
+            SERVER_ADDRESS : "部署服务器地址"
+         }
+      },
+      COMP : {
+         OPERATE_PROGRESS : {
+            COLS : {
+               MSG : "日志信息"
+            }
          }
       }
    }

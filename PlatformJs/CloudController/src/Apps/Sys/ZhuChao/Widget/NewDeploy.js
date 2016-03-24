@@ -148,6 +148,7 @@ Ext.define("App.Sys.ZhuChao.Widget.NewDeploy", {
                         }
                      }
                   }),
+                  editable : false,
                   allowBlank: false,
                   queryMode: "remote",
                   displayField: "ip",
