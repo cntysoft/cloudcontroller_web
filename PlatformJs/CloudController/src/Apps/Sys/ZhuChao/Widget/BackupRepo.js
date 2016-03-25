@@ -5,7 +5,7 @@
  * @copyright  Copyright (c) 2010-2011 Cntysoft Technologies China Inc. <http://www.cntysoft.com>
  * @license    http://www.cntysoft.com/license/new-bsd     New BSD License
  */
-Ext.define("App.Sys.ZhuChao.Widget.PackageRepo", {
+Ext.define("App.Sys.ZhuChao.Widget.BackupRepo", {
    extend: "WebOs.Kernel.ProcessModel.AbstractWidget",
    requires: [
       "CloudController.Comp.FsView.GridView"
@@ -13,8 +13,9 @@ Ext.define("App.Sys.ZhuChao.Widget.PackageRepo", {
    LANG_TEXT: null,
    initPmTextRef: function()
    {
-      this.pmText = this.GET_PM_TEXT("PACKAGE_REPO");
+      this.pmText = this.GET_PM_TEXT("BACKUP_REPO");
    },
+
    contextMenu: null,
    applyConstraintConfig: function(config)
    {
@@ -41,7 +42,7 @@ Ext.define("App.Sys.ZhuChao.Widget.PackageRepo", {
       return {
          xtype : "cloudcontrollercompfsviewgridview",
          startPaths : [
-            "/softwarerepo"
+            "/zhuchao/dbbackup"
          ],
          isCreateFsTree : true,
          websocketEntry : "metaserver"

@@ -29,6 +29,10 @@ Ext.define("App.Sys.ZhuChao.Lang.zh_CN", {
          DB_BACKUP : {
             WIDGET_TITLE: "欢迎使用凤凰筑巢数据库备份应用程序",
             TASK_BTN_TEXT: "数据库备份"
+         },
+         BACKUP_REPO : {
+            WIDGET_TITLE: "欢迎使用凤凰筑巢数据库备份文件管理应用程序",
+            TASK_BTN_TEXT: "数据库备份文件管理"
          }
       },
       WIDGET_NAMES: {
@@ -38,9 +42,6 @@ Ext.define("App.Sys.ZhuChao.Lang.zh_CN", {
          UPGRADE : "升级部署",
          DB_BACKUP : "数据库备份",
          BACKUP_REPO : "备份文件浏览"
-      },
-      PACKAGE_REPO : {
-         
       },
       NEW_DEPLOY : {
          BTN: {

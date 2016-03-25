@@ -14,7 +14,8 @@ Ext.define("App.Sys.ZhuChao.Main", {
       "App.Sys.ZhuChao.Widget.PackageRepo",
       "App.Sys.ZhuChao.Widget.NewDeploy",
       "App.Sys.ZhuChao.Widget.UpgradeDeploy",
-      "App.Sys.ZhuChao.Widget.DatabaseBackup"
+      "App.Sys.ZhuChao.Widget.DatabaseBackup",
+      "App.Sys.ZhuChao.Widget.BackupRepo"
    ],
    /**
     * @inheritdoc
@@ -25,7 +26,8 @@ Ext.define("App.Sys.ZhuChao.Main", {
       PackageRepo : "App.Sys.ZhuChao.Widget.PackageRepo",
       NewDeploy : "App.Sys.ZhuChao.Widget.NewDeploy",
       UpgradeDeploy : "App.Sys.ZhuChao.Widget.UpgradeDeploy",
-      DatabaseBackup : "App.Sys.ZhuChao.Widget.DatabaseBackup"
+      DatabaseBackup : "App.Sys.ZhuChao.Widget.DatabaseBackup",
+      BackupRepo : "App.Sys.ZhuChao.Widget.BackupRepo"
    },
    /**
     * @var {Cntysoft.Framework.Rpc.ServiceInvoker} serviceInvoker
