@@ -141,6 +141,7 @@ Ext.define("App.Sys.ZhuChao.Widget.UpgradeDeploy", {
             xtype: "form",
             items: [{
                   xtype: "combo",
+                  editable : false,
                   fieldLabel: LABEL.SERVER_ADDRESS,
                   store: new Ext.data.Store({
                      fields: ["ip"],

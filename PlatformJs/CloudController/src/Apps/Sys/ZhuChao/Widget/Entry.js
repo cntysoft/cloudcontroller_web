@@ -39,6 +39,10 @@ Ext.define("App.Sys.ZhuChao.Widget.Entry", {
                id: "UpgradeDeploy",
                leaf: true
             },{
+               text: U_NAMES.SHOP_DB_UPGRADER,
+               id: "ShopDbUpgrader",
+               leaf: true
+            },{
                text: U_NAMES.DB_BACKUP,
                id: "DatabaseBackup",
                leaf: true

@@ -15,7 +15,8 @@ Ext.define("App.Sys.ZhuChao.Main", {
       "App.Sys.ZhuChao.Widget.NewDeploy",
       "App.Sys.ZhuChao.Widget.UpgradeDeploy",
       "App.Sys.ZhuChao.Widget.DatabaseBackup",
-      "App.Sys.ZhuChao.Widget.BackupRepo"
+      "App.Sys.ZhuChao.Widget.BackupRepo",
+      "App.Sys.ZhuChao.Widget.ShopDbUpgrader"
    ],
    /**
     * @inheritdoc
@@ -27,7 +28,8 @@ Ext.define("App.Sys.ZhuChao.Main", {
       NewDeploy : "App.Sys.ZhuChao.Widget.NewDeploy",
       UpgradeDeploy : "App.Sys.ZhuChao.Widget.UpgradeDeploy",
       DatabaseBackup : "App.Sys.ZhuChao.Widget.DatabaseBackup",
-      BackupRepo : "App.Sys.ZhuChao.Widget.BackupRepo"
+      BackupRepo : "App.Sys.ZhuChao.Widget.BackupRepo",
+      ShopDbUpgrader : "App.Sys.ZhuChao.Widget.ShopDbUpgrader"
    },
    /**
     * @var {Cntysoft.Framework.Rpc.ServiceInvoker} serviceInvoker
@@ -67,6 +69,16 @@ Ext.define("App.Sys.ZhuChao.Main", {
          toVersion : toVersion,
          forceUpgrade : forceUpgrade,
          withoutUpgradeScript: withoutUpgradeScript
+      }, callback, scope);
+   },
+   
+   zhuchaoShopDbUpgrade : function(serverAddress, fromVersion, toVersion, forceDownloadPackage, callback, scope)
+   {
+      this.serviceInvoker.callService("ZhuChao/ShopDbUpgrader", "upgrade", {
+         serverAddress : serverAddress,
+         fromVersion : fromVersion,
+         toVersion : toVersion,
+         forceDownloadPackage : forceDownloadPackage
       }, callback, scope);
    },
    
