@@ -183,9 +183,6 @@ Ext.define("App.Sys.ZhuChao.Widget.ShopDbUpgrader", {
    startUpgradeHandler: function()
    {
       this.startBtnRef.setDisabled(true);
-      this.fromVersion = "0.0.2rc";
-      this.toVersion = "0.0.3alpha";
-      this.targetServerAddress = "127.0.0.1";
       this.appRef.zhuchaoShopDbUpgrade(this.targetServerAddress, this.fromVersion, this.toVersion, this.forceDownloadPackageRef.getValue(), function(response){
          if(response.status){
             var msg = response.getDataItem("msg");
