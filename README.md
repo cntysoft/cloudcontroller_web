@@ -1,0 +1,4 @@
+# cloudcontroller_web
+云控制系统WEB版
+
+使用Websocket与upgrademgr_master更新主系统与metaserver运维主系统进行交互，全图形化操作，方便使用
